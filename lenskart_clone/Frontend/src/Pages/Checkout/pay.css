@@ -1,0 +1,70 @@
+#ships{
+
+
+    background-color: #329c92;
+    padding:20px;
+    text-align: center;
+    color: #fff;
+    
+font-size: 20px;
+width: 100% !important
+}
+.input{
+outline: 1px solid black;
+width: 45%;
+padding: 15px;
+margin: 10px;;
+text-align: center;
+margin-left: 22px;
+
+}
+/* #shipping-ad{
+border: 1px solid black;
+width: 60%;
+padding:10px ;
+margin: 15;
+} */
+
+#addres{
+    border: 1px solid black;
+    width: 60%;
+    padding:10px ;
+    margin: 15;
+    padding-top: 10px;;
+    margin-top: 10px;
+    margin-left: 20px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+#radio{
+display: flex;
+gap: 10px;
+padding: 10px;
+margin-left: 22px;
+}
+.input:hover{
+    outline: 1.6px solid black;
+}
+#payment-container{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+#shiping{
+
+    background-color: #00b9c6;
+    padding: 15px;
+  
+
+ color: #fff;
+ margin-top: 40px;
+    width: 200px;
+    margin-left: 70%;
+    text-align: center;
+    border-radius: 5px;
+
+}
+.card{
+    display: flex;
+    gap:10px
+}
