@@ -6,9 +6,8 @@ import CartItem from "./Pages/Cart/CartItem";
 
 function App() {
   return (
-    <div>
-     
-      <AllRoutes/>
+    <div className="App">
+      <AllRoutes />
     </div>
   );
 }

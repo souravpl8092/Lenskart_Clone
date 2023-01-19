@@ -8,10 +8,13 @@ import {
   Input,
   Button,
   HStack,
+  Link,
 } from "@chakra-ui/react";
 import { FiPhoneCall } from "react-icons/fi";
 import { CiHeart } from "react-icons/ci";
 import { CgShoppingCart } from "react-icons/cg";
+import Login from "../../Pages/Login/Login";
+import Signup from "../../Pages/Signup/Signup";
 
 export const NavbarCard1 = ({ type }) => {
   return (
@@ -57,12 +60,8 @@ export const NavbarCard2 = () => {
             <Button size="sm" bg="whiteAlpha.900">
               Track Order
             </Button>
-            <Button size="sm" bg="whiteAlpha.900">
-              Sign In
-            </Button>
-            <Button size="sm" bg="whiteAlpha.900">
-              Sign Up
-            </Button>
+            <Login />
+            <Signup />
             <Button leftIcon={<CiHeart />} size="sm" bg="whiteAlpha.900">
               Wishlist
             </Button>
@@ -82,13 +81,13 @@ export const NavbarCard4 = ({ type }) => {
       <Flex gap={4} pl={5} pt={2} justifyContent="space-between">
         {type.map((i, index) => (
           <Box key={index}>
-            <Text
+            <Link
               fontSize="16px"
               fontWeight="500"
               _hover={{ textDecoration: "underline" }}
             >
               {i.labels}
-            </Text>
+            </Link>
             <Spacer />
           </Box>
         ))}
