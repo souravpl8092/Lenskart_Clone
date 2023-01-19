@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import ProductFilter from "../components/ProductsPage/ProductFilter";
-import Productlist from "../components/ProductsPage/Productlist";
+import ProductFilter from "../../Components/ProductPage/ProductFilter";
+import Productlist from "../../Components/ProductPage/ProductList.js";
 
 const Products = () => {
   return (
