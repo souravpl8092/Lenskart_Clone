@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import "./SingleProduct.css";
 import { FaStar } from "react-icons/fa";
 import { GiPlainCircle } from "react-icons/gi";
 import { TbCurrencyRupee } from "react-icons/tb";
@@ -64,6 +63,12 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    transition: ease-in-out 0.2s;
+  }
+  .product_container:hover {
+    transition: ease-in-out 0.2s;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    cursor: pointer;
   }
   .img_container {
     display: flex;
@@ -155,11 +160,11 @@ const Wrapper = styled.div`
     color: #d1c08f;
     font-weight: 700;
   }
-  
+
   //!Styles for Mobiles
   @media (max-width: 480px) {
     .product_container {
-      width: 300px;
+      width: 100%;
       border: 3px solid #ededed;
       margin: auto;
     }
