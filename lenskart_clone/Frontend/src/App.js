@@ -6,8 +6,8 @@ function App() {
   return (
     <div className="App">
       {/* <h1>Welcome to Glass Cart </h1> */}
-      <Navbar />
-      <Footer />
+      {/* <Navbar />
+      <Footer /> */}
     </div>
   );
 }

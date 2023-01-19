@@ -38,7 +38,7 @@ export const FooterCard2 = () => {
 
       <Center w="60%" m="auto">
         <Text>
-          Download Lenskart App to buy Eyeglasses, Sunglasses and Contact Lenses
+          Download Lenskart App to buy Eyeglasses, Sunglasses and Contact Lensess
         </Text>
       </Center>
     </Box>
