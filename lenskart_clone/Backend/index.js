@@ -3,6 +3,7 @@ const { connect } = require("./config/db");
 const bcrypt = require("bcrypt");
 const { RegisterModel } = require("./models/register.model");
 const { ProductModel } = require("./models/product.model");
+const { CartModel } = require("./models/cart.model");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const server = express();
@@ -55,6 +56,15 @@ server.post("/login", async (req, res) => {
     res.send("wrong entry");
   }
 });
+server.get("/user", async (req, res) => {
+  try {
+    const data = await RegisterModel.find();
+    res.send(data);
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+});
 server.post("/post", async (req, res) => {
   const data = req.body;
   try {
@@ -72,6 +82,35 @@ server.get("/data", async (req, res) => {
   } catch (error) {
     console.log(error);
     res.send(error);
+  }
+});
+server.post("/post/cart", async (req, res) => {
+  const data = req.body;
+  try {
+    await CartModel.insertMany(data);
+
+    res.send("data has been sent");
+  } catch (error) {
+    res.send("error");
+  }
+});
+server.get("/cart", async (req, res) => {
+  try {
+    const data = await CartModel.find();
+    res.send(data);
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+});
+server.delete("/delete/:id", async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    await CartModel.findByIdAndDelete({ _id: id });
+    res.send("data has been deleted");
+  } catch (error) {
+    console.log(error);
   }
 });
 server.listen(3500, async () => {
