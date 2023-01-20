@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Heading, Box, Flex, Text, Button } from "@chakra-ui/react";
+import { Box, Flex, Text, Button } from "@chakra-ui/react";
 import CartLength from "./CartLength";
 import CartNavbar from "./CartNavbar";
 import CartItem from "./CartItem";
