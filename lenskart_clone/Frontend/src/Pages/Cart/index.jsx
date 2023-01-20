@@ -38,7 +38,7 @@ const CartPage = () => {
       }
     });
   };
-  console.log(totalPrice);
+  //console.log(totalPrice);
   useEffect(() => {
     setLoading(true);
     setError(false);
