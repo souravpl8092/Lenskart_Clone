@@ -1,0 +1,5 @@
+{
+  "name": "payment",
+  "version": "2.4.0",
+  "main": "dist/payment.js"
+}

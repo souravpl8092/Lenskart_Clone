@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "react-credit-cards": "^0.8.3"
+    "react-credit-cards": "^0.8.3",
+    "react-icons": "^4.7.1"
   }
 }
