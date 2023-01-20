@@ -1,5 +1,12 @@
 import { Box, Button, Flex, Heading } from "@chakra-ui/react";
-function PriceDetail() {
+import { useEffect, useState } from "react";
+
+function PriceDetail({ totalPrice, discountPrice }) {
+  const [finaltotal, setFinalTotal] = useState(0);
+
+  useEffect(() => {
+    setFinalTotal(totalPrice - discountPrice - 503.82);
+  }, [totalPrice, discountPrice]);
   return (
     <Flex
       flexDirection={"column"}
@@ -35,7 +42,7 @@ function PriceDetail() {
             fontFamily={"Inter"}
             justifyContent="flex-end"
           >
-            ₹ 4098
+            ₹ {totalPrice}
           </Heading>
         </Flex>
         <Box border={"1px dashed #CECEDF"}></Box>
@@ -46,7 +53,7 @@ function PriceDetail() {
             fontWeight="500"
             fontFamily={"Inter"}
           >
-            Total After Discount
+            Total Discount
           </Heading>
           <Heading
             as="p"
@@ -55,7 +62,7 @@ function PriceDetail() {
             fontFamily={"Inter"}
             justifyContent="flex-end"
           >
-            ₹ 2799
+            ₹ {discountPrice}
           </Heading>
         </Flex>
         <Box border={"1px dashed #CECEDF"}></Box>
@@ -129,7 +136,7 @@ function PriceDetail() {
             fontFamily={"Inter"}
             justifyContent="flex-end"
           >
-            ₹ 3302.82
+            ₹ {finaltotal}
           </Heading>
         </Flex>
       </Flex>
