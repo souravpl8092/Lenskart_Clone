@@ -29,9 +29,7 @@
     "redux": "^4.2.0",
     "swiper": "^8.4.6",
     "web-vitals": "^2.1.4",
-    "styled-components": "^5.3.6",
-    "react-icons": "^4.7.1"
-
+    "styled-components": "^5.3.6"
   },
   "scripts": {
     "start": "react-scripts start",
