@@ -7,9 +7,11 @@ import {
   Text,
   Divider,
   Box,
+  useToast,
 } from "@chakra-ui/react";
 
-const CartItem = ({ img_responsive, product_name, product_strike }) => {
+const CartItem = ({ img_responsive, product_name, product_strike,id, DeleteRequest  }) => {
+  const toast = useToast();
   return (
     <Flex
       gap={2}
@@ -109,13 +111,49 @@ const CartItem = ({ img_responsive, product_name, product_strike }) => {
         </Flex>
         <Box border={"1px dashed #CECEDF"}></Box>
         <Flex border={"0px solid grey"} gap="5">
-          <Heading as={"a"} fontSize="14px" textDecoration={"underline"}>
+          <Button
+            backgroundColor={"white"}
+            _hover={"backgroundColor:white"}
+            textDecoration="underline"
+            fontSize={"18"}
+            ml="-1.5"
+            onClick={() => {
+              DeleteRequest(id)
+                .then((response) => {
+                  toast({
+                    title: "Delete Item Successfully",
+                    status: "success",
+                    duration: 4000,
+                    isClosable: true,
+                    position: "top",
+                  });
+                })
+                .catch((reject) => {
+                  toast({
+                    title: "Something Went Wrong",
+                    description: `${reject.message}`,
+                    status: "error",
+                    duration: 5000,
+                    isClosable: true,
+                    position: "bottom-right",
+                  });
+                });
+            }}
+          >
             Remove
-          </Heading>
+          </Button>
+
+        
           <Box border={"1px solid #CECEDF"}></Box>
-          <Heading as={"a"} fontSize="14px" textDecoration={"underline"}>
+          
+          <Button
+            backgroundColor={"white"}
+            _hover={"backgroundColor:white"}
+            textDecoration="underline"
+            fontSize={"18"}
+          >
             Repeat
-          </Heading>
+          </Button>
         </Flex>
       </Flex>
     </Flex>
@@ -123,3 +161,9 @@ const CartItem = ({ img_responsive, product_name, product_strike }) => {
 };
 
 export default CartItem;
+// {/* <Heading as={"a"} fontSize="14px" textDecoration={"underline"}>
+//             Repeat
+//           </Heading> */}
+  // {/* <Heading as={"a"} fontSize="14px" textDecoration={"underline"}>
+  //           Remove
+  //         </Heading> */}

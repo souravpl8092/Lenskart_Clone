@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Box, Flex, Text, Button } from "@chakra-ui/react";
+import { Box, Flex, Text, Button, useToast } from "@chakra-ui/react";
 import CartLength from "./CartLength";
 import CartNavbar from "./CartNavbar";
 import CartItem from "./CartItem";
@@ -11,12 +11,14 @@ import axios from "axios";
 import { useState } from "react";
 import { RingLoader } from "react-spinners";
 import NotFound from "./CartError";
+import { useNavigate } from "react-router-dom";
 
 export const getCartData = async () => {
   return axios.get("https://spotless-erin-trousers.cyclic.app/data");
 };
 
 const CartPage = () => {
+  const toast = useToast();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -38,6 +40,20 @@ const CartPage = () => {
       }
     });
   };
+
+  const DeleteRequest = async (id) => {
+    try {
+      let response = await axios.delete(
+        `https://spotless-erin-trousers.cyclic.app/cart/${id}`
+      );
+      getCartData().then((res) => {
+        return setData(res);
+      });
+    } catch (err) {
+      return err;
+    }
+  };
+
   //console.log(totalPrice);
   useEffect(() => {
     setLoading(true);
@@ -54,6 +70,8 @@ const CartPage = () => {
         setError(true);
       });
   }, []);
+
+  const navigate = useNavigate();
   return (
     <>
       <CartNavbar />
@@ -109,6 +127,7 @@ const CartPage = () => {
                   img_responsive={img_responsive}
                   product_name={product_name}
                   product_strike={product_strike}
+                  DeleteRequest={DeleteRequest}
                 />
               )
             )}
@@ -140,7 +159,8 @@ const CartPage = () => {
               discountPrice={discountPrice}
             />
             <SaleBox />
-            <CouponBox />
+            <CouponBox totalPrice={totalPrice} />
+
             <Button
               backgroundColor={"#12daac"}
               color="#091e52"
@@ -149,6 +169,7 @@ const CartPage = () => {
               fontSize={"16px"}
               height="56px"
               fontWeight={"700"}
+              onClick={() => navigate("/shiping")}
             >
               Proceed To Checkout
             </Button>
