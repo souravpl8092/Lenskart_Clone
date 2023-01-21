@@ -26,12 +26,11 @@
     "react-router-dom": "^6.6.2",
     "react-scripts": "5.0.1",
     "react-slideshow-image": "^4.1.1",
+    "react-spinners": "^0.13.8",
     "redux": "^4.2.0",
+    "styled-components": "^5.3.6",
     "swiper": "^8.4.6",
     "web-vitals": "^2.1.4"
-    "styled-components": "^5.3.6",
-    "react-icons": "^4.7.1"
-
   },
   "scripts": {
     "start": "react-scripts start",

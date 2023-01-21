@@ -14,7 +14,7 @@ function PriceDetail({ totalPrice, discountPrice }) {
       border="1px solid grey"
       borderRadius={"10px"}
       gap="3"
-      padding={"5px"}
+      padding={"5px"} cursor={"pointer"}
     >
       <Flex
         gap={"4"}

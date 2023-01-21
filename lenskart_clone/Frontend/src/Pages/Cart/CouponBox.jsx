@@ -11,6 +11,7 @@ const CouponBox = () => {
       borderRadius="10px"
       boxShadow={"lg"}
       justifyContent="space-between"
+      cursor={"pointer"}
     >
       <Flex flexDirection={"column"}>
         <Heading as={"h1"} fontSize="14px" fontWeight={700}>
