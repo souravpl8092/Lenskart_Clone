@@ -60,24 +60,24 @@ export default function CartItem() {
                     })}
                     
                     
-                </Box>
-                <Box p={5} border='1px solid #ccc' bg='#EFEFEF'>
-                    <Flex justifyContent={'space-between'}>
-                        <Text fontWeight='bold'>SUBTOTAL</Text>
-                        <Text fontWeight='medium'>₹{total}</Text>
-                    </Flex>
-                    <Divider h={2} mb={2}/>
-                    <Flex justifyContent={'space-between'}>
-                        <Text fontWeight='bold'>TAX COLLECTED</Text>
-                        <Text fontWeight='medium'>+ ₹{total*0.18}</Text>
-                    </Flex>
-                    <Divider h={2} mb={2}/>
-                    <Flex justifyContent={'space-between'}>
-                        <Text fontWeight='bolder'fontSize={18}>ORDER TOTAL</Text>
-                        <Text fontWeight='bold' fontSize={18} color='#329BA9'>₹{total+(total*0.18)}</Text>
-                    </Flex>
+//                 </Box>
+//                 <Box p={5} border='1px solid #ccc' bg='#EFEFEF'>
+//                     <Flex justifyContent={'space-between'}>
+//                         <Text fontWeight='bold'>SUBTOTAL</Text>
+//                         <Text fontWeight='medium'>₹{total}</Text>
+//                     </Flex>
+//                     <Divider h={2} mb={2}/>
+//                     <Flex justifyContent={'space-between'}>
+//                         <Text fontWeight='bold'>TAX COLLECTED</Text>
+//                         <Text fontWeight='medium'>+ ₹{total*0.18}</Text>
+//                     </Flex>
+//                     <Divider h={2} mb={2}/>
+//                     <Flex justifyContent={'space-between'}>
+//                         <Text fontWeight='bolder'fontSize={18}>ORDER TOTAL</Text>
+//                         <Text fontWeight='bold' fontSize={18} color='#329BA9'>₹{total+(total*0.18)}</Text>
+//                     </Flex>
                     
-                </Box>
+//                 </Box>
                 
             </Flex>
         </>
