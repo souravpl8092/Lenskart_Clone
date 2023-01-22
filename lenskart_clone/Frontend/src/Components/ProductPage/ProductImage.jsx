@@ -11,6 +11,7 @@ const ProductImage = () => {
 };
 const Wrapper = styled.div`
   /* border: 1px solid red; */
+  /* display: block; */
   @media (max-width: 480px) {
     display: none;
   }

@@ -12,6 +12,8 @@ import { useState } from "react";
 import { RingLoader } from "react-spinners";
 import NotFound from "./CartError";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../../ContextApi/CartContext";
 
 export const getCartData = async () => {
   return axios.get("https://spotless-erin-trousers.cyclic.app/data");
@@ -70,6 +72,9 @@ const CartPage = () => {
         setError(true);
       });
   }, []);
+
+  const { cart } = useContext(CartContext);
+  console.log(cart, "cart");
 
   const navigate = useNavigate();
   return (
