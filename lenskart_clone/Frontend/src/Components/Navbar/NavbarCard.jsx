@@ -39,8 +39,10 @@ export const NavbarCard2 = () => {
     <Box cursor="pointer">
       {/* <Image src="https://i.imgur.com/nQ34FHp.png" alt="logo" w="10%"/> */}
       <HStack m="auto">
-        <Box w={{lg:"20%", md:"40%", base:"40%"}}>
-          <Image src="https://i.imgur.com/OHxtfjd.png" alt="logo" w="75%" />
+        <Box w={{ lg: "20%", md: "40%", base: "40%" }}>
+          <Link to="/">
+            <Image src="https://i.imgur.com/OHxtfjd.png" alt="logo" w="75%" />
+          </Link>
         </Box>
         <HStack w="85%" m="auto">
           <Box w="15%">
