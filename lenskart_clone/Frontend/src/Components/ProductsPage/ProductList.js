@@ -1,9 +1,11 @@
-import React, { useState } from "react";
-import SingleProduct from "./SingleProduct.js";
+// import SingleProduct from "./SingleProduct.js";
+import { useState } from "react";
 import styled from "styled-components";
-
+import newData from "../../assets/newData";
+import NewSingleProduct from "./SingleProduct";
 const Productlist = () => {
-  const products = new Array(10).fill(Date.now());
+  const [data, setData] = useState(newData);
+  // setData(newData);
   return (
     <Wrapper className="wrapper">
       <div className="product_list_header">
@@ -12,8 +14,9 @@ const Productlist = () => {
         <span className="header_box "></span>
       </div>
       <div className="product_list">
-        {products.map((elem) => (
-          <SingleProduct key={elem} />
+        {data.map((elem, ind) => (
+          // <SingleProduct key={elem.id} productInfo={elem} />
+          <NewSingleProduct key={ind} newData={elem} />
         ))}
       </div>
     </Wrapper>
