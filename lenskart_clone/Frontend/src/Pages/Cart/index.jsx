@@ -14,7 +14,7 @@ import NotFound from "./CartError";
 import { useNavigate } from "react-router-dom";
 
 export const getCartData = async () => {
-  return axios.get("https://spotless-erin-trousers.cyclic.app/data");
+  return axios.get("https://spotless-erin-trousers.cyclic.app/cart");
 };
 
 const CartPage = () => {
@@ -28,9 +28,16 @@ const CartPage = () => {
   const [discountPrice, setdiscountPrice] = useState(0);
 
   // let num = parseFloat(str.replace("Rs.", ""));
+
   const amount = (array) => {
     array.map(({ product_strike, product_discountedPrice }) => {
-      if (product_strike !== "" && product_discountedPrice !== "") {
+      setTotalprice(pre => pre+parseFloat(product_strike))
+      setdiscountPrice(pre => pre+parseFloat(product_discountedPrice))
+    });
+  };
+ 
+  /*
+if (product_strike !== "" && product_discountedPrice !== "") {
         setTotalprice(
           (pre) => pre + parseFloat(product_strike.replace("Rs.", ""))
         );
@@ -38,23 +45,8 @@ const CartPage = () => {
           (pre) => pre + parseFloat(product_discountedPrice.replace("Rs.", ""))
         );
       }
-    });
-  };
+  */
 
-  const DeleteRequest = async (id) => {
-    try {
-      let response = await axios.delete(
-        `https://spotless-erin-trousers.cyclic.app/cart/${id}`
-      );
-      getCartData().then((res) => {
-        return setData(res);
-      });
-    } catch (err) {
-      return err;
-    }
-  };
-
-  //console.log(totalPrice);
   useEffect(() => {
     setLoading(true);
     setError(false);
@@ -69,7 +61,7 @@ const CartPage = () => {
         setLoading(false);
         setError(true);
       });
-  }, []);
+  }, [change]);
 
   const navigate = useNavigate();
   return (
@@ -124,10 +116,12 @@ const CartPage = () => {
               ({ img_responsive, product_name, product_strike, _id }) => (
                 <CartItem
                   key={_id}
+                  id={_id}
                   img_responsive={img_responsive}
                   product_name={product_name}
                   product_strike={product_strike}
-                  DeleteRequest={DeleteRequest}
+                  setChange={setChange}
+                  change={change}
                 />
               )
             )}
@@ -169,7 +163,7 @@ const CartPage = () => {
               fontSize={"16px"}
               height="56px"
               fontWeight={"700"}
-              onClick={() => navigate("/shiping")}
+              onClick={() => navigate("/shipping")}
             >
               Proceed To Checkout
             </Button>
@@ -182,9 +176,3 @@ const CartPage = () => {
 
 export default CartPage;
 
-// let num = parseFloat(product_strike.replace("Rs.", ""));
-//       if (num === "") {
-//         count++;
-//       } else {
-//         console.log(num);
-//       }
