@@ -26,7 +26,7 @@ const Mainbox = () => {
     <Wrapper>
       <span className="desc_box title1">Vincent Chase Polarized</span>
       <span className="desc_box title2">
-        {currentProduct?.name  ||
+        {currentProduct?.name ||
           "Black Half Rim Round Vincent Chase SLEEK STEEL"}
       </span>
       <span className="desc_box size">
@@ -40,7 +40,7 @@ const Mainbox = () => {
       </div>
       <div className="desc_box buttons">
         {buttons.map((data) => (
-          <Button data={data} key={data.id} />
+          <Button data={data} key={data.id} currentProduct={currentProduct} />
         ))}
       </div>
       <div className="desc_box"></div>

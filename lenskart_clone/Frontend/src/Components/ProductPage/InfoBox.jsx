@@ -6,8 +6,8 @@ const InfoBox = ({ data, field }) => {
   return (
     <Wrapper>
       <div style={{ color: `${field === "heading" ? "grey" : "black"}` }}>
-        {data.map((data) => (
-          <span>{data[field]}</span>
+        {data.map((data, ind) => (
+          <span key={Date.now()}>{data[field]}</span>
         ))}
       </div>
     </Wrapper>

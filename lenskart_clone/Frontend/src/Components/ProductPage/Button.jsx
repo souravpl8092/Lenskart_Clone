@@ -1,15 +1,53 @@
+// import axios from "axios";
 import React from "react";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CartContext } from "../../ContextApi/CartContext";
-const Button = ({ data }) => {
-  let { currentProduct, setCart, cart } = useContext(CartContext);
+const Button = ({ data, currentProduct }) => {
+  let { setCart, cart } = useContext(CartContext);
+
+  const navigate = useNavigate();
 
   const addToCart = () => {
+    const { name, img, ratingV, ratingC, size, dprice, OgPrice } =
+      currentProduct;
+
+    const payload = {
+      product_base: "",
+      img_responsive: img,
+      product_brand: "",
+      product_name: name,
+      product_size: size,
+      product_ratingsContainer: ratingV,
+      product_ratingsCount: ratingC,
+      product_separator: "",
+      product_discountedPrice: dprice,
+      product_strike: OgPrice,
+      product_discountPercentage: "",
+    };
+    console.log(currentProduct);
+    fetch("https://spotless-erin-trousers.cyclic.app/post/cart", {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        "Content-type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+
     setCart([...cart, currentProduct]);
   };
   return (
-    <CustomButton onClick={() => addToCart}>
+    <CustomButton
+      onClick={() => {
+        addToCart();
+        navigate("/cartpage");
+      }}
+    >
       <div
         className="btn btn1"
         style={{

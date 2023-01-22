@@ -5,6 +5,7 @@ import { GiPlainCircle } from "react-icons/gi";
 import { TbCurrencyRupee } from "react-icons/tb";
 import { useContext } from "react";
 import { CartContext } from "../../ContextApi/CartContext";
+import { useNavigate } from "react-router-dom";
 
 // let size = { S: "Small", M: "Medium", L: "Large" };
 const SingleProduct = ({ newData }) => {
@@ -14,10 +15,20 @@ const SingleProduct = ({ newData }) => {
     presentColor = presentColor === "red" ? "#ededed" : "red";
     e.target.style.color = presentColor;
   };
-
+  const navigate = useNavigate();
   return (
-    <Wrapper onClick={() => setCurrentProduct(newData)}>
-      <div className="product_container">
+    <Wrapper
+      onClick={() => {
+        navigate("/product/singleProduct");
+      }}
+    >
+      <div
+        className="product_container"
+        onClick={() => {
+          console.log(newData);
+          setCurrentProduct(newData);
+        }}
+      >
         <FaHeart className="icon heart" onClick={(e) => changeColor(e)} />
         <div className="img_container">
           <img

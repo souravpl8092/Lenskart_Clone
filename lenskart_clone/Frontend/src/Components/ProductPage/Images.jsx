@@ -15,6 +15,7 @@ const Images = () => {
   );
 };
 const Wrapper = styled.div`
+  margin-bottom: 15rem;
   padding: 1rem;
   div.image_container {
     display: grid;
