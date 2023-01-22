@@ -1,8 +1,11 @@
 import React from "react";
+import { useContext } from "react";
 import styled from "styled-components";
+import { CartContext } from "../../ContextApi/CartContext";
 import Button from "./Button";
 
 const Mainbox = () => {
+  let { currentProduct } = useContext(CartContext);
   const buttons = [
     {
       color: "FFFFFF",
@@ -22,9 +25,14 @@ const Mainbox = () => {
   return (
     <Wrapper>
       <span className="desc_box title1">Vincent Chase Polarized</span>
-      <span className="desc_box title2">Black Full Rim Aviator Sunglasses</span>
-      <span className="desc_box size">Size: Medium</span>
-      <span className="desc_box price">₹1299</span>
+      <span className="desc_box title2">
+        {currentProduct?.name  ||
+          "Black Half Rim Round Vincent Chase SLEEK STEEL"}
+      </span>
+      <span className="desc_box size">
+        Size: {currentProduct?.size || "medium"}
+      </span>
+      <span className="desc_box price">₹{currentProduct?.dprice || 1299}</span>
       <div className="desc_box colors">
         <span className="color red"></span>
         <span className="color black"></span>

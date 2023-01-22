@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import newData from "../../assets/newData.js";
+import ImageSlider from "../../Components/ProductPage/ImageSlider.jsx";
 import ProductDesc from "../../Components/ProductPage/ProductDesc";
 import ProductImage from "../../Components/ProductPage/ProductImage";
 
@@ -13,6 +14,7 @@ const Product = () => {
         {"\u00A0"}/ {"\u00A0"} Lenskart Air / Peyush Bansal Shark Tank Amber
         Full Rim Hustlr Eyeglasses - 206824
       </span>
+      <ImageSlider />
       <div className="product_container">
         <ProductImage data={data} />
         <ProductDesc data={data} />
@@ -24,12 +26,12 @@ const Product = () => {
 const Wrapper = styled.div`
   padding: 3rem 3rem;
   div.product_container {
-    width: 100%;
+    /* width: 100%; */
     /* border: 2px solid blue; */
     display: grid;
     grid-template-columns: 60% 35%;
     gap: 3rem;
-    grid-template-rows: 100vh;
+    /* grid-template-rows: 100vh; */
   }
   span.product_path {
     color: grey;

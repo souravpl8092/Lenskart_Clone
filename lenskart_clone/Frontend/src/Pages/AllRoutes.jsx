@@ -5,6 +5,7 @@ import Pay from "./Payment/pay";
 import CartPage from "./Cart/index";
 import Products from "./Products/Products";
 import Home from "./Home/Home";
+import Product from "./SingleProduct/Product";
 
 const AllRoutes = () => {
   const location = useLocation();
@@ -17,6 +18,7 @@ const AllRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/cartpage" element={<CartPage />} />
       <Route path="/products" element={<Products />} />
+      <Route path="/product/singleProduct" element={<Product />} />
       <Route path="/payment" element={<Pay />} />
       <Route path="/shiping" element={<Payment />} />
     </Routes>

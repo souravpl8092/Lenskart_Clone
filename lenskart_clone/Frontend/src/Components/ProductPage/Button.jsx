@@ -1,8 +1,15 @@
 import React from "react";
+import { useContext } from "react";
 import styled from "styled-components";
+import { CartContext } from "../../ContextApi/CartContext";
 const Button = ({ data }) => {
+  let { currentProduct, setCart, cart } = useContext(CartContext);
+
+  const addToCart = () => {
+    setCart([...cart, currentProduct]);
+  };
   return (
-    <CustomButton>
+    <CustomButton onClick={() => addToCart}>
       <div
         className="btn btn1"
         style={{

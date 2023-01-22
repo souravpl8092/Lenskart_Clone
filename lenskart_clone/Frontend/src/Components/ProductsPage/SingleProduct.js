@@ -3,17 +3,20 @@ import styled from "styled-components";
 import { FaStar, FaHeart } from "react-icons/fa";
 import { GiPlainCircle } from "react-icons/gi";
 import { TbCurrencyRupee } from "react-icons/tb";
+import { useContext } from "react";
+import { CartContext } from "../../ContextApi/CartContext";
 
 // let size = { S: "Small", M: "Medium", L: "Large" };
 const SingleProduct = ({ newData }) => {
+  const { setCurrentProduct } = useContext(CartContext);
   const changeColor = (e) => {
-    let previousStyles = e.target.style;
     let presentColor = e.target.style.color;
     presentColor = presentColor === "red" ? "#ededed" : "red";
     e.target.style.color = presentColor;
   };
+
   return (
-    <Wrapper>
+    <Wrapper onClick={() => setCurrentProduct(newData)}>
       <div className="product_container">
         <FaHeart className="icon heart" onClick={(e) => changeColor(e)} />
         <div className="img_container">
