@@ -7,8 +7,8 @@ const HomeCard = ({ type }) => {
       <Grid
         templateColumns={{
           base: "repeat(2,1fr)",
-          md: "repeat(4,1fr)",
-          lg: "repeat(5,1fr)",
+          md: "repeat(3,1fr)",
+          lg: "repeat(4,1fr)",
           xl: "repeat(6,1fr)",
           "2xl": "repeat(6,1fr)",
         }}
@@ -31,7 +31,7 @@ const HomeCard = ({ type }) => {
               <Image src={`${i.img}`} alt={i.name} w="100%" />
             </Center>
             <Center>
-              <Text color="gray" fontSize="sm" fontWeight="500" p="1">
+              <Text color="gray" fontSize="2xl" fontWeight="500" p="1">
                 {i.title}
               </Text>
             </Center>

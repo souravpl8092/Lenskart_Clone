@@ -14,7 +14,7 @@ const HomeCard2 = ({ type, src }) => {
             sm: "none",
             md: "none",
             lg: "none",
-            xl: "40%",
+            xl: "50%",
             base: "none",
           }}
           cursor="pointer"
@@ -22,14 +22,14 @@ const HomeCard2 = ({ type, src }) => {
         >
           <Image
             src={src}
-            boxSize="320px"
+            boxSize="700px"
             h="200px"
             w={{
               xs: "80%",
               sm: "80%",
               md: "80%",
-              lg: "400px",
-              xl: "400px",
+              lg: "100%",
+              xl: "100%",
               base: "none",
             }}
           />

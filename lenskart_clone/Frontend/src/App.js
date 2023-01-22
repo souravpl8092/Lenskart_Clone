@@ -1,13 +1,13 @@
 import "./App.css";
 import AllRoutes from "./Pages/AllRoutes";
-import CartNavbar from "./Pages/Cart/CartNavbar.jsx";
-import CartLength from "./Pages/Cart/CartLength";
-import CartItem from "./Pages/Cart/CartItem";
-
+import Navbar from "./Components/Navbar/Navbar";
+import Footer from "./Components/Footer/Footer";
 function App() {
   return (
     <div className="App">
+      <Navbar />
       <AllRoutes />
+      <Footer />
     </div>
   );
 }

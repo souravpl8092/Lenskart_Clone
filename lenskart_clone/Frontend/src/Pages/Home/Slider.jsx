@@ -1,5 +1,14 @@
 import React from "react";
-import { Box, Image, Square, Link, Text, Button } from "@chakra-ui/react";
+import {
+  Box,
+  Image,
+  Square,
+  Link,
+  Text,
+  Button,
+  Center,
+  VStack,
+} from "@chakra-ui/react";
 import { Navigation, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -52,18 +61,22 @@ const Slider = ({ type }) => {
                 />
               </Square>
             </Link>
-            <Text
-              pt={5}
-              pb={5}
-              fontWeight="bold"
-              fontSize="18px"
-              fontFamily="Futura-Medium"
-            >
-              {i.name}
-            </Text>
-            <Button p="10px 40px" colorScheme="teal">
-              Explore
-            </Button>
+            <VStack m="auto">
+              <Center>
+                <Text
+                  pt={5}
+                  pb={5}
+                  fontWeight="bold"
+                  fontSize="18px"
+                  fontFamily="Futura-Medium"
+                >
+                  {i.name}
+                </Text>
+              </Center>
+              <Button p="20px 40px" colorScheme="teal" m="auto" fontSize="17px">
+                Explore
+              </Button>
+            </VStack>
           </SwiperSlide>
         </Box>
       ))}

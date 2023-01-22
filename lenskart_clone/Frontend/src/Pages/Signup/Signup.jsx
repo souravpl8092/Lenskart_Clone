@@ -41,11 +41,11 @@ const Signup = () => {
   const { firstName, lastName, mobile, email, password } = formState;
   const handleSubmit = (e) => {
     if (
-      firstName != "" &&
-      lastName != "" &&
-      mobile != "" &&
-      email != "" &&
-      password != ""
+      firstName !== "" &&
+      lastName !== "" &&
+      mobile !== "" &&
+      email !== "" &&
+      password !== ""
     ) {
       axios({
         method: "POST",
@@ -61,12 +61,13 @@ const Signup = () => {
     <>
       <Button
         my={4}
-        size="sm"
+        size="lg"
         bg="whiteAlpha.900"
-        w="50"
         justifyContent="center"
         m="20px auto"
         onClick={onOpen}
+        fontSize="14px"
+        fontWeight="400"
       >
         Sign Up
       </Button>
@@ -75,67 +76,83 @@ const Signup = () => {
         finalFocusRef={finalRef}
         isOpen={isOpen}
         onClose={onClose}
+        size="3xl"
+        p={4}
       >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
-            <Center>Create an Account</Center>
+            <Center fontSize="25px" mt={4}>
+              Create an Account
+            </Center>
           </ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton fontSize="15px" p={9} />
 
-          <ModalBody pb={7} pl={10} pr={10}>
-            <FormControl>
+          <ModalBody>
+            <FormControl pl={9} pr={9}>
               <Input
                 name="firstName"
                 value={firstName}
                 type="text"
                 variant="outline"
                 placeholder="First Name"
-                size="md"
+                w="100%"
+                h="45px"
+                fontSize="16px"
+                borderRadius="xl"
                 onChange={handleChange}
               />
             </FormControl>
             <br />
-            <FormControl>
+            <FormControl pl={9} pr={9}>
               <Input
                 name="lastName"
                 value={lastName}
                 type="text"
                 variant="outline"
                 placeholder="Last Name"
-                size="md"
+                w="100%"
+                h="45px"
+                fontSize="16px"
+                borderRadius="xl"
                 onChange={handleChange}
               />
             </FormControl>
             <br />
-            <FormControl>
-              <InputGroup size="md">
-                <InputLeftAddon children="+91" />
+            <FormControl pl={9} pr={9}>
+              <InputGroup w="100%" h="50px" fontSize="18px" borderRadius="xl">
+                <InputLeftAddon children="+91" h="45px" fontSize="18px" />
                 <Input
                   name="mobile"
                   value={mobile}
                   type="Number"
                   variant="outline"
                   placeholder="Mobile"
-                  size="md"
+                  w="100%"
+                  h="45px"
+                  fontSize="16px"
+                  borderRadius="xl"
                   onChange={handleChange}
                 />
               </InputGroup>
             </FormControl>
             <br />
-            <FormControl>
+            <FormControl pl={9} pr={9}>
               <Input
                 name="email"
                 value={email}
                 type="email"
                 variant="outline"
                 placeholder="Email"
-                size="md"
+                w="100%"
+                h="45px"
+                fontSize="16px"
+                borderRadius="xl"
                 onChange={handleChange}
               />
             </FormControl>
             <br />
-            <FormControl>
+            <FormControl pl={9} pr={9}>
               <Input
                 data-cy="add-product-title"
                 name="password"
@@ -143,17 +160,27 @@ const Signup = () => {
                 type="text"
                 variant="outline"
                 placeholder="Password"
-                size="md"
+                w="100%"
+                h="45px"
+                fontSize="16px"
+                borderRadius="xl"
                 onChange={handleChange}
               />
             </FormControl>
             <br />
-            <Link fontSize="12px" fontWeight="500" textDecoration="underline">
+            <Link
+              fontSize="12px"
+              fontWeight="500"
+              textDecoration="underline"
+              pl={9}
+              pr={9}
+            >
               Got a Referral Code?(Optional)
             </Link>
             <br />
             <br />
-            <Text fontSize="14px">
+            <br />
+            <Text fontSize="14px" pl={9} pr={9}>
               By creating this account, you agree to our{" "}
               <Link textDecoration="underline">Privacy Policy</Link>
             </Text>
@@ -163,16 +190,17 @@ const Signup = () => {
                 colorScheme="teal"
                 size="lg"
                 onClick={handleSubmit}
-                w="100%"
+                fontSize="16px"
+                p={9}
+                w="90%"
                 m="auto"
-                borderRadius="3xl"
+                borderRadius="50px"
               >
                 Create an Account
               </Button>
             </Center>
-            <br />
             <Center>
-              <Text fontSize="14px">
+              <Text fontSize="14px" pb={7} pt={4}>
                 Have an account ? <Link>Sign In</Link>
               </Text>
             </Center>
