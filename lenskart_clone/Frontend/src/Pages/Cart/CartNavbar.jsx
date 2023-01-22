@@ -65,7 +65,7 @@ export default function CartNavbar() {
           />
         </Box>
         <Box
-          fontSize="lg"
+          fontSize="16px"
           lineHeight="24px"
           letterSpacing="-.02em"
           color="#66668e"
