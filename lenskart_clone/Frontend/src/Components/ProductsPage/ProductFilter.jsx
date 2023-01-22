@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ages from "./filters/age-groups";
 import Agegroups from "./filters/Agegroups";
 
-const ProductFilter = () => {
+const ProductFilter = ({ priceFilter }) => {
   return (
     <Wrapper>
       <div className="filter_Box age">
@@ -28,7 +28,9 @@ const ProductFilter = () => {
       </div>
       <div className="filter_Box price">
         <span className="filter_title">price</span>
-        <div className="filters"></div>
+        <div className="filters">
+          <button onClick={() => priceFilter(1000)}>setabove</button>
+        </div>
       </div>
     </Wrapper>
   );
