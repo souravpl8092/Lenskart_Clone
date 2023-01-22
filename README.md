@@ -26,7 +26,7 @@ About Lenskart:- Lenskart.com is an Indian e-commerce company that sells eyeglas
 
 For Frontend : HTML5, CSS3, Javascript, JS6, ReactJS Redux.
 
-For database: Cyclic, Mongo Atlas.
+For database: Cyclic, Mongo Atlas, Express.js, Node.js, Mongoose.
 
 Chakra UI (UI Styling Library) Styled-Components.
 
