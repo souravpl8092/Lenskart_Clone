@@ -15,35 +15,31 @@ import {
   Center,
   Image,
 } from "@chakra-ui/react";
-import axios from "axios";
 
 const Login = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
 
-  const initvalue = {
-    email: "",
-  };
+  const [email, setEmail] = useState("");
 
-  const [formState, setFormState] = useState(initvalue);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormState({ ...formState, [name]: value });
-  };
-
-  const { email } = formState;
-  const handleSubmit = (e) => {
-    if (email != "") {
-      axios({
-        method: "POST",
-        url: "http://localhost:8080/products",
-        data: formState,
-      }).then((res) => {
-        setFormState(initvalue);
-      });
-    }
+  const handleSubmit = () => {
+    const payload = {
+      email,
+    };
+    fetch("https://spotless-erin-trousers.cyclic.app/login", {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        localStorage.setItem("token", res.token);
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -95,7 +91,7 @@ const Login = () => {
                 h="45px"
                 fontSize="16px"
                 borderRadius="2xl"
-                onChange={handleChange}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </FormControl>
             <br />
@@ -103,12 +99,12 @@ const Login = () => {
               <Button
                 colorScheme="teal"
                 size="lg"
-                onClick={handleSubmit}
                 w="100%"
                 m="auto"
                 fontSize="18px"
                 p={9}
                 borderRadius="50px"
+                onClick={handleSubmit}
               >
                 Sign In
               </Button>
