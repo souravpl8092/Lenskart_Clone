@@ -16,7 +16,7 @@ import { useContext } from "react";
 import { CartContext } from "../../ContextApi/CartContext";
 
 export const getCartData = async () => {
-  return axios.get("https://spotless-erin-trousers.cyclic.app/data");
+  return axios.get("https://spotless-erin-trousers.cyclic.app/cart");
 };
 
 const CartPage = () => {
@@ -28,17 +28,15 @@ const CartPage = () => {
   const [cartLength, setCartlength] = useState(0);
   const [change, setChange] = useState(false);
   const [discountPrice, setdiscountPrice] = useState(0);
-
   // let num = parseFloat(str.replace("Rs.", ""));
   const amount = (array) => {
     array.map(({ product_strike, product_discountedPrice }) => {
       if (product_strike !== "" && product_discountedPrice !== "") {
         setTotalprice(
-          (pre) => pre + parseFloat(product_strike.replace("Rs.", ""))
+          // (pre) => pre + parseFloat(product_strike.replace("Rs.", "") || 0)
+          (pre) => pre + parseFloat(product_strike)
         );
-        setdiscountPrice(
-          (pre) => pre + parseFloat(product_discountedPrice.replace("Rs.", ""))
-        );
+        setdiscountPrice((pre) => pre + parseFloat(product_discountedPrice));
       }
     });
   };
@@ -46,7 +44,7 @@ const CartPage = () => {
   const DeleteRequest = async (id) => {
     try {
       let response = await axios.delete(
-        `https://spotless-erin-trousers.cyclic.app/cart/${id}`
+        `https://spotless-erin-trousers.cyclic.app/delete/${id}`
       );
       getCartData().then((res) => {
         return setData(res);
