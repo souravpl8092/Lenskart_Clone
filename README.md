@@ -1,5 +1,5 @@
 <h1 align="center">✨✨Lenskart_Clone✨✨</h1>
----
+
 This is a collaborative Project developed in 5 days. We are a team of 5 members:
 
 Team Lead = fw20_0372-Sourav Paul
