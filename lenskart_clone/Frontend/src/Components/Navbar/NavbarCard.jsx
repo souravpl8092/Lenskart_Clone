@@ -8,7 +8,6 @@ import {
   Input,
   Button,
   HStack,
-  Link,
 } from "@chakra-ui/react";
 import { FiPhoneCall } from "react-icons/fi";
 import { CiHeart } from "react-icons/ci";
@@ -16,6 +15,7 @@ import { CgShoppingCart } from "react-icons/cg";
 import Login from "../../Pages/Login/Login";
 import Signup from "../../Pages/Signup/Signup";
 import { NavbarDetail1, NavbarDetail2 } from "./NavbarDetail";
+import { Link } from "react-router-dom";
 
 export const NavbarCard1 = () => {
   return (
@@ -108,7 +108,7 @@ export const NavbarCard4 = () => {
       <Flex gap={4} pl={5} pt={2} justifyContent="space-between">
         {NavbarDetail2.map((i, index) => (
           <Box key={index}>
-            <Link to="./products">
+            <Link to="/products">
               <Text
                 fontSize="16px"
                 fontWeight="500"
