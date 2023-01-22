@@ -15,9 +15,11 @@ import {
   Link,
   Text,
   Center,
+  useToast,
 } from "@chakra-ui/react";
 
 const Signup = () => {
+  const toast = useToast();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [mobile, setMobile] = useState("");
@@ -52,7 +54,33 @@ const Signup = () => {
       })
         .then((res) => res.json())
         .then((res) => console.log(res))
-        .catch((err) => console.log(err));
+        .catch((err) =>
+          toast({
+            title: "Error",
+            description: "Please fill all mandatory field.",
+            status: "error",
+            duration: 3000,
+            position: "top",
+            isClosable: true,
+          })
+        );
+      toast({
+        title: "Account created.",
+        description: "We've created your account for you.",
+        status: "success",
+        duration: 3000,
+        position: "top",
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: "Error",
+        description: "Please fill all mandatory field.",
+        status: "error",
+        duration: 3000,
+        position: "top",
+        isClosable: true,
+      });
     }
   };
 
@@ -209,6 +237,4 @@ const Signup = () => {
     </>
   );
 };
-
-
 export default Signup;

@@ -14,9 +14,11 @@ import {
   Text,
   Center,
   Image,
+  useToast,
 } from "@chakra-ui/react";
 
 const Login = () => {
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
@@ -24,22 +26,50 @@ const Login = () => {
   const [email, setEmail] = useState("");
 
   const handleSubmit = () => {
-    const payload = {
-      email,
-    };
-    fetch("https://spotless-erin-trousers.cyclic.app/login", {
-      method: "POST",
-      body: JSON.stringify(payload),
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        localStorage.setItem("token", res.token);
-        console.log(res);
+    if (email !== "") {
+      const payload = {
+        email,
+      };
+      fetch("https://spotless-erin-trousers.cyclic.app/login", {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-type": "application/json",
+        },
       })
-      .catch((err) => console.log(err));
+        .then((res) => res.json())
+        .then((res) => {
+          localStorage.setItem("token", res.token);
+          console.log(res);
+          toast({
+            title: "Login Suscessfully",
+            description: "Login Suscessfully",
+            status: "success",
+            position: "top",
+            duration: 3000,
+            isClosable: true,
+          });
+        })
+        .catch((err) =>
+          toast({
+            title: "Invalid Email",
+            description: "Please enter valid email id",
+            position: "top",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+          })
+        );
+    } else {
+      toast({
+        title: "Error",
+        description: "Please fill all mandatory field.",
+        status: "error",
+        duration: 3000,
+        position: "top",
+        isClosable: true,
+      });
+    }
   };
 
   return (
