@@ -14,34 +14,60 @@ import {
   Text,
   Center,
   Image,
+  useToast,
 } from "@chakra-ui/react";
-import axios from "axios";
 
 const Login = () => {
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
 
-  const initvalue = {
-    email: "",
-  };
+  const [email, setEmail] = useState("");
 
-  const [formState, setFormState] = useState(initvalue);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormState({ ...formState, [name]: value });
-  };
-
-  const { email } = formState;
-  const handleSubmit = (e) => {
-    if (email != "") {
-      axios({
+  const handleSubmit = () => {
+    if (email !== "") {
+      const payload = {
+        email,
+      };
+      fetch("https://spotless-erin-trousers.cyclic.app/login", {
         method: "POST",
-        url: "http://localhost:8080/products",
-        data: formState,
-      }).then((res) => {
-        setFormState(initvalue);
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          localStorage.setItem("token", res.token);
+          console.log(res);
+          toast({
+            title: "Login Suscessfully",
+            description: "Login Suscessfully",
+            status: "success",
+            position: "top",
+            duration: 3000,
+            isClosable: true,
+          });
+        })
+        .catch((err) =>
+          toast({
+            title: "Invalid Email",
+            description: "Please enter valid email id",
+            position: "top",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+          })
+        );
+    } else {
+      toast({
+        title: "Error",
+        description: "Please fill all mandatory field.",
+        status: "error",
+        duration: 3000,
+        position: "top",
+        isClosable: true,
       });
     }
   };
@@ -95,7 +121,7 @@ const Login = () => {
                 h="45px"
                 fontSize="16px"
                 borderRadius="2xl"
-                onChange={handleChange}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </FormControl>
             <br />
@@ -103,12 +129,12 @@ const Login = () => {
               <Button
                 colorScheme="teal"
                 size="lg"
-                onClick={handleSubmit}
                 w="100%"
                 m="auto"
                 fontSize="18px"
                 p={9}
                 borderRadius="50px"
+                onClick={handleSubmit}
               >
                 Sign In
               </Button>

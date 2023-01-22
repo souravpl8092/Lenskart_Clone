@@ -15,30 +15,21 @@ import {
   Link,
   Text,
   Center,
+  useToast,
 } from "@chakra-ui/react";
-import axios from "axios";
 
 const Signup = () => {
+  const toast = useToast();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
 
-  const initvalue = {
-    firstName: "",
-    lastName: "",
-    mobile: "",
-    email: "",
-    password: "",
-  };
-
-  const [formState, setFormState] = useState(initvalue);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormState({ ...formState, [name]: value });
-  };
-
-  const { firstName, lastName, mobile, email, password } = formState;
   const handleSubmit = (e) => {
     if (
       firstName !== "" &&
@@ -47,12 +38,48 @@ const Signup = () => {
       email !== "" &&
       password !== ""
     ) {
-      axios({
+      const payload = {
+        firstName,
+        lastName,
+        mobile,
+        email,
+        password,
+      };
+      fetch("https://spotless-erin-trousers.cyclic.app/register", {
         method: "POST",
-        url: "http://localhost:8080/products",
-        data: formState,
-      }).then((res) => {
-        setFormState(initvalue);
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => console.log(res))
+        .catch((err) =>
+          toast({
+            title: "Error",
+            description: "Please fill all mandatory field.",
+            status: "error",
+            duration: 3000,
+            position: "top",
+            isClosable: true,
+          })
+        );
+      toast({
+        title: "Account created.",
+        description: "We've created your account for you.",
+        status: "success",
+        duration: 3000,
+        position: "top",
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: "Error",
+        description: "Please fill all mandatory field.",
+        status: "error",
+        duration: 3000,
+        position: "top",
+        isClosable: true,
       });
     }
   };
@@ -100,7 +127,7 @@ const Signup = () => {
                 h="45px"
                 fontSize="16px"
                 borderRadius="xl"
-                onChange={handleChange}
+                onChange={(e) => setFirstName(e.target.value)}
               />
             </FormControl>
             <br />
@@ -115,7 +142,7 @@ const Signup = () => {
                 h="45px"
                 fontSize="16px"
                 borderRadius="xl"
-                onChange={handleChange}
+                onChange={(e) => setLastName(e.target.value)}
               />
             </FormControl>
             <br />
@@ -132,7 +159,7 @@ const Signup = () => {
                   h="45px"
                   fontSize="16px"
                   borderRadius="xl"
-                  onChange={handleChange}
+                  onChange={(e) => setMobile(e.target.value)}
                 />
               </InputGroup>
             </FormControl>
@@ -148,7 +175,7 @@ const Signup = () => {
                 h="45px"
                 fontSize="16px"
                 borderRadius="xl"
-                onChange={handleChange}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </FormControl>
             <br />
@@ -164,7 +191,7 @@ const Signup = () => {
                 h="45px"
                 fontSize="16px"
                 borderRadius="xl"
-                onChange={handleChange}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </FormControl>
             <br />
@@ -210,5 +237,4 @@ const Signup = () => {
     </>
   );
 };
-
 export default Signup;
