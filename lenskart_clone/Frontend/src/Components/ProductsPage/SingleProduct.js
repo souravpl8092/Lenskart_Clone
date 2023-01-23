@@ -1,34 +1,66 @@
 import React from "react";
 import styled from "styled-components";
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaHeart } from "react-icons/fa";
 import { GiPlainCircle } from "react-icons/gi";
 import { TbCurrencyRupee } from "react-icons/tb";
+import { useContext } from "react";
+import { CartContext } from "../../ContextApi/CartContext";
+import { useNavigate } from "react-router-dom";
 
-const SingleProduct = () => {
+// let size = { S: "Small", M: "Medium", L: "Large" };
+const SingleProduct = ({ newData }) => {
+  const { setCurrentProduct } = useContext(CartContext);
+  const changeColor = (e) => {
+    let presentColor = e.target.style.color;
+    presentColor = presentColor === "red" ? "#ededed" : "red";
+    e.target.style.color = presentColor;
+  };
+  const navigate = useNavigate();
   return (
-    <Wrapper>
-      <div className="product_container">
+    <Wrapper
+      onClick={() => {
+        navigate("/product/singleProduct");
+      }}
+    >
+      <div
+        className="product_container"
+        onClick={() => {
+          console.log(newData);
+          setCurrentProduct(newData);
+        }}
+      >
+        <FaHeart className="icon heart" onClick={(e) => changeColor(e)} />
         <div className="img_container">
           <img
-            src="https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/peyush-bansal-shark-tank-blue-sky-full-rim-hustlr-eyeglasses_g_708823_02_202230_dec22.jpg"
-            alt=""
+            src={newData.img}
+            // src="https://assets.myntassets.com/dpr_2,q_60,w_210,c_limit,fl_progressive/assets/images/20378388/2022/10/12/52f4ec74-e473-4b68-ac6a-91b9c1e6c8151665597326578Frames1.jpg"
+            // src={newData.img_responsive}
+            alt={newData.name}
           />
         </div>
         <div className="product_details">
           <div className="product_details_box rating">
             <span>
-              <FaStar className="star" />
-              4.5
+              <div
+                className="star"
+                onClick={(e) => console.log("onClick on star called")}
+              >
+                <FaStar />
+              </div>
+              {newData.ratingV || 4.5}
+              <span className="rating_count">{newData.ratingC || 10}</span>
             </span>
           </div>
           <div className="product_details_box title">
-            <span>Vincent Chase Polarized</span>
+            <span>{newData.name || "Vincent Chase Polarized"}</span>
           </div>
           <div className="product_details_box size_color">
             <div className="size">
               <span className="size_head">Size:</span>
               <span className="size_details">
-                Medium <GiPlainCircle className="disc" /> Wired Up
+                {/* {size[newData["product_size"]]} */}
+                {newData.size}
+                <GiPlainCircle className="disc" /> Wired Up
               </span>
             </div>
             <div className="color"></div>
@@ -36,17 +68,17 @@ const SingleProduct = () => {
           <div className="product_details_box price">
             <span className="price_text">
               <TbCurrencyRupee className="rupee" />
-              1299
+              {newData.dprice || 1299}
             </span>
             <span className="prev_price">
               <TbCurrencyRupee />
-              <del>3000</del>
+              <del>{newData.OgPrice || 3000}</del>
             </span>
             <span className="tax">(+tax)</span>
           </div>
         </div>
         <div className="offer_box">
-          <span>40% OFF. Use:TANK40</span>
+          <span>{newData.offer}</span>
         </div>
       </div>
     </Wrapper>
@@ -54,6 +86,19 @@ const SingleProduct = () => {
 };
 
 const Wrapper = styled.div`
+  .heart {
+    color: #ededed;
+    font-size: 3rem;
+    position: relative;
+    top: 1.5rem;
+    left: 88%;
+    transition: 0.7s ease-in-out;
+  }
+  .heart:hover {
+    transition: 0.7s ease-in-out;
+    transform: scale(1.1);
+    color: grey;
+  }
   .product_container {
     /* height: 400px; */
     border: 3px solid #ededed;
@@ -97,6 +142,11 @@ const Wrapper = styled.div`
     font-size: 2rem;
     background-color: #eeeef5;
     border-radius: 2rem;
+  }
+  .rating_count {
+    color: #7a7a9d;
+    font-size: 1.6rem;
+    padding: 1rem;
   }
   .title > span {
     color: #161652;

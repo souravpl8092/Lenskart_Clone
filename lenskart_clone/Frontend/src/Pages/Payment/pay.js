@@ -53,7 +53,7 @@ export default class Pay extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    alert('You have finished payment!')
+    alert(`You have finished payment!`)
     this.form.reset()
     // navigate("/")
     window.location.href="/"
@@ -66,8 +66,8 @@ export default class Pay extends React.Component {
     return (
       <div key='Payment' id='body'>
         <div className='App-payment'>
-          <h1>Enter your payment details.</h1>
-          <h4>100% safe and secure</h4>
+          <h1 className='head'>Enter your payment details.</h1>
+          <h4 className='head'>100% safe and secure</h4>
           <Card
             number={number}
             name={name}
@@ -84,7 +84,7 @@ export default class Pay extends React.Component {
                 type='text'
                 name='name'
                 className='form-control'
-                placeholder='Name'
+                placeholder='Name *'
                 pattern='[a-z A-Z-]+'
                 required
                 onChange={this.handleInputChange}
@@ -98,7 +98,7 @@ export default class Pay extends React.Component {
                 type='tel'
                 name='number'
                 className='form-control'
-                placeholder='Card Number'
+                placeholder='Card Number *'
                 pattern='[\d| ]{16,22}'
                 maxLength='19'
                 required
@@ -114,7 +114,7 @@ export default class Pay extends React.Component {
                 type='tel'
                 name='expiry'
                 className='form-control'
-                placeholder='Valid Thru'
+                placeholder='Valid Thru *'
                 pattern='\d\d/\d\d'
                 required
                 onChange={this.handleInputChange}
@@ -128,7 +128,7 @@ export default class Pay extends React.Component {
                 type='tel'
                 name='cvc'
                 className='form-control'
-                placeholder='CVC'
+                placeholder='CVC *'
                 pattern='\d{3}'
                 required
                 onChange={this.handleInputChange}
