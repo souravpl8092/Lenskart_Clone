@@ -1,0 +1,24 @@
+  #link a:hover{
+background-color:#3bb3a9;
+color: white;
+
+
+
+
+}
+.default{
+    font-size:14px;
+    letter-spacing: 1px;
+    padding:10px 10px 10px 20px;
+    border: .5px solid rgb(234, 234, 234);
+    
+}
+
+.active{
+    font-size:14px;
+    letter-spacing: 1px;
+    padding:10px 10px 10px 20px;
+    background-color: #3bb3a9;
+    color: white;
+   
+}
