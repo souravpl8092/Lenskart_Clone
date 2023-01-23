@@ -13,10 +13,15 @@ Member 3 = fp05_279-Tirthoraj Badhei
 Member 4 = fw20_1049-Govind Kumar
 
 API:=> https://spotless-erin-trousers.cyclic.app/
+
 product:=> https://spotless-erin-trousers.cyclic.app/data 
+
 user:=> https://spotless-erin-trousers.cyclic.app/user
+
 cart:=> https://spotless-erin-trousers.cyclic.app/cart
+
 Delete Cart:=>https://spotless-erin-trousers.cyclic.app/delete/:id  (delete request)
+
 
 💻Project Unique Name :- Glass Cart ✈️
 ---
