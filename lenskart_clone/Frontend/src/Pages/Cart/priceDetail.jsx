@@ -14,7 +14,8 @@ function PriceDetail({ totalPrice, discountPrice }) {
       border="1px solid grey"
       borderRadius={"10px"}
       gap="3"
-      padding={"5px"} cursor={"pointer"}
+      padding={"5px"}
+      cursor={"pointer"}
     >
       <Flex
         gap={"4"}
@@ -77,7 +78,7 @@ function PriceDetail({ totalPrice, discountPrice }) {
             fontWeight="500"
             fontFamily={"Inter"}
           >
-            Tax
+            Coupon
           </Heading>
           <Heading
             as="p"
@@ -87,7 +88,7 @@ function PriceDetail({ totalPrice, discountPrice }) {
             justifyContent="flex-end"
             color="green.900"
           >
-            ₹503.82
+            ₹50.82
           </Heading>
         </Flex>
         <Box border={"1px dashed #CECEDF"}></Box>

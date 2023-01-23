@@ -9,9 +9,35 @@ import {
   Box,
   useToast,
 } from "@chakra-ui/react";
+import axios from "axios";
 
-const CartItem = ({ img_responsive, product_name, product_strike,id, DeleteRequest  }) => {
+const CartItem = ({
+  img_responsive,
+  product_name,
+  product_strike,
+  id,
+  setChange,
+  change,
+}) => {
   const toast = useToast();
+
+  const DeleteRequest = async (id) => {
+    try {
+      await axios
+        .delete(`https://spotless-erin-trousers.cyclic.app/delete/${id}`)
+        .then((res) => {
+          setChange(!change);
+          console.log(res);
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleDelete = () => {
+    DeleteRequest(id);
+    console.log("Delete button clicked");
+    alert("Item removed from cart");
+  };
   return (
     <Flex
       gap={2}
@@ -104,9 +130,6 @@ const CartItem = ({ img_responsive, product_name, product_strike,id, DeleteReque
           </Heading>
           <Flex gap={"2"}>
             <Text fontSize={"14px"}>{product_strike}</Text>
-            {/* <Text color={"#0FBD95"} fontSize="14px" fontWeight={700}>
-              Free
-            </Text> */}
           </Flex>
         </Flex>
         <Box border={"1px dashed #CECEDF"}></Box>
@@ -117,35 +140,13 @@ const CartItem = ({ img_responsive, product_name, product_strike,id, DeleteReque
             textDecoration="underline"
             fontSize={"18"}
             ml="-1.5"
-            onClick={() => {
-              DeleteRequest(id)
-                .then((response) => {
-                  toast({
-                    title: "Delete Item Successfully",
-                    status: "success",
-                    duration: 4000,
-                    isClosable: true,
-                    position: "top",
-                  });
-                })
-                .catch((reject) => {
-                  toast({
-                    title: "Something Went Wrong",
-                    description: `${reject.message}`,
-                    status: "error",
-                    duration: 5000,
-                    isClosable: true,
-                    position: "bottom-right",
-                  });
-                });
-            }}
+            onClick={handleDelete}
           >
             Remove
           </Button>
 
-        
           <Box border={"1px solid #CECEDF"}></Box>
-          
+
           <Button
             backgroundColor={"white"}
             _hover={"backgroundColor:white"}
@@ -164,6 +165,6 @@ export default CartItem;
 // {/* <Heading as={"a"} fontSize="14px" textDecoration={"underline"}>
 //             Repeat
 //           </Heading> */}
-  // {/* <Heading as={"a"} fontSize="14px" textDecoration={"underline"}>
-  //           Remove
-  //         </Heading> */}
+// {/* <Heading as={"a"} fontSize="14px" textDecoration={"underline"}>
+//           Remove
+//         </Heading> */}
