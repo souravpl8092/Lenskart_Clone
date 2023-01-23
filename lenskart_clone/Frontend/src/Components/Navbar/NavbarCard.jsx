@@ -8,6 +8,7 @@ import {
   Input,
   Button,
   HStack,
+  Center,
 } from "@chakra-ui/react";
 import { FiPhoneCall } from "react-icons/fi";
 import { CiHeart } from "react-icons/ci";
@@ -15,9 +16,13 @@ import { CgShoppingCart } from "react-icons/cg";
 import Login from "../../Pages/Login/Login";
 import Signup from "../../Pages/Signup/Signup";
 import { NavbarDetail1, NavbarDetail2 } from "./NavbarDetail";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../ContextApi/AuthContext";
 
 export const NavbarCard1 = () => {
+  console.log();
   return (
     <Box cursor="pointer">
       <Flex gap={2} pl={5} pt={2}>
@@ -35,11 +40,12 @@ export const NavbarCard1 = () => {
 };
 
 export const NavbarCard2 = () => {
+  const { isAuth, Authdata } = useContext(AuthContext);
   return (
     <Box cursor="pointer">
       {/* <Image src="https://i.imgur.com/nQ34FHp.png" alt="logo" w="10%"/> */}
       <HStack m="auto">
-        <Box w={{ lg: "20%", md: "40%", base: "40%" }}>
+        <Box w="20%">
           <Link to="/">
             <Image src="https://i.imgur.com/OHxtfjd.png" alt="logo" w="75%" />
           </Link>
@@ -51,7 +57,7 @@ export const NavbarCard2 = () => {
               <Text>1800-111-111</Text>
             </HStack>
           </Box>
-          <Box w="70%">
+          <Box w="60%">
             <Input
               placeholder="What are you looking for"
               border="1px solid black"
@@ -69,16 +75,18 @@ export const NavbarCard2 = () => {
             >
               Track Order
             </Button>
-            <Login />
-            <Signup />
-            {/* <Button
-              size="lg"
-              bg="whiteAlpha.900"
-              fontSize="14px"
-              fontWeight="700"
-            >
-              Sourav
-            </Button> */}
+            {/* <Login />
+            <Signup /> */}
+            {isAuth === true ? (
+              <Center fontWeight={"700"} fontSize="16px">
+                {Authdata[0].first_name}
+              </Center>
+            ) : (
+              <Box display={"flex"}>
+                <Login />
+                <Signup />
+              </Box>
+            )}
             <Button
               leftIcon={<CiHeart />}
               size="lg"
