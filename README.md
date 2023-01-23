@@ -39,7 +39,7 @@ Steps to run the project locally:-
 4. Enjoy! 
 
 ---
-Deployed Link : https://glasscart.netlify.app/
+Deployed Link : https://masai-glasscart.netlify.app/
 
 Project Presentation : https://drive.google.com/file/d/16fTkrRfpUMh1cqSEpIcP7LWpeaR72zK3/view
 
