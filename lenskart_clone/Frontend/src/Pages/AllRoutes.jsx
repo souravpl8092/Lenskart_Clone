@@ -20,7 +20,7 @@ const AllRoutes = () => {
       <Route path="/products" element={<Products />} />
       <Route path="/product/singleProduct" element={<Product />} />
       <Route path="/payment" element={<Pay />} />
-      <Route path="/shiping" element={<Payment />} />
+      <Route path="/shipping" element={<Payment />} />
     </Routes>
   );
 };
