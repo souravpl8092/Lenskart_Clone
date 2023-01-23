@@ -39,9 +39,9 @@ Steps to run the project locally:-
 4. Enjoy! 
 
 ---
-Deployed Link : 
+Deployed Link : https://glasscart.netlify.app/
 
-Project Presentation : 
+Project Presentation : https://drive.google.com/file/d/16fTkrRfpUMh1cqSEpIcP7LWpeaR72zK3/view
 
 ----
 <h1 align="center">✨Thank You✨</h1>
