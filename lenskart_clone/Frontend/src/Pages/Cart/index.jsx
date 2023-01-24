@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Box, Flex, Text, Button, useToast } from "@chakra-ui/react";
+import { Box, Flex, Text, Button } from "@chakra-ui/react";
 import CartLength from "./CartLength";
 import CartNavbar from "./CartNavbar";
 import CartItem from "./CartItem";
@@ -7,74 +7,35 @@ import CartWithoutlogin from "./CartWithoutlogin";
 import PriceDetail from "./priceDetail";
 import SaleBox from "./SaleBox";
 import CouponBox from "./CouponBox";
-import axios from "axios";
 import { useState } from "react";
 import { RingLoader } from "react-spinners";
 import NotFound from "./CartError";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { CartContext } from "../../ContextApi/CartContext";
-
-export const getCartData = async () => {
-  return axios.get("https://spotless-erin-trousers.cyclic.app/cart");
-};
+import { useSelector, useDispatch } from "react-redux";
+import { getData } from "../../redux/CartPage/action";
+import CartEmpty from "./CartEmpty";
 
 const CartPage = () => {
-  const toast = useToast();
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [totalPrice, setTotalprice] = useState(0);
-  const [cartLength, setCartlength] = useState(0);
   const [change, setChange] = useState(false);
-  const [discountPrice, setdiscountPrice] = useState(0);
 
-  // let num = parseFloat(str.replace("Rs.", ""));
-
-  const amount = (array) => {
-    array.map(({ product_strike, product_discountedPrice }) => {
-      setTotalprice(pre => pre+parseFloat(product_strike))
-      setdiscountPrice(pre => pre+parseFloat(product_discountedPrice))
-    });
-  };
- 
-  /*
-if (product_strike !== "" && product_discountedPrice !== "") {
-        setTotalprice(
-          (pre) => pre + parseFloat(product_strike.replace("Rs.", ""))
-        );
-        setdiscountPrice(
-          (pre) => pre + parseFloat(product_discountedPrice.replace("Rs.", ""))
-        );
-      }
-  */
-
-  useEffect(() => {
-    setLoading(true);
-    setError(false);
-    getCartData()
-      .then((res) => {
-        setLoading(false);
-        setData(res.data);
-        setCartlength(res.data.length);
-        amount(res.data);
-      })
-      .catch((err) => {
-        setLoading(false);
-        setError(true);
-      });
-  }, [change]);
-
-  const { cart } = useContext(CartContext);
-  console.log(cart, "cart");
+  const { data, loading, error, ItemCount, Totalprice, Totaldiscountprice } =
+    useSelector((state) => state.CartReducer);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (error) {
+      navigate("/NotFound");
+    }
+    setTimeout(() => {
+      dispatch(getData());
+    }, 1500);
+  }, [change]);
+
   return (
     <>
-      <CartNavbar />
-      {error ? (
-        <NotFound />
-      ) : loading ? (
+      {loading ? (
         <Box
           width="20%"
           margin={"auto"}
@@ -85,7 +46,7 @@ if (product_strike !== "" && product_discountedPrice !== "") {
         >
           <RingLoader color="#36d7b7" size={200} />
         </Box>
-      ) : (
+      ) : data.length > 0 ? (
         <Flex
           width={"90%"}
           margin="auto"
@@ -115,16 +76,23 @@ if (product_strike !== "" && product_discountedPrice !== "") {
               "2xl": "65%",
             }}
           >
-            <CartLength cartLength={cartLength} />
+            <CartLength cartLength={ItemCount} />
             {/* <CartItem /> */}
             {data.map(
-              ({ img_responsive, product_name, product_strike, _id }) => (
+              ({
+                img_responsive,
+                product_name,
+                product_strike,
+                _id,
+                product_discountedPrice,
+              }) => (
                 <CartItem
                   key={_id}
                   id={_id}
                   img_responsive={img_responsive}
                   product_name={product_name}
                   product_strike={product_strike}
+                  product_discountedPrice={product_discountedPrice}
                   setChange={setChange}
                   change={change}
                 />
@@ -154,11 +122,11 @@ if (product_strike !== "" && product_discountedPrice !== "") {
               Bill Details
             </Text>
             <PriceDetail
-              totalPrice={totalPrice}
-              discountPrice={discountPrice}
+              totalPrice={Totalprice}
+              discountPrice={Totaldiscountprice}
             />
             <SaleBox />
-            <CouponBox totalPrice={totalPrice} />
+            <CouponBox setChange={setChange} change={change} />
 
             <Button
               backgroundColor={"#12daac"}
@@ -174,10 +142,13 @@ if (product_strike !== "" && product_discountedPrice !== "") {
             </Button>
           </Flex>
         </Flex>
+      ) : (
+        <CartEmpty />
       )}
     </>
   );
 };
 
 export default CartPage;
+
 

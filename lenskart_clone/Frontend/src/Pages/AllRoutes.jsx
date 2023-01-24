@@ -6,6 +6,7 @@ import CartPage from "./Cart/index";
 import Products from "./Products/Products";
 import Home from "./Home/Home";
 import Product from "./SingleProduct/Product";
+import NotFound from "./Cart/CartError";
 
 const AllRoutes = () => {
   const location = useLocation();
@@ -21,6 +22,7 @@ const AllRoutes = () => {
       <Route path="/product/singleProduct" element={<Product />} />
       <Route path="/payment" element={<Pay />} />
       <Route path="/shiping" element={<Payment />} />
+      <Route path="/NotFound" element={<NotFound />} />
     </Routes>
   );
 };

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ProductFilter from "./../../Components/ProductsPage/ProductFilter";
 import Productlist from "../../Components/ProductsPage/ProductList.js";
 import { CartContext } from "../../ContextApi/CartContext";
-
+import "./index.css";
 const Products = () => {
   let singleProduct = useContext(CartContext);
   console.log(singleProduct);

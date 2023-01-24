@@ -4,6 +4,7 @@ import newData from "../../assets/newData.js";
 import ImageSlider from "../../Components/ProductPage/ImageSlider.jsx";
 import ProductDesc from "../../Components/ProductPage/ProductDesc";
 import ProductImage from "../../Components/ProductPage/ProductImage";
+import "./index.css";
 
 const Product = () => {
   const [data, setData] = useState(newData);

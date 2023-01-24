@@ -18,7 +18,7 @@ const SaleBox = () => {
           THE EYE-CONIC SALE
         </Heading>
         <Text fontSize={"14px"} color="#333368">
-          Extra Offer. Use coupon: MASAI40
+          Extra Offer. Use coupon: MASAI40, MASAI90
         </Text>
       </Flex>
       <AiOutlineInfoCircle size={"20"} />
