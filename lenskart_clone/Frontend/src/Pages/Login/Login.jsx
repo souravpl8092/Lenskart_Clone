@@ -1,154 +1,232 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../ContextApi/AuthContext";
 import {
-  Button,
   Modal,
-  ModalBody,
-  Input,
-  useDisclosure,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  FormControl,
   ModalOverlay,
-  Link,
-  Text,
-  Center,
+  ModalContent,
+  ModalBody,
+  ModalCloseButton,
+  ModalHeader,
+  Button,
   Image,
-  useToast,
+  Box,
+  Heading,
+  Input,
+  HStack,
+  Flex,
+  Center,
 } from "@chakra-ui/react";
+import { Checkbox } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
+import { Link } from "@chakra-ui/react";
+import { useEffect } from "react";
+import Required from "./Required";
 
-const Login = () => {
-  const toast = useToast();
+const Login = (props) => {
+  const [loading, setLoading] = useState(false);
+  const [btn, setbtn] = useState();
+  const [loginData, setLoginData] = useState({ email: "", password: "" });
+  const [pass, setpass] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const initialRef = React.useRef(null);
-  const finalRef = React.useRef(null);
+  const { isAuth, setisAuth, Authdata, setAuthData } = useContext(AuthContext);
+  const [resdata, setResdata] = useState([]);
+  const [incorrect, setinCorrect] = useState(false);
 
-  const [email, setEmail] = useState("");
+  const handlechange = (e) => {
+    const { name, value } = e.target;
+    setLoginData({ ...loginData, [name]: value });
 
-  const handleSubmit = () => {
-    if (email !== "") {
-      const payload = {
-        email,
-      };
-      fetch("https://spotless-erin-trousers.cyclic.app/login", {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: {
-          "Content-type": "application/json",
-        },
+    const buton = (
+      <Box
+        fontSize={"12px"}
+        mt="18px"
+        color={"#ff1f1f"}
+        fontWeight="500"
+        letterSpacing={"-0.4px"}
+      >
+        Please enter a valid Email or Mobile Number.
+      </Box>
+    );
+    setbtn(buton);
+  };
+  let res1 = [];
+  const getData = () => {
+    setLoading(true);
+    fetch(`https://easy-pink-bull-shoe.cyclic.app/Users`)
+      .then((res) => res.json())
+      .then((res) => {
+        res1 = res.filter((el) => el.email === loginData.email);
+        if (res1.length === 1) {
+          setisAuth(true);
+          setAuthData(res1);
+        } else {
+          setinCorrect(true);
+        }
       })
-        .then((res) => res.json())
-        .then((res) => {
-          localStorage.setItem("token", res.token);
-          console.log(res);
-          toast({
-            title: "Login Suscessfully",
-            description: "Login Suscessfully",
-            status: "success",
-            position: "top",
-            duration: 3000,
-            isClosable: true,
-          });
-        })
-        .catch((err) =>
-          toast({
-            title: "Invalid Email",
-            description: "Please enter valid email id",
-            position: "top",
-            status: "error",
-            duration: 3000,
-            isClosable: true,
-          })
-        );
-    } else {
-      toast({
-        title: "Error",
-        description: "Please fill all mandatory field.",
-        status: "error",
-        duration: 3000,
-        position: "top",
-        isClosable: true,
+
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false))
+      .finally(() => {
+        if (isAuth === true) {
+          onClose();
+        }
       });
-    }
   };
 
+  const handlesign = () => {
+    setpass(true);
+    if (loginData.password.length > 6) {
+      getData(loginData);
+    }
+  };
+  console.log(loginData);
+  console.log("incorrect", incorrect);
+  console.log(isAuth);
+
   return (
-    <>
-      <Button
-        my={4}
-        size="lg"
-        bg="whiteAlpha.900"
-        w="50"
-        justifyContent="center"
-        m="20px auto"
-        onClick={onOpen}
-        fontSize="14px"
-        fontWeight="400"
-      >
+    <div>
+      <Center onClick={onOpen} fontWeight={"400"} fontSize="14px" w="60px">
         Sign In
-      </Button>
-      <Modal
-        initialFocusRef={initialRef}
-        finalFocusRef={finalRef}
-        isOpen={isOpen}
-        onClose={onClose}
-        size="3xl"
-      >
+      </Center>
+
+      <Modal isOpen={isOpen} onClose={onClose} isCentered size="3xl">
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader w="100%" p="0" borderRadius="20px">
+        <ModalHeader></ModalHeader>
+        <ModalContent w={"420px"}>
+          <ModalCloseButton
+            borderRadius={"50%"}
+            bg="white"
+            m={"10px 10px 0px 0px"}
+          />
+          <ModalBody p={"0px 0px "} borderRadius={"15px 15px 15px 15px "} >
             <Image
               src="https://static1.lenskart.com/media/desktop/img/DesignStudioIcons/DesktopLoginImage.svg"
-              alt="signinimg"
-              borderRadius="20px 20px 0px 0px"
+              alt="pic"
+              borderRadius={"10px 10px 0px 0px "}
             />
-          </ModalHeader>
-          <ModalCloseButton fontSize="15px" p={9} />
-          <br />
-          <ModalBody pb={7} pl={10} pr={10}>
-            <Text fontSize="25px" pl={5}>
-              Sign In
-            </Text>
-            <br />
-            <FormControl pl={5} pr={5}>
-              <Input
-                name="email"
-                value={email}
-                type="email"
-                variant="outline"
-                placeholder="Email"
-                w="100%"
-                h="45px"
-                fontSize="16px"
-                borderRadius="2xl"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </FormControl>
-            <br />
-            <Center pl={5} pr={5} pt={2}>
-              <Button
-                colorScheme="teal"
-                size="lg"
-                w="100%"
-                m="auto"
-                fontSize="18px"
-                p={9}
-                borderRadius="50px"
-                onClick={handleSubmit}
+            <Box m={"34px 45px 50px 45px"}>
+              <Heading
+                fontFamily={" Times, serif"}
+                fontWeight="100"
+                fontSize={"28px"}
+                mb="24px"
+                color={"#333368"}
               >
                 Sign In
-              </Button>
-            </Center>
-            <br />
-            <Text fontSize="16px" pl={5} pr={5}>
-              New member?{" "}
-              <Link textDecoration="underline">Create an Account</Link>
-            </Text>
-            <br />
+              </Heading>
+
+              {pass === false ? (
+                <Input
+                  name="email"
+                  placeholder="Mobile/Email"
+                  h={"50px"}
+                  fontSize="16px"
+                  focusBorderColor="rgb(206, 206, 223)"
+                  borderColor={"rgb(206, 206, 223)"}
+                  onChange={handlechange}
+                />
+              ) : (
+                <Box>
+                  <Box fontSize={"17px"} color="#66668e">
+                    Enter password for
+                  </Box>
+                  <Flex
+                    justifyContent={"space-between"}
+                    fontFamily={" sans-serif"}
+                    mb="22px"
+                    color={"#000042"}
+                  >
+                    <Box fontSize="18px">{loginData.email}</Box>
+                    <Box
+                      fontSize={"14px"}
+                      textDecoration="underline"
+                      onClick={() => setpass(false)}
+                      cursor="pointer"
+                    >
+                      {" "}
+                      Edit
+                    </Box>
+                  </Flex>
+                  <Input
+                    type={"password"}
+                    name="password"
+                    placeholder="Enter password"
+                    h={"50px"}
+                    fontSize="16px"
+                    focusBorderColor="rgb(206, 206, 223)"
+                    borderColor={"rgb(206, 206, 223)"}
+                    onChange={handlechange}
+                  />
+                  <Box
+                    textDecoration={"underline"}
+                    m="15px 0px 0px 0px"
+                    color="#000042"
+                    fontSize="14px"
+                  >
+                    Forget Password
+                  </Box>
+                  {incorrect === true ? (
+                    <Required info="Wrong email or password" />
+                  ) : (
+                    ""
+                  )}
+                </Box>
+              )}
+              {loginData.email.includes("@gmail.") ? "" : btn}
+
+              <HStack fontSize="16px">
+                <Checkbox mb={"20px"} mt="20px" size="lg" >
+                  Get Update on whatsapp
+                </Checkbox>
+                <Image
+                  src="https://static.lenskart.com/media/desktop/img/25-July-19/whatsapp.png"
+                  w={"22px"}
+                  h="22px"
+                />
+              </HStack>
+              {loginData.email.includes("@gmail.") ? (
+                <Button
+                  isLoading={loading}
+                  onClick={handlesign}
+                  bgColor={"#11daac"}
+                  width="100%"
+                  borderRadius={"35px/35px"}
+                  h="50px"
+                  fontSize="18px"
+                  _hover={{ backgroundColor: "#11daac" }}
+                >
+                  Sign In
+                </Button>
+              ) : (
+                <Button
+                  bgColor={"#cccccc"}
+                  width="100%"
+                  borderRadius={"35px/35px"}
+                  fontSize="18px"
+                  h="50px"
+                  _hover={{ backgroundColor: "#cccccc" }}
+                >
+                  Sign In
+                </Button>
+              )}
+
+              <HStack spacing={"0px"} mt="19px">
+                <Box fontSize={"14px"}> New member?</Box>
+                <Link
+                  fontSize={"15px"}
+                  fontWeight="500"
+                  textDecoration={"underline"}
+                >
+                  Create an Account
+                </Link>
+              </HStack>
+            </Box>
           </ModalBody>
         </ModalContent>
       </Modal>
-    </>
+    </div>
   );
 };
 

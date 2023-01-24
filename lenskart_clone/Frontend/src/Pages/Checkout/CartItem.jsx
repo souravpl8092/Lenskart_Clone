@@ -25,8 +25,8 @@ export default function CartItem() {
             <Flex flexDirection='column' w='350px'  mt='10px'>
                 <Box display='flex' flexDirection='row' justifyContent='space-between' 
                 bg='#4B4C51' color='#fff'>
-                <Text ml='5px'>SHOPPING CART:</Text>
-                <Text mr='5px'>Item {paymentItem.length}</Text>
+                <Text ml='5px'>Popular items :</Text>
+                <Text mr='5px'>Item : {paymentItem.length}</Text>
                 </Box>
                 <Box className='itemPart' border='1px solid #ccc' >
 
@@ -60,24 +60,7 @@ export default function CartItem() {
                     })}
                     
                     
-               /* </Box>
-                <Box p={5} border='1px solid #ccc' bg='#EFEFEF'>
-                    <Flex justifyContent={'space-between'}>
-                        <Text fontWeight='bold'>SUBTOTAL</Text>
-                        <Text fontWeight='medium'>₹{total}</Text>
-                    </Flex>
-                    <Divider h={2} mb={2}/>
-                    <Flex justifyContent={'space-between'}>
-                        <Text fontWeight='bold'>TAX COLLECTED</Text>
-                        <Text fontWeight='medium'>+ ₹{total*0.18}</Text>
-                    </Flex>
-                    <Divider h={2} mb={2}/>
-                    <Flex justifyContent={'space-between'}>
-                        <Text fontWeight='bolder'fontSize={18}>ORDER TOTAL</Text>
-                        <Text fontWeight='bold' fontSize={18} color='#329BA9'>₹{total+(total*0.18)}</Text>
-                    </Flex>
-                    
-                </Box>  */
+                </Box>
                 
             </Flex>
         </>
