@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Box, Flex, Text, Button } from "@chakra-ui/react";
 import CartLength from "./CartLength";
-import CartNavbar from "./CartNavbar";
 import CartItem from "./CartItem";
 import CartWithoutlogin from "./CartWithoutlogin";
 import PriceDetail from "./priceDetail";
@@ -9,7 +8,6 @@ import SaleBox from "./SaleBox";
 import CouponBox from "./CouponBox";
 import { useState } from "react";
 import { RingLoader } from "react-spinners";
-import NotFound from "./CartError";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getData } from "../../redux/CartPage/action";
