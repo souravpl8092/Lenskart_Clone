@@ -1,26 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import ages from "./filters/age-groups";
 import Agegroups from "./filters/Agegroups";
 
+let age_filters, agebox;
 const ProductFilter = ({ priceFilter }) => {
+  const { size } = useSelector((state) => state.productReducer);
+  console.log(size);
+  useEffect(() => {
+    age_filters = document.querySelector(".age_filters");
+  }, []);
+
   return (
     <Wrapper>
-      <div className="filter_Box age">
-        <span className="filter_title">age group</span>
-        <div className="filters">
-          {ages.map((age) => (
-            <Agegroups key={age} age={age} />
-          ))}
-        </div>
-      </div>
-      <div className="filter_Box frame_type">
-        <span className="filter_title">frame type</span>
-        <div className="filters"></div>
-      </div>
       <div className="filter_Box frame_shape">
         <span className="filter_title">frame shape</span>
         <div className="filters"></div>
+        {size.length > 0 &&
+          size.map((s, ind) => <button key={ind}>{s}</button>)}
       </div>
       <div className="filter_Box frame_color">
         <span className="filter_title">frame color</span>
@@ -41,7 +39,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  /* border: 1px solid blue; */
+
+  /* !box styles   */
   .filter_Box {
     border: 1px solid #ededed;
     padding: 1rem 2rem;
@@ -49,6 +48,9 @@ const Wrapper = styled.div`
     flex-direction: column;
     gap: 1rem;
     color: #9d9d9d;
+    /* height: 50px; */
+    transform-origin: top;
+    transition: all 0.7s ease-in-out;
   }
   .filter_title {
     text-transform: uppercase;
@@ -58,10 +60,27 @@ const Wrapper = styled.div`
     font-weight: 700;
     letter-spacing: 0.2rem;
   }
+  .age_filters {
+    border: 1px solid black;
+    display: block;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: all 1s ease-in-out;
+  }
   .age .filters {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    transform-origin: top;
+    transition: all 0.3s ease-in-out;
+  }
+  .expand {
+    transition: all 0.3s ease-in-out;
+    /* display: block; */
+    transform: scale(1);
+  }
+  .age {
+    transform: translateY(0.1);
   }
   @media (max-width: 1100px) {
     display: none;

@@ -105,7 +105,7 @@ server.get("/cart", async (req, res) => {
 });
 server.delete("/delete/:id", async (req, res) => {
   const id = req.params.id;
-
+  
   try {
     await CartModel.findByIdAndDelete({ _id: id });
     res.send("data has been deleted");

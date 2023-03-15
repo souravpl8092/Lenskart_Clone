@@ -1,4 +1,4 @@
- import "./App.css";
+import "./App.css";
 import AllRoutes from "./Pages/AllRoutes";
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
@@ -14,4 +14,6 @@ function App() {
     </div>
   );
 }
+
+export const url = "https://stormy-puce-tank-top.cyclic.app/lenses";
 export default App;

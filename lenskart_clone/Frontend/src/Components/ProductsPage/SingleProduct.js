@@ -29,7 +29,13 @@ const SingleProduct = ({ newData }) => {
           setCurrentProduct(newData);
         }}
       >
-        <FaHeart className="icon heart" onClick={(e) => changeColor(e)} />
+        <FaHeart
+          className="icon heart"
+          onClick={(e) => {
+            e.stopPropagation();
+            changeColor(e);
+          }}
+        />
         <div className="img_container">
           <img
             src={newData.img}
