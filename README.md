@@ -5,20 +5,13 @@
 <br/>
 
 ## Welcome to Lenskart_Clone
-<h4 align="justify">Lenskart.com is an Indian e-commerce company that sells eyeglasses, contact lenses, and sunglasses. The company was founded in 2010 by Peyush Bansal, Amit Chaudhary, and Sumeet Kapahi, and is based in Delhi. Lenskart has a wide variety of products and offers services such as free home trial and virtual try-on. The company is also known for its "lenskart.com" eye check-up camps. The company has also has physical stores across India. The company has recently raised a funding from SoftBank Vision Fund in 2020, which was used for expanding the company's operations in India and to start their operations in the Middle East and Southeast Asia.</h4>
+<h3 align="justify">Lenskart.com is an Indian e-commerce company that sells eyeglasses, contact lenses, and sunglasses. The company was founded in 2010 by Peyush Bansal, Amit Chaudhary, and Sumeet Kapahi, and is based in Delhi. Lenskart has a wide variety of products and offers services such as free home trial and virtual try-on. The company is also known for its "lenskart.com" eye check-up camps. The company has also has physical stores across India. The company has recently raised a funding from SoftBank Vision Fund in 2020, which was used for expanding the company's operations in India and to start their operations in the Middle East and Southeast Asia.</h3>
 
 <br/>
 
-### Deployed URL 👉 [Click here](https://glassscart.vercel.app/)
+### Frontend Deployed URL 👉 [Click here](https://glassscart.vercel.app/)
 
-
-### Lenskart-Clone-Api
-
-Visit: https://harlequin-fawn-tutu.cyclic.app/
-
-product:=> https://harlequin-fawn-tutu.cyclic.app/product
-
-user:=> https://harlequin-fawn-tutu.cyclic.app/user
+### Backend API 👉 [Click here](https://harlequin-fawn-tutu.cyclic.app/)
 
 <br/>
 
@@ -60,7 +53,7 @@ user:=> https://harlequin-fawn-tutu.cyclic.app/user
 <br/>
 
 
-## Features
+# Features
 
 ---
 
@@ -284,12 +277,12 @@ This report is provided by the Github language used stats. So, this is the total
 
 <br/>
 
-### Prerequisites
+## Prerequisites
 
 - Node.js
 - npm
 
-### Installing
+## Installing
 
 1. Clone the repository to your local machine
 2. Navigate to the project directory
@@ -300,7 +293,7 @@ This report is provided by the Github language used stats. So, this is the total
 
 ## This is a collaborative Project developed in 5 days. We are a team of 5 members:
  
-## Our Team 
+# Our Team 
 ---
 
  <ul>
@@ -327,7 +320,7 @@ All push the data in Git-hub to their respective branch and merge them to main b
 Finally we make the presentation of the project.
 <br/><br/>
 
-## Our Learnings
+# Our Learnings
 On this journey we faced many issues, but we keep motivated each other with patience. 
 
 - We all learned how to read and understand the code of other team members.
@@ -341,7 +334,7 @@ On this journey we faced many issues, but we keep motivated each other with pati
 - We also got a glimpse of using GitHub for the version control.
 <br/><br/>
 
-## Contributing
+# Contributing
 
 We welcome contributions to the Lenskart Clone website. If you have an idea for a new feature or have found a bug, please open an issue in the repository.
 
