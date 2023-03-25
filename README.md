@@ -51,6 +51,12 @@ user:=> https://harlequin-fawn-tutu.cyclic.app/user
    <img src="https://img.shields.io/badge/Visual%20Studio-5C2D91.svg?style=for-the-badge&logo=visual-studio&logoColor=white"  align="center" alt="vscode"/>
 </div>
 
+<div align="center"><h3 align="center">Deployed On:</h3>
+  <img src="https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=whit" align="center" alt="git"/>
+</div>
+
+</p>
+
 <br/>
 
 
