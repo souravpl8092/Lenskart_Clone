@@ -141,7 +141,7 @@ user:=> https://harlequin-fawn-tutu.cyclic.app/user
 
 ## Singal Product Page :
 
-<h3>Here users can see details of particular eyewear glass .</h3>
+<h3>Here users can see details information regarding of particular eyewear glass .</h3>
 <br/>
 
 <div align="center">
