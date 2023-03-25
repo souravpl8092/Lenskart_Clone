@@ -1,71 +1,81 @@
-#ships{
-
-
-    background-color: #329c92;
-    padding:20px;
-    text-align: center;
-    color: #fff;
-    
-font-size: 20px;
-width: 100% !important
+#ships {
+  background-color: #329c92;
+  text-align: left;
+  color: #fff;
+  font-size: 25px;
+  font-weight: bold;
+  width: 100%;
+  padding-left: 10px;
 }
-.input{
-outline: 1px solid black;
-width: 45%;
-padding: 15px;
-margin: 14px;;
-text-align: center;
-margin-left: 22px;
-font-size: medium;
+.input {
+  outline: 1px solid gray;
+  width: 90%;
+  padding: 8px;
+  margin: 14px;
+  text-align: left;
+  margin-left: 22px;
+  font-size: medium;
+  border-radius: 5px;
+  background-color: white;
+  border: none;
+}
 
+#addres {
+  border: 1px solid black;
+  width: 60%;
+  padding: 10px;
+  margin: 15;
+  padding-top: 10px;
+  margin-top: 10px;
+  margin-left: 20px;
+  border-radius: 5px;
+  margin-right: 10px;
 }
-/* #shipping-ad{
-border: 1px solid black;
-width: 60%;
-padding:10px ;
-margin: 15;
-} */
-
-#addres{
-    border: 1px solid black;
-    width: 60%;
-    padding:10px ;
-    margin: 15;
-    padding-top: 10px;;
-    margin-top: 10px;
-    margin-left: 20px;
-    border-radius: 5px;
-    margin-right: 10px;
+#radio {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  margin-left: 22px;
 }
-#radio{
-display: flex;
-gap: 10px;
-padding: 10px;
-margin-left: 22px;
+.input:hover {
+  outline: 1.6px solid black;
 }
-.input:hover{
-    outline: 1.6px solid black;
+#payment-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
-#payment-container{
-    display: flex;
-    gap: 20px;
-    justify-content: center;
+#shiping {
+  background-color: #00b9c6;
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 5px;
+  font-size: 18px;
+  align-items: "right";
+  justify-items: "margin-right";
+  margin-top: 4%;
+  padding: 10px;
+  width: 200px;
+  margin-left: 70%;
 }
-#shiping{
-
-    background-color: #00b9c6;
-    padding: 15px;
-  
-
- color: #fff;
- margin-top: 40px;
-    width: 200px;
-    margin-left: 70%;
-    text-align: center;
-    border-radius: 5px;
-
+#shiping-disable {
+  background-color: #cccccc;
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 5px;
+  font-size: 18px;
+  align-items: "right";
+  justify-items: "margin-right";
+  margin-top: 4%;
+  padding: 10px;
+  width: 200px;
+  margin-left: 70%;
 }
-.card{
-    display: flex;
-    gap:10px
+.card {
+  width: 90%;
 }

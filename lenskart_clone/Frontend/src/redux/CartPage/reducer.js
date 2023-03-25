@@ -1,117 +1,73 @@
 import {
-  cartDataLoading,
-  cartDataSuccess,
-  cartDataError,
-  deleteLoading,
-  deleteSuccess,
-  deleteError,
-  repeatError,
-  repeatLoading,
-  repeatSuccess,
-  applyCoupon,
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  INCREMENT,
+  DECREMENT,
+  RESET,
+  applyCoupon
 } from "./actionType";
 
 let initialState = {
   loading: false,
-  data: [],
   error: false,
-  Totalprice: 0,
-  Totaldiscountprice: 0,
-  ItemCount: 0,
-  deletemsg: "",
-  loadingrepeat: false,
-  errorrepeat: false,
-  datarepeat: "",
-  coupon: 0,
+  cart: [],
+  coupon: 0
 };
 
 export const CartReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case cartDataLoading: {
-      return {
-        ...state,
-        loading: true,
-      };
-    }
-
     case applyCoupon: {
       return {
         ...state,
-        coupon: payload,
+        coupon: payload
       };
     }
 
-    case cartDataSuccess: {
-      let beforeDiscoutPrice = 0;
-      let Atdiscountprice = 0;
-      payload.map(({ product_strike, product_discountedPrice }) => {
-        if (product_strike !== "" && product_discountedPrice !== "") {
-          beforeDiscoutPrice += Number(product_strike);
-          Atdiscountprice += Number(product_discountedPrice);
-        }
-      });
-
-      return {
-        ...state,
-        loading: false,
-        data: payload,
-        error: false,
-        ItemCount: payload.length,
-        Totalprice: beforeDiscoutPrice,
-        Totaldiscountprice: Atdiscountprice,
-      };
+    case ADD_TO_CART: {
+      const { cart } = state;
+      const product = payload;
+      const existingItem = cart.findIndex((item) => item._id === product._id);
+      if (existingItem === -1) {
+        const newItem = {
+          ...product
+        };
+        return {
+          ...state,
+          cart: [...cart, newItem]
+        };
+      }
+      return alert("Product Already Add");
     }
-    case cartDataError: {
+    case REMOVE_FROM_CART: {
       return {
-        loading: false,
-        data: [],
-        error: true,
+        cart: state.cart.filter((item) => item._id !== payload)
       };
     }
 
-    case deleteLoading: {
+    case INCREMENT: {
       return {
-        ...state,
-        loading: true,
+        cart: state.cart.filter((item) => {
+          if (item.id === payload) {
+            return (item.quantity = +item.quantity + 1);
+          }
+          return item;
+        })
       };
     }
-    case deleteSuccess: {
+    case DECREMENT: {
       return {
-        ...state,
-        deletemsg: payload,
-      };
-    }
-    case deleteError: {
-      return {
-        ...state,
-        loading: true,
-        error: true,
-        deletemsg: "",
-      };
-    }
-
-    case repeatLoading: {
-      return {
-        ...state,
-        loadingrepeat: true,
+        cart: state.cart.filter((item) => {
+          if (item.id === payload) {
+            return (item.quantity = +item.quantity - 1);
+          }
+          return item;
+        })
       };
     }
 
-    case repeatSuccess: {
+    case RESET: {
       return {
-        ...state,
-        loadingrepeat: false,
-        datarepeat: payload,
-        errorrepeat: false,
-      };
-    }
-
-    case repeatError: {
-      return {
-        ...state,
-        loadingrepeat: false,
-        datarepeat: "",
-        errorrepeat: true,
+        cart: []
       };
     }
 

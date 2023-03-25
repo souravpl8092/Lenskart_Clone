@@ -1,11 +1,19 @@
 import React, { useLayoutEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import Payment from "../Pages/Checkout/payment";
-import Pay from "./Payment/pay";
-import CartPage from "./Cart/index";
-import Products from "./Products/Products";
 import Home from "./Home/Home";
-import Product from "./SingleProduct/Product";
+import SingleProduct from "./NewProduct/SingleProduct";
+import { Privateroutes } from "../ContextApi/Privateroute";
+import Payment from "../Pages/Checkout/Payment";
+import Orders from "../Pages/Order/Orders";
+import CartPage from "./Cart/index";
+import Shipping from "../Pages/Checkout/Shipping";
+import Confirm from "./Checkout/Confirm";
+import OrderHistory from "./OrderHistory/OrderHistory";
+import Wishlist from "./Wishlist/Wishlist";
+import Productlist from "./Admin/Productlist";
+import ProductPost from "./Admin/ProductPost";
+import EditProduct from "./Admin/EditProduct";
+import NewProduct from "./NewProduct/ProductList";
 import NotFound from "./Cart/CartError";
 
 const AllRoutes = () => {
@@ -17,11 +25,88 @@ const AllRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/cartpage" element={<CartPage />} />
-      <Route path="/products" element={<Products />} />
-      <Route path="/product/singleProduct" element={<Product />} />
-      <Route path="/payment" element={<Pay />} />
-      <Route path="/shiping" element={<Payment />} />
+      <Route path="/newproducts" element={<NewProduct />} />
+      <Route path="/newproducts/:id" element={<SingleProduct />} />
+      <Route
+        path="/cartpage"
+        element={
+          <Privateroutes>
+            <CartPage />
+          </Privateroutes>
+        }
+      />
+      <Route
+        path="/shiping"
+        element={
+          <Privateroutes>
+            <Shipping />
+          </Privateroutes>
+        }
+      />
+      <Route
+        path="/orders"
+        element={
+          <Privateroutes>
+            <Orders />
+          </Privateroutes>
+        }
+      />
+      <Route
+        path="/payment"
+        element={
+          <Privateroutes>
+            <Payment />
+          </Privateroutes>
+        }
+      />
+      <Route
+        path="/confirm"
+        element={
+          <Privateroutes>
+            <Confirm />
+          </Privateroutes>
+        }
+      />
+      <Route
+        path="/orderhistory"
+        element={
+          <Privateroutes>
+            <OrderHistory />
+          </Privateroutes>
+        }
+      />
+      <Route
+        path="/wishlist"
+        element={
+          <Privateroutes>
+            <Wishlist />
+          </Privateroutes>
+        }
+      />
+      <Route
+        path="/productlist"
+        element={
+          <Privateroutes>
+            <Productlist />
+          </Privateroutes>
+        }
+      />
+      <Route
+        path="/productpost"
+        element={
+          <Privateroutes>
+            <ProductPost />
+          </Privateroutes>
+        }
+      />
+      <Route
+        path="/editproduct/:id"
+        element={
+          <Privateroutes>
+            <EditProduct />
+          </Privateroutes>
+        }
+      />
       <Route path="/NotFound" element={<NotFound />} />
     </Routes>
   );

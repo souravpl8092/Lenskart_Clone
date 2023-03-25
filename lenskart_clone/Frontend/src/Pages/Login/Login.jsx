@@ -1,14 +1,16 @@
-import React from "react";
-import { useState } from "react";
-import { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../ContextApi/AuthContext";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { useNavigate } from "react-router-dom";
 import {
+  Checkbox,
+  useDisclosure,
+  Link,
   Modal,
   ModalOverlay,
   ModalContent,
   ModalBody,
   ModalCloseButton,
-  ModalHeader,
   Button,
   Image,
   Box,
@@ -17,31 +19,32 @@ import {
   HStack,
   Flex,
   Center,
+  InputGroup,
+  InputRightElement
 } from "@chakra-ui/react";
-import { Checkbox } from "@chakra-ui/react";
-import { useDisclosure } from "@chakra-ui/react";
-import { Link } from "@chakra-ui/react";
-import { useEffect } from "react";
-import Required from "./Required";
 
 const Login = (props) => {
   const [loading, setLoading] = useState(false);
   const [btn, setbtn] = useState();
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [pass, setpass] = useState(false);
+  const [show, setShow] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isAuth, setisAuth, Authdata, setAuthData } = useContext(AuthContext);
-  const [resdata, setResdata] = useState([]);
+
   const [incorrect, setinCorrect] = useState(false);
+  const navigate = useNavigate();
+  let res1 = [];
 
   const handlechange = (e) => {
+    setinCorrect(false);
     const { name, value } = e.target;
     setLoginData({ ...loginData, [name]: value });
 
     const buton = (
       <Box
-        fontSize={"12px"}
-        mt="18px"
+        fontSize={"14px"}
+        mt="5px"
         color={"#ff1f1f"}
         fontWeight="500"
         letterSpacing={"-0.4px"}
@@ -51,28 +54,53 @@ const Login = (props) => {
     );
     setbtn(buton);
   };
-  let res1 = [];
-  const getData = () => {
-    setLoading(true);
-    fetch(`https://easy-pink-bull-shoe.cyclic.app/Users`)
-      .then((res) => res.json())
-      .then((res) => {
-        res1 = res.filter((el) => el.email === loginData.email);
-        if (res1.length === 1) {
+
+  const getData = async () => {
+    try {
+      setLoading(true);
+      setinCorrect(false);
+      if (loginData.email !== "" && loginData.password !== "") {
+        const res = await fetch(
+          "https://harlequin-fawn-tutu.cyclic.app/user/login",
+          {
+            method: "POST",
+            body: JSON.stringify(loginData),
+            headers: {
+              "Content-type": "application/json"
+            }
+          }
+        );
+        let data = await res.json();
+        if (res) {
+          const credential = await fetch(
+            "https://harlequin-fawn-tutu.cyclic.app/user"
+          );
+          let cred = await credential.json();
+          localStorage.setItem("token", data.token);
+          res1 = cred.filter((el) => el.email === loginData.email);
           setisAuth(true);
           setAuthData(res1);
+          if (loginData.email.includes("@glasscart.com")) {
+            setLoading(false);
+            setinCorrect(false);
+            onClose();
+            navigate("/productlist");
+          } else {
+            console.log(data);
+            setLoading(false);
+            setinCorrect(false);
+            onClose();
+          }
         } else {
+          setLoading(false);
           setinCorrect(true);
         }
-      })
-
-      .catch((err) => console.log(err))
-      .finally(() => setLoading(false))
-      .finally(() => {
-        if (isAuth === true) {
-          onClose();
-        }
-      });
+      }
+    } catch (error) {
+      setLoading(false);
+      setinCorrect(true);
+      console.log("An error occurred. Please try again later.");
+    }
   };
 
   const handlesign = () => {
@@ -81,26 +109,23 @@ const Login = (props) => {
       getData(loginData);
     }
   };
-  console.log(loginData);
-  console.log("incorrect", incorrect);
-  console.log(isAuth);
 
   return (
     <div>
-      <Center onClick={onOpen} fontWeight={"400"} fontSize="14px" w="60px">
+      <Center onClick={onOpen} fontWeight={"400"} fontSize="15px" w="60px">
         Sign In
       </Center>
 
-      <Modal isOpen={isOpen} onClose={onClose} isCentered size="3xl">
+      <Modal isOpen={isOpen} onClose={onClose} isCentered size="xl">
         <ModalOverlay />
-        <ModalHeader></ModalHeader>
-        <ModalContent w={"420px"}>
+        <ModalContent rounded="3xl">
           <ModalCloseButton
             borderRadius={"50%"}
             bg="white"
             m={"10px 10px 0px 0px"}
           />
-          <ModalBody p={"0px 0px "} borderRadius={"15px 15px 15px 15px "} >
+
+          <ModalBody p={"0px 0px "} borderRadius={"15px 15px 15px 15px "}>
             <Image
               src="https://static1.lenskart.com/media/desktop/img/DesignStudioIcons/DesktopLoginImage.svg"
               alt="pic"
@@ -120,18 +145,20 @@ const Login = (props) => {
               {pass === false ? (
                 <Input
                   name="email"
-                  placeholder="Mobile/Email"
+                  placeholder="Email"
                   h={"50px"}
                   fontSize="16px"
                   focusBorderColor="rgb(206, 206, 223)"
                   borderColor={"rgb(206, 206, 223)"}
                   onChange={handlechange}
+                  rounded="2xl"
                 />
               ) : (
                 <Box>
                   <Box fontSize={"17px"} color="#66668e">
                     Enter password for
                   </Box>
+
                   <Flex
                     justifyContent={"space-between"}
                     fontFamily={" sans-serif"}
@@ -145,39 +172,66 @@ const Login = (props) => {
                       onClick={() => setpass(false)}
                       cursor="pointer"
                     >
-                      {" "}
                       Edit
                     </Box>
                   </Flex>
-                  <Input
-                    type={"password"}
-                    name="password"
-                    placeholder="Enter password"
-                    h={"50px"}
-                    fontSize="16px"
-                    focusBorderColor="rgb(206, 206, 223)"
-                    borderColor={"rgb(206, 206, 223)"}
-                    onChange={handlechange}
-                  />
-                  <Box
-                    textDecoration={"underline"}
-                    m="15px 0px 0px 0px"
-                    color="#000042"
-                    fontSize="14px"
-                  >
-                    Forget Password
-                  </Box>
+
+                  <InputGroup>
+                    <Input
+                      type={show ? "text" : "password"}
+                      name="password"
+                      placeholder="Enter password"
+                      h={"50px"}
+                      fontSize="16px"
+                      focusBorderColor="rgb(206, 206, 223)"
+                      borderColor={"rgb(206, 206, 223)"}
+                      onChange={handlechange}
+                      rounded="2xl"
+                    />
+
+                    <InputRightElement width="6.5rem" size="lg">
+                      <Button
+                        size="md"
+                        borderRadius="3xl"
+                        mt="10%"
+                        onClick={() => setShow(!show)}
+                        bg="white"
+                      >
+                        {show ? <ViewOffIcon /> : <ViewIcon />}
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
+
                   {incorrect === true ? (
-                    <Required info="Wrong email or password" />
+                    <Box
+                      fontSize={"14px"}
+                      m="3px 0px 3px 0px"
+                      color={"#ff1f1f"}
+                      fontWeight="500"
+                      ml="2"
+                      letterSpacing={"-0.4px"}
+                    >
+                      Wrong email or password
+                    </Box>
                   ) : (
                     ""
                   )}
                 </Box>
               )}
-              {loginData.email.includes("@gmail.") ? "" : btn}
+              <Box
+                textDecoration={"underline"}
+                m="15px 0px 0px 0px"
+                color="#000042"
+                fontSize="15px"
+              >
+                Forget Password
+              </Box>
+              {loginData.email.includes("@") && loginData.email.includes(".com")
+                ? ""
+                : btn}
 
               <HStack fontSize="16px">
-                <Checkbox mb={"20px"} mt="20px" size="lg" >
+                <Checkbox mb={"20px"} mt="20px" size="lg">
                   Get Update on whatsapp
                 </Checkbox>
                 <Image
@@ -186,7 +240,8 @@ const Login = (props) => {
                   h="22px"
                 />
               </HStack>
-              {loginData.email.includes("@gmail.") ? (
+              {loginData.email.includes("@") &&
+              loginData.email.includes(".com") ? (
                 <Button
                   isLoading={loading}
                   onClick={handlesign}

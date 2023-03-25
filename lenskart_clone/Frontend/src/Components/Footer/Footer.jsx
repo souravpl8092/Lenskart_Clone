@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Flex, Center } from "@chakra-ui/react";
+import { Box, Grid, Center } from "@chakra-ui/react";
 import { FooterCard1, FooterCard2, FooterCard } from "./FooterCard";
 import { services, about, helps } from "./FooterDetails";
 
@@ -11,7 +11,7 @@ const Footer = () => {
           base: "repeat(1,1fr)",
           sm: "repeat(1,1fr)",
           md: "repeat(2,1fr)",
-          lg: "repeat(2,1fr)",
+          lg: "repeat(2,1fr)"
         }}
         justifyContent="space-between"
         textAlign="left"
@@ -23,7 +23,7 @@ const Footer = () => {
               base: "repeat(1,1fr)",
               sm: "repeat(2,1fr)",
               md: "repeat(2,1fr)",
-              lg: "repeat(3,1fr)",
+              lg: "repeat(3,1fr)"
             }}
             gap="5"
           >
@@ -41,7 +41,5 @@ const Footer = () => {
     </Box>
   );
 };
-
-
 
 export default Footer;

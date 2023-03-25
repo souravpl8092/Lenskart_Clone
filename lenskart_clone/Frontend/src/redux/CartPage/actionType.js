@@ -1,14 +1,7 @@
-export const cartDataLoading = 'cart/data/loading';
-export const cartDataSuccess = 'cart/data/success';
-export const cartDataError = 'cart/data/error';
+export const ADD_TO_CART = "cart/items/add/";
+export const REMOVE_FROM_CART = "cart/items/delete/";
+export const INCREMENT = "cart/items/inc/";
+export const DECREMENT = "cart/items/dec/";
+export const RESET = "cart/items/reset/";
 
-export const deleteLoading = 'delete/loading';
-export const deleteSuccess = 'delete/success';
-export const deleteError = 'delete/error';
-
-
-export const repeatLoading = 'cart/repeatloading';
-export const repeatSuccess = 'cart/repeatsuccess';
-export const repeatError = 'cart/repeaterror';
-
-export const applyCoupon = 'coupon/applycoupon';
+export const applyCoupon = "coupon/applycoupon";

@@ -1,65 +1,41 @@
 export const NavbarDetail1 = [
   {
-    labels: "Do more, Be More  | ",
+    labels: "Do more, Be More  | "
   },
   {
-    labels: "Try in 3D  | ",
+    labels: "Try in 3D  | "
   },
   {
-    labels: "Store Locator  | ",
+    labels: "Store Locator  | "
   },
   {
-    labels: "Quality  | ",
+    labels: "Quality  | "
   },
   {
-    labels: "USA  | ",
+    labels: "USA  | "
   },
   {
-    labels: "Singapore  | ",
+    labels: "Singapore  | "
   },
   {
-    labels: "UAE  | ",
+    labels: "UAE  | "
   },
   {
-    labels: "John Jacobs  | ",
+    labels: "John Jacobs  | "
   },
   {
-    labels: "Aqualens  | ",
+    labels: "Aqualens  | "
   },
   {
-    labels: "Cobrowsing  | ",
+    labels: "Cobrowsing  | "
   },
   {
-    labels: "Engineering Blog  | ",
+    labels: "Engineering Blog  | "
   },
   {
-    labels: "Lenskart Franchise  | ",
+    labels: "Lenskart Franchise  | "
   },
   {
-    labels: "Contact us",
-  },
-];
-
-export const NavbarDetail2 = [
-  {
-    labels: "EYEGLASSES",
-  },
-  {
-    labels: "COMPUTER GLASSES",
-  },
-  {
-    labels: "KID GLASSES",
-  },
-  {
-    labels: "CONTACT LENSES",
-  },
-  {
-    labels: "SUNGLASSES",
-  },
-  {
-    labels: "HOME EYE-TEST",
-  },
-  {
-    labels: "STOTE LOCATOR",
-  },
+    labels: "Contact us"
+  }
 ];

@@ -14,10 +14,10 @@ const SaleBox = () => {
       cursor={"pointer"}
     >
       <Flex flexDirection={"column"}>
-        <Heading as={"h1"} fontSize="14px" fontWeight={700}>
+        <Heading as={"h1"} fontSize="16px" fontWeight={700}>
           THE EYE-CONIC SALE
         </Heading>
-        <Text fontSize={"14px"} color="#333368">
+        <Text fontSize={"15px"} color="#333368">
           Extra Offer. Use coupon: MASAI40, MASAI90
         </Text>
       </Flex>

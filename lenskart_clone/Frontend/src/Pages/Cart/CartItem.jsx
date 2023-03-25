@@ -6,9 +6,13 @@ import {
   Image,
   Text,
   Box,
-  useToast,
+  useToast
 } from "@chakra-ui/react";
-import { DeleteData, repeatData } from "../../redux/CartPage/action";
+import {
+  removeFromCart,
+  decrement,
+  increment
+} from "../../redux/CartPage/action";
 import { useDispatch } from "react-redux";
 
 const CartItem = ({
@@ -18,13 +22,12 @@ const CartItem = ({
   id,
   setChange,
   change,
-  product_discountedPrice,
+  product_discountedPrice
 }) => {
   const toast = useToast();
-
   const dispatch = useDispatch();
 
-  const handleDelete = () => {
+  /* const handleDelete = () => {
     dispatch(DeleteData(id));
     setChange(!change);
     toast({
@@ -32,7 +35,7 @@ const CartItem = ({
       status: "success",
       duration: 5000,
       isClosable: true,
-      position: "top",
+      position: "top"
     });
   };
 
@@ -42,7 +45,7 @@ const CartItem = ({
       product_name,
       product_strike,
       id,
-      product_discountedPrice,
+      product_discountedPrice
     };
     dispatch(repeatData(data));
     setChange(!change);
@@ -52,9 +55,26 @@ const CartItem = ({
       status: "success",
       duration: 5000,
       isClosable: true,
-      position: "top",
+      position: "top"
     });
+  }; */
+
+  const handleDelete = (item) => {
+    dispatch(removeFromCart(item));
   };
+
+  const handleDecrementChange = (id, qty) => {
+    if (qty === 1) {
+      dispatch(removeFromCart(id));
+    } else {
+      dispatch(decrement(id));
+    }
+  };
+
+  const handleIncrementChange = (id) => {
+    dispatch(increment(id));
+  };
+
   return (
     <Flex
       gap={2}
@@ -68,7 +88,7 @@ const CartItem = ({
         md: "column",
         lg: "row",
         xl: "row",
-        "2xl": "row",
+        "2xl": "row"
       }}
     >
       <Image
@@ -78,7 +98,7 @@ const CartItem = ({
           md: "25%",
           lg: "20%",
           xl: "20%",
-          "2xl": "20%",
+          "2xl": "20%"
         }}
         margin={{
           base: "auto",
@@ -86,7 +106,7 @@ const CartItem = ({
           md: "auto",
           lg: "unset",
           xl: "unset",
-          "2xl": "unset",
+          "2xl": "unset"
         }}
         src={img_responsive}
       />
@@ -100,7 +120,7 @@ const CartItem = ({
           md: "95%",
           lg: "80%",
           xl: "80%",
-          "2xl": "80%",
+          "2xl": "80%"
         }}
         margin={{
           base: "auto",
@@ -108,7 +128,7 @@ const CartItem = ({
           md: "auto",
           lg: "unset",
           xl: "unset",
-          "2xl": "unset",
+          "2xl": "unset"
         }}
       >
         <Flex
@@ -154,7 +174,7 @@ const CartItem = ({
             textDecoration="underline"
             fontSize={"18"}
             ml="-1.5"
-            onClick={handleDelete}
+            onClick={() => handleDelete(id)}
           >
             Remove
           </Button>
@@ -166,7 +186,7 @@ const CartItem = ({
             _hover={"backgroundColor:white"}
             textDecoration="underline"
             fontSize={"18"}
-            onClick={handleRepeat}
+            onClick={() => handleDecrementChange(id, quantity)}
           >
             Repeat
           </Button>
