@@ -41,6 +41,9 @@ productRouter.get("/", (req, res) => {
   if (req.query.search) {
     query.name = { $regex: req.query.search, $options: "i" };
   }
+  if (req.query.productRefLink) {
+    query.productRefLink = { $regex: req.query.productRefLink, $options: "i" };
+  }
   data
     .find(query, (error, prod) => {
       if (error) {
@@ -49,9 +52,9 @@ productRouter.get("/", (req, res) => {
         res.send(prod);
       }
     })
-    .sort({ postedAt: req.query.sort === "oldest" ? 1 : -1 })
-    .skip(parseInt(req.query.page) * 20)
-    .limit(20);
+    .sort({ price: req.query.sort === "lowtohigh" ? 1 : -1 })
+    .skip(parseInt(req.query.page) * 12)
+    .limit(12);
 });
 
 productRouter.get("/:id", async (req, res) => {
