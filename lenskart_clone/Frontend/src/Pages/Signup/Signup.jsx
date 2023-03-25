@@ -1,16 +1,13 @@
-import React from "react";
-import { useContext } from "react";
+import React, { useState } from "react";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
   Center,
   Heading,
   HStack,
   InputGroup,
   InputLeftAddon,
-  ModalHeader,
   useDisclosure,
   Image,
-} from "@chakra-ui/react";
-import {
   Modal,
   ModalOverlay,
   ModalContent,
@@ -20,11 +17,9 @@ import {
   Box,
   Input,
   Checkbox,
+  InputRightElement,
+  Text
 } from "@chakra-ui/react";
-import { useState } from "react";
-import Required from "./Required";
-import { useEffect } from "react";
-import { AuthContext } from "../../ContextApi/AuthContext";
 
 const Signup = () => {
   const init = {
@@ -32,120 +27,145 @@ const Signup = () => {
     last_name: "",
     ph_no: "",
     email: "",
-    password: "",
+    password: ""
   };
 
   const [userData, setUserData] = useState(init);
   const [first, setFirst] = useState();
+  const [last, setLast] = useState();
   const [ph, setPh] = useState();
   const [mail, setMail] = useState();
   const [pass, setPass] = useState();
   const [loading, setLoading] = useState(false);
-  // const [register,setRegister]=useState(false);
-  // const { isAuth,setisAuth ,register,setRegister }=useContext(AuthContext);
+  const [show, setShow] = useState(false);
   const [Auth, setAuth] = useState();
   const [exist, setExist] = useState(false);
-  var flag = false;
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  var flag = false;
 
+  const Required = (props) => {
+    return (
+      <Box
+        fontSize={"14px"}
+        m="3px 0px 3px 0px"
+        color={"#ff1f1f"}
+        fontWeight="500"
+        letterSpacing={"-0.4px"}
+      >
+        {props.info}
+      </Box>
+    );
+  };
+
+  const handleChange = (e) => {
+    setExist(false);
+    const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
 
     switch (name) {
       case "first_name":
-        setFirst(value === "" ? <Required info="This is required" /> : "");
+        setFirst(
+          value === "" ? <Required info="This is a required feild" /> : ""
+        );
+        break;
 
+      case "last_name":
+        setLast(
+          value === "" ? <Required info="This is a required feild" /> : ""
+        );
         break;
 
       case "ph_no":
         setPh(
           value === "" ? (
-            <Required info="This is required" />
+            <Required info="This is a required feild" />
           ) : (
             <Required info="Please enter a valid mobile number (eg. 9987XXXXXX)" />
           )
         );
-
         break;
 
       case "email":
         setMail(
           value === "" ? (
-            <Required info="This is required" />
+            <Required info="This is a required feild" />
           ) : (
             <Required info="Please enter a valid email address e.g. johndoe@domain.com." />
           )
         );
-
         break;
 
       case "password":
         setPass(
           value === "" ? (
-            <Required info="This is required" />
+            <Required info="This is a required feild" />
           ) : (
             <Required info="Password should be more than 6 characters." />
           )
         );
-
         break;
 
       default:
         break;
     }
   };
-  useEffect(() => {}, []);
 
   const getData = (body) => {
     setLoading(true);
-    fetch(`https://easy-pink-bull-shoe.cyclic.app/Users`)
+
+    fetch(`https://harlequin-fawn-tutu.cyclic.app/user`)
       .then((res) => res.json())
       .then((res) => {
         res.map((el) => {
           if (el.email === body.email) {
             flag = true;
+            setExist(true);
             return el;
           }
+          setLoading(false);
         });
       })
       .then(() => {
         if (flag === false) {
-          fetch(`https://easy-pink-bull-shoe.cyclic.app/Users`, {
+          fetch(`https://harlequin-fawn-tutu.cyclic.app/user/register`, {
             method: "POST",
             body: JSON.stringify(body),
             headers: {
-              "Content-Type": "application/json",
-            },
+              "Content-Type": "application/json"
+            }
           })
             .then((res) => res.json())
             .then((res) => {
               setAuth(true);
+              setLoading(false);
+              setExist(false);
               console.log(Auth);
             })
             .catch((err) => setAuth(false))
             .finally(() => setLoading(false))
+            .finally(() => setExist(false))
             .finally(() => onClose());
         } else {
           setLoading(false);
-          setExist(true);
         }
       });
   };
+
   const handleRegister = () => {
     getData(userData);
   };
+
   return (
     <div>
-      <Center onClick={onOpen} fontWeight={"400"} fontSize="14px" w="60px">
+      <Center onClick={onOpen} fontWeight={"400"} fontSize="15px" w="60px">
         Sign Up
       </Center>
 
-      <Modal isOpen={isOpen} onClose={onClose} isCentered size="3xl">
+      <Modal isOpen={isOpen} onClose={onClose} isCentered size="5xl">
         <ModalOverlay />
-        <ModalHeader></ModalHeader>
-        <ModalContent w={"430px"}>
+        <ModalContent w="lg" pt="5" rounded="3xl">
           <ModalCloseButton />
+
           <ModalBody p={"0px 0px "}>
             <Box m={"5px 45px 20px 45px"}>
               <Heading
@@ -157,31 +177,55 @@ const Signup = () => {
               >
                 Create an Account
               </Heading>
+
               <Input
+                type="text"
                 fontSize="16px"
                 onChange={handleChange}
-                type="text"
+                focusBorderColor="rgb(206, 206, 223)"
                 name="first_name"
                 placeholder="First Name*"
-                h={"49px"}
-                focusBorderColor="rgb(206, 206, 223)"
+                h={"52px"}
                 borderColor={"rgb(206, 206, 223)"}
-                m={"8px 0px 8px 0px"}
+                m={"8px 0px 15px 0px"}
+                rounded="2xl"
               />
-              {first}
+
+              <Text mt="-2%" ml="2%">
+                {first}
+              </Text>
 
               <Input
                 fontSize="16px"
                 onChange={handleChange}
                 name="last_name"
+                type="text"
                 placeholder="Last Name"
-                h={"49px"}
+                h={"52px"}
                 focusBorderColor="rgb(206, 206, 223)"
                 borderColor={"rgb(206, 206, 223)"}
-                m={"8px 0px 8px 0px"}
+                m={"8px 0px 25px 0px"}
+                rounded="2xl"
               />
-              <InputGroup w="100%" h="50px" fontSize="18px" borderRadius="xl">
-                <InputLeftAddon children="+91" h="45px" fontSize="18px" />
+              <Text mt="-2%" ml="2%">
+                {last}
+              </Text>
+
+              <InputGroup
+                w="100%"
+                h="50px"
+                fontSize="18px"
+                borderRadius="xl"
+                mb="14px"
+              >
+                <InputLeftAddon
+                  children="+91"
+                  h="45px"
+                  fontSize="18px"
+                  rounded="2xl"
+                  bg="whiteAlpha.900"
+                />
+
                 <Input
                   onChange={handleChange}
                   type="number"
@@ -192,33 +236,58 @@ const Signup = () => {
                   fontSize="16px"
                   focusBorderColor="rgb(206, 206, 223)"
                   borderColor={"rgb(206, 206, 223)"}
+                  rounded="2xl"
                 />
               </InputGroup>
+              <Text mt="-2%" ml="2%">
+                {userData.ph_no.length === 10 ? "" : ph}
+              </Text>
 
-              {userData.ph_no.length == 10 ? "" : ph}
               <Input
                 onChange={handleChange}
                 fontSize="16px"
                 name="email"
                 placeholder="Email*"
-                h={"49px"}
+                h={"52px"}
                 focusBorderColor="rgb(206, 206, 223)"
                 borderColor={"rgb(206, 206, 223)"}
-                m={"8px 0px 8px 0px"}
+                m={"8px 0px 18px 0px"}
+                rounded="2xl"
               />
-              {userData.email.includes("@gmail.") ? "" : mail}
-              <Input
-                onChange={handleChange}
-                fontSize="16px"
-                type={"password"}
-                name="password"
-                placeholder="Password*"
-                h={"49px"}
-                focusBorderColor="rgb(206, 206, 223)"
-                borderColor={"rgb(206, 206, 223)"}
-                m={"8px 0px 8px 0px"}
-              />
+              <Text mt="-2%" ml="2%">
+                {userData.email.includes("@") && userData.email.includes(".com")
+                  ? ""
+                  : mail}
+              </Text>
+
+              <InputGroup mb="15px">
+                <Input
+                  onChange={handleChange}
+                  fontSize="16px"
+                  type={show ? "text" : "password"}
+                  name="password"
+                  placeholder="Password*"
+                  h={"52px"}
+                  focusBorderColor="rgb(206, 206, 223)"
+                  borderColor={"rgb(206, 206, 223)"}
+                  m={"8px 0px 8px 0px"}
+                  rounded="2xl"
+                />
+
+                <InputRightElement width="6.5rem" size="lg">
+                  <Button
+                    size="md"
+                    borderRadius="3xl"
+                    mt="20%"
+                    onClick={() => setShow(!show)}
+                    bg="white"
+                  >
+                    {show ? <ViewOffIcon /> : <ViewIcon />}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
               {userData.password.length >= 6 ? "" : pass}
+
               <HStack>
                 <Box
                   textDecoration={"underline"}
@@ -228,10 +297,12 @@ const Signup = () => {
                 >
                   Got a Referral code?
                 </Box>
+
                 <Box fontFamily={" sans-serif"} color={"#333368"}>
                   (Optional)
                 </Box>
               </HStack>
+
               <HStack>
                 <Checkbox
                   mb={"20px"}
@@ -247,7 +318,12 @@ const Signup = () => {
                   h="22px"
                 />
               </HStack>
-              {exist === true ? <Required info="EmailId already exists" /> : ""}
+              {exist === true ? (
+                <Required info="Email Id already exists" />
+              ) : (
+                ""
+              )}
+
               <HStack spacing={"3px"} mb="10px">
                 <Box
                   fontSize={"14px"}
@@ -262,9 +338,12 @@ const Signup = () => {
                 </Box>
               </HStack>
 
-              {userData.email.includes("@gmail.") &&
+              {userData.email.includes("@") &&
+              userData.email.includes(".com") &&
+              userData.first_name.length >= 1 &&
+              userData.last_name.length >= 1 &&
               userData.password.length >= 6 &&
-              userData.ph_no.length == 10 ? (
+              userData.ph_no.length === 10 ? (
                 <Button
                   isLoading={loading}
                   onClick={handleRegister}
@@ -285,7 +364,6 @@ const Signup = () => {
                   width="100%"
                   borderRadius={"35px/35px"}
                   h="50px"
-                  _hover={{ backgroundColor: "#cccccc" }}
                   fontFamily={" sans-serif"}
                   fontWeight="300"
                   fontSize="18px"
@@ -293,6 +371,7 @@ const Signup = () => {
                   Create an Account
                 </Button>
               )}
+
               <Center mt={"14px"} fontSize="15px">
                 Have an account?{" "}
                 <Center fontWeight={"500"} textDecoration="underline">

@@ -1,25 +1,38 @@
 import React, { useState } from "react";
 import { Box, Button, Flex, Input, useToast } from "@chakra-ui/react";
-import { coupon } from "../../redux/CartPage/action";
-import { useDispatch } from "react-redux";
 
 const CouponBox = ({ setChange, change }) => {
   const [couponCode, setCouponCode] = useState("");
-  const dispatch = useDispatch();
 
   const toast = useToast();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (couponCode !== "") {
-      dispatch(coupon(couponCode));
-      setChange(!change);
+      if (couponCode !== "MASAI40") {
+        setCouponCode(40);
+      }
+      if (couponCode !== "MASAI90") {
+        setCouponCode(90);
+      }
+      if (couponCode !== "MASAI30") {
+        setCouponCode(30);
+      }
+      if (couponCode !== "MASAI20") {
+        setCouponCode(20);
+      }
+      if (couponCode !== "MASAI90") {
+        setCouponCode(90);
+      }
+      if (couponCode !== "MASAI70") {
+        setCouponCode(70);
+      }
       toast({
         description: "Coupon code applied successfully",
         status: "success",
         duration: 5000,
         isClosable: true,
-        position: "top",
+        position: "top"
       });
     } else {
       toast({
@@ -27,7 +40,7 @@ const CouponBox = ({ setChange, change }) => {
         status: "info",
         duration: 5000,
         isClosable: true,
-        position: "top",
+        position: "top"
       });
     }
   };
@@ -42,22 +55,21 @@ const CouponBox = ({ setChange, change }) => {
       flexDirection="column"
     >
       <Flex justifyContent={"space-between"} gap="5">
-        <Box>
+        <Box w="80%">
           <Input
             type="text"
             placeholder="Enter coupon code"
             value={couponCode}
             onChange={(e) => setCouponCode(e.target.value)}
-            w="sm"
             h={"14"}
-            fontSize="14px"
+            fontSize="18px"
           />
         </Box>
-        <Box>
+        <Box w="20%">
           <Button
             color="white"
             backgroundColor={"#12daac"}
-            fontSize={"16px"}
+            fontSize={"18px"}
             padding="10px"
             mt={"5px"}
             onClick={handleSubmit}

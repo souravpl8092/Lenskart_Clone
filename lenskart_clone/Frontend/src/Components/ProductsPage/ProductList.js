@@ -7,11 +7,9 @@ import { getLenses } from "../../redux/ProductsPage/ProductSlice";
 import NewSingleProduct from "./SingleProduct";
 const Productlist = () => {
   // const [data, setData] = useState(newData);
-  const {
-    products: data,
-    isLoading,
-    isError,
-  } = useSelector((state) => state.productReducer);
+  const { products: data, isLoading, isError } = useSelector(
+    (state) => state.productReducer
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getLenses());
@@ -46,7 +44,9 @@ const Productlist = () => {
             <NewSingleProduct key={ind} newData={elem} />
           ))
         ) : isLoading ? (
-          <h1>Lenses are loading...</h1>
+          <h1 style={{ fontSize: "25px", fontWeight: "bold" }}>
+            Lenses are loading...
+          </h1>
         ) : (
           <h1>No Data Found</h1>
         )}

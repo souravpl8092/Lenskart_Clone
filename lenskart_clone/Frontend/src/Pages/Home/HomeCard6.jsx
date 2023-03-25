@@ -14,7 +14,7 @@ const HomeCard6 = ({ type, heading }) => {
       m="auto"
       mt="6"
       cursor="pointer"
-      fontSize="25px"
+      fontSize="22px"
       pb="7"
       fontWeight="400"
     >
@@ -28,24 +28,24 @@ const HomeCard6 = ({ type, heading }) => {
           breakpoints={{
             0: {
               slidesPerView: 1,
-              spaceBetween: 10,
+              spaceBetween: 10
             },
             480: {
               slidesPerView: 1,
-              spaceBetween: 10,
+              spaceBetween: 10
             },
             768: {
               slidesPerView: 2,
-              spaceBetween: 15,
+              spaceBetween: 15
             },
             1024: {
               slidesPerView: 3,
-              spaceBetween: 15,
+              spaceBetween: 15
             },
             1280: {
               slidesPerView: 3,
-              spaceBetween: 30,
-            },
+              spaceBetween: 30
+            }
           }}
         >
           {type.map((i) => (

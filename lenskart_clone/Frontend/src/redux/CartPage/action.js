@@ -1,44 +1,46 @@
-import axios from "axios";
 import {
-  cartDataLoading,
-  cartDataSuccess,
-  cartDataError,
-  deleteLoading,
-  deleteSuccess,
-  deleteError,
-  repeatError,
-  repeatLoading,
-  repeatSuccess,
   applyCoupon,
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  INCREMENT,
+  DECREMENT,
+  RESET
 } from "./actionType";
 
-export const getData = () => async (dispatch) => {
-  try {
-    dispatch({ type: cartDataLoading });
-    await axios
-      .get(`https://spotless-erin-trousers.cyclic.app/cart`)
-      .then((res) => {
-        dispatch({ type: cartDataSuccess, payload: res.data });
-      });
-  } catch (err) {
-    dispatch({ type: cartDataError });
-  }
+export const addToCart = (product) => {
+  return {
+    type: ADD_TO_CART,
+    payload: product
+  };
 };
 
-export const DeleteData = (id) => async (dispatch) => {
-  try {
-    dispatch({ type: deleteLoading });
-    await axios
-      .delete(`https://spotless-erin-trousers.cyclic.app/delete/${id}`)
-      .then((res) => {
-        dispatch({ type: deleteSuccess, payload: res.data });
-      });
-  } catch (err) {
-    dispatch({ type: deleteError });
-  }
+export const removeFromCart = (item) => {
+  return {
+    type: REMOVE_FROM_CART,
+    payload: item
+  };
 };
 
-export const repeatData = (data) => async (dispatch) => {
+export const increment = (id) => {
+  return {
+    type: INCREMENT,
+    payload: id
+  };
+};
+
+export const decrement = (id) => {
+  return {
+    type: DECREMENT,
+    payload: id
+  };
+};
+
+export const cartReset = (id) => {
+  return {
+    type: RESET
+  };
+};
+/* export const repeatData = (data) => async (dispatch) => {
   try {
     dispatch({ type: repeatLoading });
     await axios
@@ -49,7 +51,7 @@ export const repeatData = (data) => async (dispatch) => {
   } catch (err) {
     dispatch({ type: repeatError });
   }
-};
+}; */
 
 export const coupon = (couponCode) => (dispatch) => {
   if (couponCode === "MASAI40") {
@@ -63,6 +65,6 @@ export const coupon = (couponCode) => (dispatch) => {
   } else if (couponCode === "MASAI70") {
     dispatch({ type: applyCoupon, payload: 70 });
   } else {
-    dispatch({type: applyCoupon, payload:0})
+    dispatch({ type: applyCoupon, payload: 0 });
   }
 };

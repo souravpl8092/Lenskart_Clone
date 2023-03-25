@@ -18,7 +18,11 @@ const ProductFilter = ({ priceFilter }) => {
         <span className="filter_title">frame shape</span>
         <div className="filters"></div>
         {size.length > 0 &&
-          size.map((s, ind) => <button key={ind}>{s}</button>)}
+          size.map((s, ind) => (
+            <button key={ind} style={{ fontSize: "18px" }}>
+              {s}
+            </button>
+          ))}
       </div>
       <div className="filter_Box frame_color">
         <span className="filter_title">frame color</span>
@@ -27,7 +31,12 @@ const ProductFilter = ({ priceFilter }) => {
       <div className="filter_Box price">
         <span className="filter_title">price</span>
         <div className="filters">
-          <button onClick={() => priceFilter(1000)}>setabove</button>
+          <button
+            onClick={() => priceFilter(1000)}
+            style={{ fontSize: "18px" }}
+          >
+            setabove
+          </button>
         </div>
       </div>
     </Wrapper>
