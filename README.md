@@ -1,11 +1,11 @@
 <h1 align="center">✨✨Lenskart_Clone✨✨</h1>
 
-<h2 align="center">💻Project Unique Name :- Glass Cart ✈️</h2>
+<h3 align="center">💻Project Unique Name :- Glass Cart ✈️</h3>
 
 <br/>
 
 ## Welcome to Lenskart_Clone
-About Lenskart:- Lenskart.com is an Indian e-commerce company that sells eyeglasses, contact lenses, and sunglasses. The company was founded in 2010 by Peyush Bansal, Amit Chaudhary, and Sumeet Kapahi, and is based in Delhi. Lenskart has a wide variety of products and offers services such as free home trial and virtual try-on. The company is also known for its "lenskart.com" eye check-up camps. The company has also has physical stores across India. The company has recently raised a funding from SoftBank Vision Fund in 2020, which was used for expanding the company's operations in India and to start their operations in the Middle East and Southeast Asia.
+<h4 align="justify">Lenskart.com is an Indian e-commerce company that sells eyeglasses, contact lenses, and sunglasses. The company was founded in 2010 by Peyush Bansal, Amit Chaudhary, and Sumeet Kapahi, and is based in Delhi. Lenskart has a wide variety of products and offers services such as free home trial and virtual try-on. The company is also known for its "lenskart.com" eye check-up camps. The company has also has physical stores across India. The company has recently raised a funding from SoftBank Vision Fund in 2020, which was used for expanding the company's operations in India and to start their operations in the Middle East and Southeast Asia.</h4>
 
 <br/>
 
