@@ -1,6 +1,5 @@
 import React from "react";
 import CartLength from "./CartLength";
-import CartWithoutlogin from "./CartWithoutlogin";
 import PriceDetail from "./priceDetail";
 import SaleBox from "./SaleBox";
 import { useState } from "react";
@@ -300,7 +299,7 @@ const CartPage = () => {
                   </Flex>
                 </Flex>
               ))}
-            <CartWithoutlogin />
+            {/* <CartWithoutlogin /> */}
           </Flex>
           <Flex
             flexDirection={"column"}

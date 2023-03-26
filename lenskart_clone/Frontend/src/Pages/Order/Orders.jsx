@@ -12,7 +12,8 @@ import {
   HStack,
   Image,
   Spacer,
-  Switch
+  Switch,
+  Text
 } from "@chakra-ui/react";
 
 const Orders = () => {
@@ -22,7 +23,7 @@ const Orders = () => {
 
   const getTotalPrice = () => {
     const totalPrice = cart.reduce(
-      (acc, item) => acc + item.mPrice * item.quantity,
+      (acc, item) => acc + item.price * item.quantity,
       0
     );
     return totalPrice;
@@ -102,7 +103,7 @@ const Orders = () => {
                   letterSpacing="1.5px"
                   fontWeight={"500"}
                 >
-                  {getTotalPrice()}.00
+                  ₹{Math.round(getTotalPrice() + getTotalPrice() * 0.18)}.00.00
                 </Box>
               </Flex>
             </Flex>
@@ -201,8 +202,18 @@ const Orders = () => {
                   >
                     Sold by Lenskart Pvt Ltd.
                   </Box>
-                  <Box fontWeight={"500"} fontSize="18px" mb="5">
-                    ₹ {el.price || 1904.0}.00
+                  <Flex fontWeight={"500"} gap="1">
+                    <Text fontSize="18px">
+                      ₹{Math.round(el.price + el.price * 0.18)}.00
+                    </Text>
+
+                    <Text fontSize="sm" mt="1">
+                      (Included all Taxes)
+                    </Text>
+                  </Flex>
+                  <Box fontWeight={"500"} fontSize="16px" mb="5">
+                    {" "}
+                    Qty : {el.quantity < 10 ? `0${el.quantity}` : el.quantity}
                   </Box>
                 </Box>
               </HStack>

@@ -33,7 +33,7 @@ const Wishlist = () => {
 
   return (
     <Box>
-      /<Navbar />
+      <Navbar />
       <br />
       <br />
       <Box minHeight="635" w="80%" m="auto">

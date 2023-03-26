@@ -116,7 +116,7 @@ const Login = (props) => {
         Sign In
       </Center>
 
-      <Modal isOpen={isOpen} onClose={onClose} isCentered size="xl">
+      <Modal isOpen={isOpen} onClose={onClose} isCentered size="lg">
         <ModalOverlay />
         <ModalContent rounded="3xl">
           <ModalCloseButton
@@ -231,7 +231,7 @@ const Login = (props) => {
                 : btn}
 
               <HStack fontSize="16px">
-                <Checkbox mb={"20px"} mt="20px" size="lg">
+                <Checkbox mb={"20px"} mt="20px" size="sm">
                   Get Update on whatsapp
                 </Checkbox>
                 <Image

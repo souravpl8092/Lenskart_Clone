@@ -1,4 +1,4 @@
-#ships {
+/* #ships {
   background-color: #329c92;
   text-align: left;
   color: #fff;
@@ -6,7 +6,7 @@
   font-weight: bold;
   width: 100%;
   padding-left: 10px;
-}
+} */
 .input {
   outline: 1px solid gray;
   width: 90%;
@@ -20,17 +20,16 @@
   border: none;
 }
 
-#addres {
+/* #addres {
   border: 1px solid black;
   width: 60%;
   padding: 10px;
-  margin: 15;
   padding-top: 10px;
   margin-top: 10px;
-  margin-left: 20px;
+
   border-radius: 5px;
-  margin-right: 10px;
-}
+} */
+
 #radio {
   display: flex;
   gap: 10px;

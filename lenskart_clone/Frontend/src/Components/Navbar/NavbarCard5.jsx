@@ -21,7 +21,7 @@ function NavbarCard5() {
       <Menu>
         <MenuButton
           bg="#fbf9f7"
-          fontSize="18px"
+          fontSize="16px"
           fontWeight="600"
           _hover={{
             borderBottom: "4px solid teal"
@@ -194,7 +194,7 @@ function NavbarCard5() {
       <Menu>
         <MenuButton
           bg="#fbf9f7"
-          fontSize="18px"
+          fontSize="16px"
           fontWeight="600"
           _hover={{
             borderBottom: "4px solid teal"
@@ -300,7 +300,7 @@ function NavbarCard5() {
       <Menu>
         <MenuButton
           bg="#fbf9f7"
-          fontSize="18px"
+          fontSize="16px"
           fontWeight="600"
           _hover={{
             borderBottom: "4px solid teal"
@@ -362,7 +362,7 @@ function NavbarCard5() {
       <Menu>
         <MenuButton
           bg="#fbf9f7"
-          fontSize="18px"
+          fontSize="16px"
           fontWeight="600"
           _hover={{
             borderBottom: "4px solid teal"
@@ -481,7 +481,7 @@ function NavbarCard5() {
       <Menu>
         <MenuButton
           bg="#fbf9f7"
-          fontSize="18px"
+          fontSize="16px"
           fontWeight="600"
           _hover={{
             borderBottom: "4px solid teal"
@@ -641,7 +641,7 @@ function NavbarCard5() {
       <Menu>
         <MenuButton
           bg="#fbf9f7"
-          fontSize="18px"
+          fontSize="16px"
           fontWeight="600"
           _hover={{
             borderBottom: "4px solid teal"
@@ -714,7 +714,7 @@ function NavbarCard5() {
       <Menu>
         <MenuButton
           bg="#fbf9f7"
-          fontSize="18px"
+          fontSize="16px"
           fontWeight="600"
           _hover={{
             borderBottom: "4px solid teal"

@@ -6,13 +6,11 @@ import {
 } from "redux";
 import { CartReducer } from "./CartPage/reducer";
 import thunk from "redux-thunk";
-import { productReducer } from "./ProductsPage/ProductSlice";
 import { wishlistReducer } from "./wishlist/wishlist.reducer";
 import { orderReducer } from "./order/order.reducer";
 
 const rootReducer = combineReducers({
   CartReducer,
-  productReducer,
   wishlistManager: wishlistReducer,
   orderManager: orderReducer
 });

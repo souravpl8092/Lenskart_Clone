@@ -127,12 +127,20 @@ function Shipping() {
       <Navbar />
       <br />
       <br />
-      <Flex m="auto" justifyContent="center">
-        <Box id="addres">
-          <Text id="ships">Shipping Address</Text>
-          <br />
-          <br />
-          <Box>
+      <Flex m="auto" justifyContent="space-evenly">
+        <Box id="addres" w="65%">
+          <Text
+            id="ships"
+            bg="teal.400"
+            p="2"
+            fontWeight="bold"
+            color="whiteAlpha.900"
+            fontSize="22px"
+          >
+            Shipping Address
+          </Text>
+
+          <Box border="1px solid black" p="4" borderRadius="xl" mt="7">
             <Flex w="100%">
               <Box w="50%">
                 <input

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Table,
@@ -11,8 +11,6 @@ import {
   Heading,
   Button,
   useToast,
-  Flex,
-  Avatar,
   Text,
   Grid,
   GridItem,
@@ -20,28 +18,27 @@ import {
   Select
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../ContextApi/AuthContext";
 import Pagination from "./Pagination";
+import Navbar from "./Navbar";
 
 const Productlist = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
   const [sort, setSort] = useState("");
   const [filter, setFilter] = useState("");
   const [gender, setGender] = useState("");
   const [page, setPage] = useState(0);
   const [shape, setShape] = useState("");
   const [style, setStyle] = useState("");
-  const { setisAuth } = useContext(AuthContext);
+  const [productref, setProductref] = useState("");
   const toast = useToast();
 
   const fetchData = async () => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `https://harlequin-fawn-tutu.cyclic.app/product?sort=${sort}&gender=${gender}&productType=${filter}&search=${searchTerm}&shape=${shape}&style=${style}&page=${page}`
+        `https://harlequin-fawn-tutu.cyclic.app/product?sort=${sort}&productRefLink=${productref}&gender=${gender}&productType=${filter}&shape=${shape}&style=${style}&page=${page}`
       );
       const postData = await response.json();
       setData(postData);
@@ -55,7 +52,7 @@ const Productlist = () => {
 
   useEffect(() => {
     fetchData();
-  }, [sort, filter, searchTerm, page, gender, shape, style]);
+  }, [sort, filter, page, gender, shape, style, productref]);
 
   const handleDelete = async (id) => {
     try {
@@ -81,46 +78,9 @@ const Productlist = () => {
     }
   };
 
-  const handleClick = () => {
-    setisAuth(false);
-    navigate("/");
-    localStorage.removeItem("token");
-    toast({
-      title: "Success",
-      description: "You have been logged out",
-      status: "success",
-      duration: 1000,
-      isClosable: true
-    });
-  };
-
   return (
     <Box bg="gray.200" minH="710px">
-      <Flex justifyContent="space-between" bg="gray.500" w="100%" p="4">
-        <Flex gap="4">
-          <Avatar src="https://bit.ly/broken-link" size="lg" mr="2" />
-          <Heading color="whiteAlpha.900" fontSize="30px">
-            Admin
-          </Heading>
-        </Flex>
-        <br />
-        <br />
-
-        <Flex gap="5">
-          <Button
-            colorScheme="blue"
-            borderRadius="lg"
-            fontSize="18px"
-            p="7"
-            onClick={() => navigate("/productpost")}
-          >
-            Register Product
-          </Button>
-          <Button colorScheme="red" fontSize="18px" p="7" onClick={handleClick}>
-            Sign out
-          </Button>
-        </Flex>
-      </Flex>
+      <Navbar />
       <br />
       <Grid
         templateColumns="30% 10% 10% 10% 15% 15%"
@@ -137,8 +97,8 @@ const Productlist = () => {
             bg="whiteAlpha.900"
             borderRadius="3xl"
             placeholder="Search by name"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            value={productref}
+            onChange={(e) => setProductref(e.target.value)}
           />
         </GridItem>
         <GridItem>
@@ -224,16 +184,22 @@ const Productlist = () => {
       <br />
       <br />
       {isLoading ? (
-        <Heading as="h1" fontSize="4xl" fontFamily="cursive" textAlign="center">
+        <Heading
+          as="h1"
+          fontSize="4xl"
+          fontFamily="cursive"
+          textAlign="center"
+          minH="500px"
+        >
           Loading...
         </Heading>
       ) : data.length === 0 ? (
         <Heading
           as="h1"
           fontSize="4xl"
-          fontFamily="cursive"
-          color="red.500"
+          color="gray"
           textAlign="center"
+          minH="540px"
         >
           No Data found
         </Heading>
@@ -256,6 +222,7 @@ const Productlist = () => {
                 <Tr>
                   <Th fontSize="15px">Edit</Th>
                   <Th fontSize="15px">Delete</Th>
+
                   <Th fontSize="15px">Name</Th>
                   <Th fontSize="15px">Shape</Th>
                   <Th fontSize="15px">Colors</Th>
@@ -292,7 +259,7 @@ const Productlist = () => {
                     </Td>
 
                     <Td fontSize="15px" textTransform="capitalize">
-                      {el.name}
+                      {el.productRefLink}
                     </Td>
                     <Td fontSize="15px">{el.shape}</Td>
                     <Td fontSize="15px">{el.colors}</Td>
@@ -314,11 +281,13 @@ const Productlist = () => {
         </Box>
       )}
       <br />
-      <Pagination
-        current={page}
-        onChange={(value) => setPage(value)}
-        totalPage={data.length < 0 ? true : false}
-      />
+      {data.length !== 0 && (
+        <Pagination
+          current={page}
+          onChange={(value) => setPage(value)}
+          totalPage={data.length < 0 ? true : false}
+        />
+      )}
       <br />
       <br />
     </Box>

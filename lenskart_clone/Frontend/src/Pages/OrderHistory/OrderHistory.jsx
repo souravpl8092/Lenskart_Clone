@@ -65,7 +65,7 @@ const OrderHistory = () => {
                           </Box>
                           <Box textAlign="left">
                             <Text fontWeight="bold">
-                              Order ID: {order.productId}
+                              Product ID: {order.productId}
                             </Text>
                             <Text fontWeight="600">
                               Order Date : {currentDate}
@@ -85,10 +85,9 @@ const OrderHistory = () => {
                               {order.productType}
                             </Text>
                             <Text fontWeight="bold" fontSize="18px">
-                              Price: ₹ {order.price}.00 /-
-                            </Text>
-                            <Text fontWeight="500" fontSize="15px">
-                              Quantity: ₹ {order.quantity} pcs
+                              Price: ₹{" "}
+                              {Math.round(order.price + order.price * 0.18)}.00
+                              /-
                             </Text>
                             <Text fontWeight="500" fontSize="15px">
                               Colors : {order.colors}
@@ -97,7 +96,7 @@ const OrderHistory = () => {
                               Dimension : {order.dimension}
                             </Text>
                             <Text fontWeight="500" fontSize="15px">
-                              Status : Delivered
+                              Status : Completed
                             </Text>
                           </Box>
                         </Flex>
