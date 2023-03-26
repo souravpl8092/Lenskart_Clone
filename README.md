@@ -47,7 +47,8 @@
  </div>
 
 <div align="center"><h3 align="center">Deployed On:</h3>
-  <img src="https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=whit" align="center" alt="git"/>
+  <img src="https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white"  alt="vercel"/>
+  <img src="https://img.shields.io/badge/cyclic-5458F6?style=for-the-badge&logo=cyclic&logoColor=white" alt="cyclic" />
 </div>
 </p>
 
