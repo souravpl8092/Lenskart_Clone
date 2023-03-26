@@ -1,124 +1,35 @@
 const express = require("express");
-const { connect } = require("./config/db");
-const bcrypt = require("bcrypt");
-const { RegisterModel } = require("./models/register.model");
-const { ProductModel } = require("./models/product.model");
-const { CartModel } = require("./models/cart.model");
-const jwt = require("jsonwebtoken");
+const { connection } = require("./Configs/db");
+const { userRouter } = require("./routes/user.routes");
+const { productRouter } = require("./routes/product.routes");
+const { cartRouter } = require("./routes/cart.routes");
+require("dotenv").config();
 const cors = require("cors");
-const server = express();
-server.use(express.json());
 
-server.use(cors());
+const app = express();
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
-server.get("/", (req, res) => {
-  res.send("welcome");
-});
-server.post("/register", async (req, res) => {
-  const { name, email, password } = req.body;
-  try {
-    bcrypt.hash(password, 5, async (err, hash) => {
-      // Store hash in your password DB.
-      if (err) {
-        console.log(err);
-      } else {
-        const newData = new RegisterModel({
-          name,
-          email,
-          password: hash,
-        });
-        await newData.save();
-        res.send("registered");
-      }
-    });
-  } catch (error) {
-    console.log(error);
-    res.send("enter all the details");
-  }
-});
-server.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    const user = await RegisterModel.find({ email });
-    if (user.length > 0) {
-      bcrypt.compare(password, user[0].password, (err, result) => {
-        // result == true
-        if (result) {
-          const token = jwt.sign({ name: "masai" }, "masai");
-          res.send({ status: "login successful", token: token });
-        } else {
-          res.send("wrong entry");
-        }
-      });
-    }
-  } catch (error) {
-    console.log(error);
-    res.send("wrong entry");
-  }
-});
-server.get("/user", async (req, res) => {
-  try {
-    const data = await RegisterModel.find();
-    res.send(data);
-  } catch (error) {
-    console.log(error);
-    res.send(error);
-  }
-});
-server.post("/post", async (req, res) => {
-  const data = req.body;
-  try {
-    await ProductModel.insertMany(data);
+app.use(express.json());
 
-    res.send("data has been sent");
-  } catch (error) {
-    res.send("error");
-  }
+app.get("/", (req, res) => {
+  res.send("Welcome Home Page");
 });
-server.get("/data", async (req, res) => {
-  try {
-    const data = await ProductModel.find();
-    res.send(data);
-  } catch (error) {
-    console.log(error);
-    res.send(error);
-  }
-});
-server.post("/post/cart", async (req, res) => {
-  const data = req.body;
-  try {
-    await CartModel.insertMany(data);
 
-    res.send("data has been sent");
-  } catch (error) {
-    res.send("error");
-  }
-});
-server.get("/cart", async (req, res) => {
-  try {
-    const data = await CartModel.find();
-    res.send(data);
-  } catch (error) {
-    console.log(error);
-    res.send(error);
-  }
-});
-server.delete("/delete/:id", async (req, res) => {
-  const id = req.params.id;
+app.use("/user", userRouter);
+app.use("/product", productRouter);
+app.use("/cart", cartRouter);
 
+app.listen(process.env.port, async () => {
   try {
-    await CartModel.findByIdAndDelete({ _id: id });
-    res.send("data has been deleted");
-  } catch (error) {
-    console.log(error);
+    await connection;
+    console.log("Connected to the DB");
+  } catch (err) {
+    console.log("Trouble connecting to the DB");
+    console.log(err);
   }
-});
-server.listen(3500, async () => {
-  try {
-    await connect;
-    console.log("mongoDb connected");
-  } catch (error) {
-    console.log(error);
-  }
-  console.log(`server running at port 3500`);
+  console.log(`Running at ${process.env.port} Port`);
 });

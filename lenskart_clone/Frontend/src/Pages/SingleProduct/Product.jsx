@@ -4,22 +4,30 @@ import newData from "../../assets/newData.js";
 import ImageSlider from "../../Components/ProductPage/ImageSlider.jsx";
 import ProductDesc from "../../Components/ProductPage/ProductDesc";
 import ProductImage from "../../Components/ProductPage/ProductImage";
+import Navbar from "../../Components/Navbar/Navbar";
+import Footer from "../../Components/Footer/Footer";
+import "./index.css";
 
 const Product = () => {
   const [data, setData] = useState(newData);
   return (
-    <Wrapper>
-      <span className="product_path">
-        Eyewear {"\u00A0"} / {"\u00A0"}Eyeglasses {"\u00A0"}/ {"\u00A0"} Brands
-        {"\u00A0"}/ {"\u00A0"} Lenskart Air / Peyush Bansal Shark Tank Amber
-        Full Rim Hustlr Eyeglasses - 206824
-      </span>
-      <ImageSlider />
-      <div className="product_container">
-        <ProductImage data={data} />
-        <ProductDesc data={data} />
-      </div>
-    </Wrapper>
+    <div>
+      <Navbar />
+      <Wrapper>
+        <span className="product_path">
+          Eyewear {"\u00A0"} / {"\u00A0"}Eyeglasses {"\u00A0"}/ {"\u00A0"}{" "}
+          Brands
+          {"\u00A0"}/ {"\u00A0"} Lenskart Air / Peyush Bansal Shark Tank Amber
+          Full Rim Hustlr Eyeglasses - 206824
+        </span>
+        <ImageSlider />
+        <div className="product_container">
+          <ProductImage data={data} />
+          <ProductDesc data={data} />
+        </div>
+      </Wrapper>
+      <Footer />
+    </div>
   );
 };
 

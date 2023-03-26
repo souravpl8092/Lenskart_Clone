@@ -3,15 +3,21 @@ import styled from "styled-components";
 import ProductFilter from "./../../Components/ProductsPage/ProductFilter";
 import Productlist from "../../Components/ProductsPage/ProductList.js";
 import { CartContext } from "../../ContextApi/CartContext";
-
+import Navbar from "../../Components/Navbar/Navbar";
+import Footer from "../../Components/Footer/Footer";
+import "./index.css";
 const Products = () => {
   let singleProduct = useContext(CartContext);
   console.log(singleProduct);
   return (
-    <Wrapper>
-      <ProductFilter />
-      <Productlist />
-    </Wrapper>
+    <div>
+      <Navbar />
+      <Wrapper>
+        <ProductFilter />
+        <Productlist />
+      </Wrapper>
+      <Footer />
+    </div>
   );
 };
 

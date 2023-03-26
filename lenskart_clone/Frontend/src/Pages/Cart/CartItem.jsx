@@ -5,13 +5,76 @@ import {
   Button,
   Image,
   Text,
-  Divider,
   Box,
-  useToast,
+  useToast
 } from "@chakra-ui/react";
+import {
+  removeFromCart,
+  decrement,
+  increment
+} from "../../redux/CartPage/action";
+import { useDispatch } from "react-redux";
 
-const CartItem = ({ img_responsive, product_name, product_strike,id, DeleteRequest  }) => {
+const CartItem = ({
+  img_responsive,
+  product_name,
+  product_strike,
+  id,
+  setChange,
+  change,
+  product_discountedPrice
+}) => {
   const toast = useToast();
+  const dispatch = useDispatch();
+
+  /* const handleDelete = () => {
+    dispatch(DeleteData(id));
+    setChange(!change);
+    toast({
+      description: "Product deleted successfully",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+      position: "top"
+    });
+  };
+
+  const handleRepeat = () => {
+    const data = {
+      img_responsive,
+      product_name,
+      product_strike,
+      id,
+      product_discountedPrice
+    };
+    dispatch(repeatData(data));
+    setChange(!change);
+
+    toast({
+      description: "Product repeated successfully",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+      position: "top"
+    });
+  }; */
+
+  const handleDelete = (item) => {
+    dispatch(removeFromCart(item));
+  };
+
+  const handleDecrementChange = (id, qty) => {
+    if (qty === 1) {
+      dispatch(removeFromCart(id));
+    } else {
+      dispatch(decrement(id));
+    }
+  };
+
+  const handleIncrementChange = (id) => {
+    dispatch(increment(id));
+  };
+
   return (
     <Flex
       gap={2}
@@ -25,7 +88,7 @@ const CartItem = ({ img_responsive, product_name, product_strike,id, DeleteReque
         md: "column",
         lg: "row",
         xl: "row",
-        "2xl": "row",
+        "2xl": "row"
       }}
     >
       <Image
@@ -35,7 +98,7 @@ const CartItem = ({ img_responsive, product_name, product_strike,id, DeleteReque
           md: "25%",
           lg: "20%",
           xl: "20%",
-          "2xl": "20%",
+          "2xl": "20%"
         }}
         margin={{
           base: "auto",
@@ -43,7 +106,7 @@ const CartItem = ({ img_responsive, product_name, product_strike,id, DeleteReque
           md: "auto",
           lg: "unset",
           xl: "unset",
-          "2xl": "unset",
+          "2xl": "unset"
         }}
         src={img_responsive}
       />
@@ -57,7 +120,7 @@ const CartItem = ({ img_responsive, product_name, product_strike,id, DeleteReque
           md: "95%",
           lg: "80%",
           xl: "80%",
-          "2xl": "80%",
+          "2xl": "80%"
         }}
         margin={{
           base: "auto",
@@ -65,7 +128,7 @@ const CartItem = ({ img_responsive, product_name, product_strike,id, DeleteReque
           md: "auto",
           lg: "unset",
           xl: "unset",
-          "2xl": "unset",
+          "2xl": "unset"
         }}
       >
         <Flex
@@ -86,9 +149,6 @@ const CartItem = ({ img_responsive, product_name, product_strike,id, DeleteReque
           </Heading>
           <Flex gap={"2"}>
             <Text fontSize={"14px"}>{product_strike}</Text>
-            {/* <Text color={"#0FBD95"} fontSize="14px" fontWeight={700}>
-              Free
-            </Text> */}
           </Flex>
         </Flex>
         <Box border={"1px dashed #CECEDF"}></Box>
@@ -104,9 +164,6 @@ const CartItem = ({ img_responsive, product_name, product_strike,id, DeleteReque
           </Heading>
           <Flex gap={"2"}>
             <Text fontSize={"14px"}>{product_strike}</Text>
-            {/* <Text color={"#0FBD95"} fontSize="14px" fontWeight={700}>
-              Free
-            </Text> */}
           </Flex>
         </Flex>
         <Box border={"1px dashed #CECEDF"}></Box>
@@ -117,40 +174,19 @@ const CartItem = ({ img_responsive, product_name, product_strike,id, DeleteReque
             textDecoration="underline"
             fontSize={"18"}
             ml="-1.5"
-            onClick={() => {
-              DeleteRequest(id)
-                .then((response) => {
-                  toast({
-                    title: "Delete Item Successfully",
-                    status: "success",
-                    duration: 4000,
-                    isClosable: true,
-                    position: "top",
-                  });
-                })
-                .catch((reject) => {
-                  toast({
-                    title: "Something Went Wrong",
-                    description: `${reject.message}`,
-                    status: "error",
-                    duration: 5000,
-                    isClosable: true,
-                    position: "bottom-right",
-                  });
-                });
-            }}
+            onClick={() => handleDelete(id)}
           >
             Remove
           </Button>
 
-        
           <Box border={"1px solid #CECEDF"}></Box>
-          
+
           <Button
             backgroundColor={"white"}
             _hover={"backgroundColor:white"}
             textDecoration="underline"
             fontSize={"18"}
+            onClick={() => handleDecrementChange(id, quantity)}
           >
             Repeat
           </Button>
@@ -161,9 +197,3 @@ const CartItem = ({ img_responsive, product_name, product_strike,id, DeleteReque
 };
 
 export default CartItem;
-// {/* <Heading as={"a"} fontSize="14px" textDecoration={"underline"}>
-//             Repeat
-//           </Heading> */}
-  // {/* <Heading as={"a"} fontSize="14px" textDecoration={"underline"}>
-  //           Remove
-  //         </Heading> */}

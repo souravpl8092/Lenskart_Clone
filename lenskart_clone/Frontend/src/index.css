@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@100;200;300;400;500;600;700&display=swap");
 
-html {
-  font-size: 62.5%;
-  font-family: "Sofia Sans", sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

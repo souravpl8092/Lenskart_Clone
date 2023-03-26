@@ -1,12 +1,12 @@
-import { Box, Button, Flex, Heading } from "@chakra-ui/react";
+import { Box, Flex, Heading } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-function PriceDetail({ totalPrice, discountPrice }) {
+function PriceDetail({ totalPrice, discountPrice, coupon }) {
   const [finaltotal, setFinalTotal] = useState(0);
 
   useEffect(() => {
-    setFinalTotal(totalPrice - discountPrice - 503.82);
-  }, [totalPrice, discountPrice]);
+    setFinalTotal(totalPrice - discountPrice - (coupon || 0));
+  }, [totalPrice, discountPrice, coupon]);
   return (
     <Flex
       flexDirection={"column"}
@@ -14,7 +14,8 @@ function PriceDetail({ totalPrice, discountPrice }) {
       border="1px solid grey"
       borderRadius={"10px"}
       gap="3"
-      padding={"5px"} cursor={"pointer"}
+      padding={"5px"}
+      cursor={"pointer"}
     >
       <Flex
         gap={"4"}
@@ -62,7 +63,7 @@ function PriceDetail({ totalPrice, discountPrice }) {
             fontFamily={"Inter"}
             justifyContent="flex-end"
           >
-            ₹ {discountPrice}
+            ₹ {totalPrice - discountPrice}
           </Heading>
         </Flex>
         <Box border={"1px dashed #CECEDF"}></Box>
@@ -77,7 +78,7 @@ function PriceDetail({ totalPrice, discountPrice }) {
             fontWeight="500"
             fontFamily={"Inter"}
           >
-            Tax
+            Coupon
           </Heading>
           <Heading
             as="p"
@@ -87,7 +88,7 @@ function PriceDetail({ totalPrice, discountPrice }) {
             justifyContent="flex-end"
             color="green.900"
           >
-            ₹503.82
+            ₹{coupon}
           </Heading>
         </Flex>
         <Box border={"1px dashed #CECEDF"}></Box>
@@ -136,7 +137,7 @@ function PriceDetail({ totalPrice, discountPrice }) {
             fontFamily={"Inter"}
             justifyContent="flex-end"
           >
-            ₹ {finaltotal}
+            ₹ {discountPrice - (coupon || 0)}
           </Heading>
         </Flex>
       </Flex>

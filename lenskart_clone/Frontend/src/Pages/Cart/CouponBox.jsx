@@ -1,27 +1,83 @@
-import React from "react";
-import { Flex, Heading, Text } from "@chakra-ui/react";
-import { AiOutlineInfoCircle } from "react-icons/ai";
-import { BsArrowRightCircle } from "react-icons/bs";
+import React, { useState } from "react";
+import { Box, Button, Flex, Input, useToast } from "@chakra-ui/react";
 
-const CouponBox = () => {
+const CouponBox = ({ setChange, change }) => {
+  const [couponCode, setCouponCode] = useState("");
+
+  const toast = useToast();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (couponCode !== "") {
+      if (couponCode !== "MASAI40") {
+        setCouponCode(40);
+      }
+      if (couponCode !== "MASAI90") {
+        setCouponCode(90);
+      }
+      if (couponCode !== "MASAI30") {
+        setCouponCode(30);
+      }
+      if (couponCode !== "MASAI20") {
+        setCouponCode(20);
+      }
+      if (couponCode !== "MASAI90") {
+        setCouponCode(90);
+      }
+      if (couponCode !== "MASAI70") {
+        setCouponCode(70);
+      }
+      toast({
+        description: "Coupon code applied successfully",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+        position: "top"
+      });
+    } else {
+      toast({
+        description: "Please enter valid coupon code",
+        status: "info",
+        duration: 5000,
+        isClosable: true,
+        position: "top"
+      });
+    }
+  };
+
   return (
     <Flex
-      padding="20px"
+      padding="10px"
       border={"1px solid grey"}
       borderRadius="10px"
       boxShadow={"lg"}
-      justifyContent="space-between"
       cursor={"pointer"}
+      flexDirection="column"
     >
-      <Flex flexDirection={"column"}>
-        <Heading as={"h1"} fontSize="14px" fontWeight={700}>
-          Apply Coupon
-        </Heading>
-        <Text fontSize={"14px"} color="#333368">
-          Check available offers
-        </Text>
+      <Flex justifyContent={"space-between"} gap="5">
+        <Box w="80%">
+          <Input
+            type="text"
+            placeholder="Enter coupon code"
+            value={couponCode}
+            onChange={(e) => setCouponCode(e.target.value)}
+            h={"14"}
+            fontSize="18px"
+          />
+        </Box>
+        <Box w="20%">
+          <Button
+            color="white"
+            backgroundColor={"#12daac"}
+            fontSize={"18px"}
+            padding="10px"
+            mt={"5px"}
+            onClick={handleSubmit}
+          >
+            Apply
+          </Button>
+        </Box>
       </Flex>
-      <BsArrowRightCircle size={25} />
     </Flex>
   );
 };

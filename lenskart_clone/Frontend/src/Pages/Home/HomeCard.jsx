@@ -10,7 +10,7 @@ const HomeCard = ({ type }) => {
           md: "repeat(3,1fr)",
           lg: "repeat(4,1fr)",
           xl: "repeat(6,1fr)",
-          "2xl": "repeat(6,1fr)",
+          "2xl": "repeat(6,1fr)"
         }}
         gap={6}
         w="99%"
@@ -31,7 +31,7 @@ const HomeCard = ({ type }) => {
               <Image src={`${i.img}`} alt={i.name} w="100%" />
             </Center>
             <Center>
-              <Text color="gray" fontSize="2xl" fontWeight="500" p="1">
+              <Text color="gray" fontSize="lg" fontWeight="500" p="1">
                 {i.title}
               </Text>
             </Center>
