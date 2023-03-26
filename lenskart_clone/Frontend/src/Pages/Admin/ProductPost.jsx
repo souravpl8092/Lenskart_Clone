@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import {
   Box,
   Button,
@@ -7,13 +7,11 @@ import {
   Input,
   Center,
   VStack,
-  Flex,
   useToast,
-  Select,
-  Avatar
+  Select
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../ContextApi/AuthContext";
+import Navbar from "./Navbar";
 
 const ProductPost = () => {
   const toast = useToast();
@@ -29,7 +27,6 @@ const ProductPost = () => {
   const [productType, setProductType] = useState("");
   const [colors, setColors] = useState("");
   const [loading, setLoading] = useState(false);
-  const { setisAuth } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,7 +46,7 @@ const ProductPost = () => {
       ) {
         const payload = {
           imageTsrc,
-          productRefLink: productType,
+          productRefLink: name,
           rating: 0,
           userRated: 0,
           price,
@@ -117,43 +114,9 @@ const ProductPost = () => {
     }
   };
 
-  const handleClick = () => {
-    setisAuth(false);
-    navigate("/");
-    localStorage.removeItem("token");
-    toast({
-      title: "Success",
-      description: "You have been logged out",
-      status: "success",
-      duration: 1000,
-      isClosable: true
-    });
-  };
-
   return (
     <Box bg="gray.200" minH="710px">
-      <Flex justifyContent="space-between" bg="gray.500" w="100%" p="4">
-        <Flex gap="4">
-          <Avatar src="https://bit.ly/broken-link" size="lg" mr="2" />
-          <Heading color="whiteAlpha.900" fontSize="30px">
-            Admin
-          </Heading>
-        </Flex>
-        <Flex gap="5">
-          <Button
-            colorScheme="blue"
-            borderRadius="lg"
-            fontSize="18px"
-            p="7"
-            onClick={() => navigate("/productlist")}
-          >
-            Product List
-          </Button>
-          <Button colorScheme="red" fontSize="18px" p="7" onClick={handleClick}>
-            Sign out
-          </Button>
-        </Flex>
-      </Flex>
+      <Navbar />
       <br />
       <br />
       <Center>
@@ -321,8 +284,8 @@ const ProductPost = () => {
               isLoading
               loadingText="Submitting"
               colorScheme="blue"
-              fontSize="18px"
-              py="8"
+              fontSize="20px"
+              py="4"
               w="100%"
               borderRadius="lg"
               variant="outline"
@@ -332,8 +295,8 @@ const ProductPost = () => {
           ) : (
             <Button
               colorScheme="blue"
-              fontSize="18px"
-              py="8"
+              fontSize="20px"
+              py="4"
               w="100%"
               borderRadius="lg"
               onClick={handleSubmit}

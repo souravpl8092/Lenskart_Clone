@@ -24,7 +24,8 @@ import {
   Menu,
   MenuButton,
   MenuList,
-  MenuItem
+  MenuItem,
+  Text
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
@@ -115,9 +116,9 @@ function Nav() {
                         >
                           {Authdata[0].first_name}
                         </h1>
-                        <p color="#CCCCCC" mt="5%" fontSize="12px">
+                        <Text color="gray.500" mt="5%" fontSize="md">
                           Enjoy Buy 1 Get 1 offer for 365 days
-                        </p>
+                        </Text>
                       </div>
                     </div>
                     <Button

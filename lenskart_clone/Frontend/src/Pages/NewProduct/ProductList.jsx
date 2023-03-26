@@ -24,10 +24,8 @@ const NewProduct = () => {
   const [types, setTypes] = useState("");
   const [page, setPage] = useState(0);
   const [sort, setSort] = useState("");
-  const [colors, setColors] = useState("");
   const [gender, setGender] = useState("");
-  const [shape, setShape] = useState("");
-  const [style, setStyle] = useState("");
+  const [productRef, setProductRef] = useState("");
   let loader = [1, 2, 3, 4, 5, 6];
 
   const FrameType = ({ src, type, stylefilter, name, setfilter }) => {
@@ -51,7 +49,7 @@ const NewProduct = () => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `https://harlequin-fawn-tutu.cyclic.app/product?sort=${sort}&productType=${types}&gender=${gender}&colors=${colors}&shape=${shape}&style=${style}&page=${page}`
+        `https://harlequin-fawn-tutu.cyclic.app/product?sort=${sort}&productRefLink=${productRef}&productType=${types}&gender=${gender}&page=${page}`
       );
       const postData = await response.json();
       setProducts(postData);
@@ -65,7 +63,19 @@ const NewProduct = () => {
 
   useEffect(() => {
     fetchproduct();
-  }, [page, style, shape, sort, colors, gender, types]);
+  }, [page, sort, gender, types, productRef]);
+
+  const handleClick = (value) => {
+    setProductRef(value);
+  };
+
+  const handleClick2 = (value) => {
+    setProductRef(value);
+  };
+
+  const handleClick4 = (value) => {
+    setProductRef(value);
+  };
 
   return (
     <>
@@ -87,21 +97,21 @@ const NewProduct = () => {
               <Grid templateColumns="repeat(3, 1fr)">
                 <FrameType
                   src="https://static.lenskart.com/images/cust_mailer/Eyeglass/FullRim.png"
-                  type="FullFrame"
-                  name="FullFrame"
-                  stylefilter={(value) => setStyle(value)}
+                  type="Full Rim"
+                  name="Full Rim"
+                  stylefilter={handleClick}
                 />
                 <FrameType
                   src="https://static.lenskart.com/images/cust_mailer/Eyeglass/HalfRim.png"
-                  type="Tinted"
-                  name="Tinted"
-                  stylefilter={(value) => setStyle(value)}
+                  type="Half Rim"
+                  name="Half Rim"
+                  stylefilter={handleClick}
                 />
                 <FrameType
                   src="https://static.lenskart.com/images/cust_mailer/Eyeglass/Rimless.png"
-                  type="Mirror"
-                  name="Mirror"
-                  stylefilter={(value) => setStyle(value)}
+                  type="Rimless"
+                  name="Rimless"
+                  stylefilter={handleClick}
                 />
               </Grid>
             </Box>
@@ -113,10 +123,19 @@ const NewProduct = () => {
               <Grid templateColumns="repeat(3, 1fr)">
                 <GridItem>
                   <FrameType
+                    src="https://static.lenskart.com/images/cust_mailer/Eyeglass/Rectangle.png"
+                    type="Rectangle"
+                    name="Rectangle"
+                    stylefilter={handleClick2}
+                  />
+                </GridItem>
+
+                <GridItem>
+                  <FrameType
                     src="https://static.lenskart.com/images/cust_mailer/Eyeglass/Round.png"
                     name="Round"
                     type="Round"
-                    stylefilter={(value) => setShape(value)}
+                    stylefilter={handleClick2}
                   />
                 </GridItem>
                 <GridItem>
@@ -124,7 +143,7 @@ const NewProduct = () => {
                     src="https://static.lenskart.com/images/cust_mailer/Eyeglass/CatEye.png"
                     type="Cat Eye"
                     name="Cateye"
-                    stylefilter={(value) => setShape(value)}
+                    stylefilter={handleClick2}
                   />
                 </GridItem>
                 <GridItem>
@@ -132,7 +151,16 @@ const NewProduct = () => {
                     src="https://static.lenskart.com/images/cust_mailer/Eyeglass/Square.png"
                     type="Square"
                     name="Square"
-                    stylefilter={(value) => setShape(value)}
+                    stylefilter={handleClick2}
+                  />
+                </GridItem>
+
+                <GridItem>
+                  <FrameType
+                    src="https://static.lenskart.com/images/cust_mailer/Eyeglass/Geometric.png"
+                    type="Tinted "
+                    name="Tinted "
+                    stylefilter={handleClick2}
                   />
                 </GridItem>
 
@@ -141,7 +169,7 @@ const NewProduct = () => {
                     src="https://static.lenskart.com/images/cust_mailer/Eyeglass/Wayfarer.png"
                     type="Wayfarer"
                     name="Wayfarer"
-                    stylefilter={(value) => setShape(value)}
+                    stylefilter={handleClick2}
                   />
                 </GridItem>
                 <GridItem>
@@ -149,7 +177,7 @@ const NewProduct = () => {
                     src="https://static.lenskart.com/images/cust_mailer/Eyeglass/Aviator.png"
                     type="Aviator"
                     name="Aviator"
-                    stylefilter={(value) => setShape(value)}
+                    stylefilter={handleClick2}
                   />
                 </GridItem>
                 <GridItem>
@@ -157,7 +185,15 @@ const NewProduct = () => {
                     src="https://static.lenskart.com/images/cust_mailer/Eyeglass/Hexagonal.png"
                     type="Hexagon"
                     name="Hexagon"
-                    stylefilter={(value) => setShape(value)}
+                    stylefilter={handleClick2}
+                  />
+                </GridItem>
+                <GridItem>
+                  <FrameType
+                    src="https://static.lenskart.com/images/cust_mailer/Eyeglass/Clubmaster.png"
+                    type="Butterfly"
+                    name="Butterfly"
+                    stylefilter={handleClick2}
                   />
                 </GridItem>
               </Grid>
@@ -171,7 +207,7 @@ const NewProduct = () => {
                 _hover={{ bg: "gray.200" }}
                 w="100%"
                 p="1"
-                onClick={() => setColors("Black")}
+                onClick={() => handleClick4("Black")}
               >
                 Black{" "}
               </Text>
@@ -180,7 +216,7 @@ const NewProduct = () => {
                 _hover={{ bg: "gray.200" }}
                 w="100%"
                 p="1"
-                onClick={() => setColors("Blue")}
+                onClick={() => handleClick4("Blue")}
               >
                 Blue{" "}
               </Text>
@@ -189,7 +225,7 @@ const NewProduct = () => {
                 _hover={{ bg: "gray.200" }}
                 w="100%"
                 p="1"
-                onClick={() => setColors("White")}
+                onClick={() => handleClick4("White")}
               >
                 White{" "}
               </Text>
@@ -198,7 +234,7 @@ const NewProduct = () => {
                 _hover={{ bg: "gray.200" }}
                 w="100%"
                 p="1"
-                onClick={() => setColors("Gold")}
+                onClick={() => handleClick4("Gold")}
               >
                 Gold{" "}
               </Text>
@@ -207,7 +243,7 @@ const NewProduct = () => {
                 _hover={{ bg: "gray.200" }}
                 w="100%"
                 p="1"
-                onClick={() => setColors("Silver")}
+                onClick={() => handleClick4("Silver")}
               >
                 Silver{" "}
               </Text>
@@ -216,7 +252,7 @@ const NewProduct = () => {
                 _hover={{ bg: "gray.200" }}
                 w="100%"
                 p="1"
-                onClick={() => setColors("Green")}
+                onClick={() => handleClick4("Green")}
               >
                 Green{" "}
               </Text>
@@ -340,7 +376,25 @@ const NewProduct = () => {
                 </Select>
               </Flex>
             </Flex>
-            {products.length === 0 ? (
+            {products.length !== 0 && (
+              <Text mt="5px" textAlign="center" fontSize="15px">
+                Showing {products.length} of 50 Results
+              </Text>
+            )}
+
+            {isLoding && (
+              <Grid
+                m="20px 10px"
+                templateColumns="repeat(3, 1fr)"
+                height="100vh"
+                gap={6}
+              >
+                {loader.map((ele) => (
+                  <Loading key={ele} />
+                ))}
+              </Grid>
+            )}
+            {products.length === 0 && (
               <h2
                 style={{
                   fontSize: "28px",
@@ -352,152 +406,135 @@ const NewProduct = () => {
               >
                 No Glasses Found
               </h2>
-            ) : (
-              <Text mt="5px" textAlign="center" fontSize="15px">
-                Showing {products.length} of 50 Results
-              </Text>
             )}
-            {isLoding ? (
-              <Grid
-                m="20px 10px"
-                templateColumns="repeat(3, 1fr)"
-                height="100vh"
-                gap={6}
-              >
-                {loader.map((ele) => (
-                  <Loading key={ele} />
-                ))}
-              </Grid>
-            ) : (
-              <Grid
-                m="20px 10px"
-                templateColumns="repeat(3, 1fr)"
-                height="100vh"
-                gap={6}
-              >
-                {products.map((ele) => (
-                  <GridItem>
-                    <Link to={`/newproducts/${ele._id}`}>
-                      <Box
-                        position="relative"
-                        border="1px solid"
-                        borderColor="gray.200"
-                        borderRadius="3%"
-                        p="10px"
-                        _hover={{
-                          boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
-                        }}
-                        mb="7"
-                      >
-                        <Box>
-                          <Image
-                            m="auto"
-                            width="80%"
-                            src={ele.imageTsrc}
-                            alt="image"
-                          />
-                          <br />
-                          <br />
-                          <br />
+            <Grid
+              m="20px 10px"
+              templateColumns="repeat(3, 1fr)"
+              height="100vh"
+              gap={6}
+            >
+              {products.map((ele) => (
+                <GridItem>
+                  <Link to={`/newproducts/${ele._id}`}>
+                    <Box
+                      position="relative"
+                      border="1px solid"
+                      borderColor="gray.200"
+                      borderRadius="3%"
+                      p="10px"
+                      _hover={{
+                        boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
+                      }}
+                      mb="7"
+                    >
+                      <Box>
+                        <Image
+                          m="auto"
+                          width="80%"
+                          src={ele.imageTsrc}
+                          alt="image"
+                        />
+                        <br />
+                        <br />
+                        <br />
 
-                          <Box p="10px">
+                        <Box p="10px">
+                          <Flex
+                            justifyContent="space-between"
+                            alignItems="center"
+                          >
                             <Flex
-                              justifyContent="space-between"
+                              w="25%"
+                              borderRadius="20px"
                               alignItems="center"
+                              gap="5px"
+                              p="5px 10px"
+                              bgColor="#eeeef5"
+                              fontSize="15px"
                             >
-                              <Flex
-                                w="25%"
-                                borderRadius="20px"
-                                alignItems="center"
-                                gap="5px"
-                                p="5px 10px"
-                                bgColor="#eeeef5"
-                                fontSize="15px"
-                              >
-                                <Text>
-                                  {ele.rating
-                                    ? ele.rating
-                                    : (Math.random() * (5 - 1) + 1).toFixed(1)}
-                                </Text>
-                                <AiFillStar size="15px" color="#0fbd95" />
-                                <Text>
-                                  {ele.userRated
-                                    ? ele.userRated
-                                    : Math.floor(Math.random() * 999 + 1)}
-                                </Text>
-                              </Flex>
+                              <Text>
+                                {ele.rating
+                                  ? ele.rating
+                                  : (Math.random() * (5 - 1) + 1).toFixed(1)}
+                              </Text>
+                              <AiFillStar size="15px" color="#0fbd95" />
+                              <Text>
+                                {ele.userRated
+                                  ? ele.userRated
+                                  : Math.floor(Math.random() * 999 + 1)}
+                              </Text>
                             </Flex>
+                          </Flex>
 
-                            <Text
-                              mt="5px"
-                              fontWeight="700"
-                              color="#000042"
-                              fontSize="15px"
-                              textTransform="capitalize"
+                          <Text
+                            mt="5px"
+                            fontWeight="700"
+                            color="#000042"
+                            fontSize="15px"
+                            textTransform="capitalize"
+                          >
+                            {ele.productRefLink}{" "}
+                          </Text>
+                          <Text
+                            mt="5px"
+                            fontWeight="400"
+                            color="gray.400"
+                            fontSize="14px"
+                          >
+                            {ele.name}{" "}
+                          </Text>
+                          <Text
+                            mt="5px"
+                            fontWeight="400"
+                            color="#000042"
+                            fontSize="14px"
+                          >
+                            Shape : {ele.shape}
+                          </Text>
+                          <Text
+                            mt="5px"
+                            fontWeight="bold"
+                            color="#gray.700"
+                            fontSize="15px"
+                          >
+                            ₹{ele.price}{" "}
+                            <span
+                              style={{
+                                fontSize: "15px",
+                                fontWeight: "lighter",
+                                color: "#727297",
+                                textDecoration: "line-through"
+                              }}
                             >
-                              {ele.productRefLink}{" "}
-                            </Text>
-                            <Text
-                              mt="5px"
-                              fontWeight="400"
-                              color="gray.400"
-                              fontSize="14px"
+                              {"  "}₹{ele.mPrice}
+                            </span>
+                            <span
+                              style={{
+                                color: "#727297",
+                                fontSize: "15px",
+                                fontWeight: "lighter"
+                              }}
                             >
-                              {ele.name}{" "}
-                            </Text>
-                            <Text
-                              mt="5px"
-                              fontWeight="400"
-                              color="#000042"
-                              fontSize="14px"
-                            >
-                              Shape : {ele.shape}
-                            </Text>
-                            <Text
-                              mt="5px"
-                              fontWeight="bold"
-                              color="#gray.700"
-                              fontSize="15px"
-                            >
-                              ₹{ele.price}{" "}
-                              <span
-                                style={{
-                                  fontSize: "15px",
-                                  fontWeight: "lighter",
-                                  color: "#727297",
-                                  textDecoration: "line-through"
-                                }}
-                              >
-                                {"  "}₹{ele.mPrice}
-                              </span>
-                              <span
-                                style={{
-                                  color: "#727297",
-                                  fontSize: "15px",
-                                  fontWeight: "lighter"
-                                }}
-                              >
-                                {"  "}(+tax)
-                              </span>
-                            </Text>
-                          </Box>
-                        </Box>
-                        <Box
-                          fontSize="15px"
-                          color="#cbb881"
-                          w="100%"
-                          padding="2"
-                          fontWeight="bold"
-                          bgGradient="linear(to-r,  #f8f2e0, yellow.50)"
-                        >
-                          BUY1 GET1 +10% OFF
+                              {"  "}(+tax)
+                            </span>
+                          </Text>
                         </Box>
                       </Box>
-                    </Link>
-                  </GridItem>
-                ))}
-              </Grid>
-            )}
+                      <Box
+                        fontSize="15px"
+                        color="#cbb881"
+                        w="100%"
+                        padding="2"
+                        fontWeight="bold"
+                        bgGradient="linear(to-r,  #f8f2e0, yellow.50)"
+                      >
+                        BUY1 GET1 +10% OFF
+                      </Box>
+                    </Box>
+                  </Link>
+                </GridItem>
+              ))}
+            </Grid>
           </Box>
         </Flex>
         <Pagination current={page} onChange={(value) => setPage(value)} />
