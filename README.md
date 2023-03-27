@@ -270,9 +270,8 @@
  # Languages Used :
 
 <ul dir="auto">
- <ol dir="auto">◉ JavaScript : 98.3%</ol>
- <ol dir="auto">◉ css : 1.1%</ol>
- <ol dir="auto">◉ HTML : 0.6%</ol>
+ <ol dir="auto">◉ JavaScript : 98.4%</ol>
+ <ol dir="auto">◉ Others : 1.6%</ol>
  </ul>
  
 ### This report is provided by the Github language used stats. So, this is the total percentage of the coding languages.
