@@ -86,7 +86,7 @@
 
 
 <div align="center">
-  <img width="80%" alt="Home page" src="https://i.imgur.com/PwgwUDX.png"/>
+  <img width="80%" src="https://i.imgur.com/lqzyFSa.png" alt="Home page"/>
 </div>
 <br/>
 
