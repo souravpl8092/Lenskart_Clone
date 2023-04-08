@@ -86,7 +86,7 @@
 
 
 <div align="center">
-  <img width="80%" src="https://i.imgur.com/lqzyFSa.png" alt="Home page"/>
+  <img width="80%" src="https://i.imgur.com/HvyRnSr.png" alt="Home page"/>
 </div>
 <br/>
 
@@ -140,7 +140,7 @@
 <br/>
 
 <div align="center">
-<img width="80%" src="https://i.imgur.com/koKtiaA.png" alt="Product page 1"/> 
+<img width="80%" src="https://i.imgur.com/MySQ7ay.png" alt="Product page 1"/> 
 </div>
 
 
@@ -152,7 +152,7 @@
 <br/>
 
 <div align="center">
-<img  width="80%" src="https://i.imgur.com/mWFctMx.png" alt="Product page 2"/>
+<img  width="80%" src="https://i.imgur.com/YFD4Mvl.png" alt="Product page 2"/>
 </div>
 
 
@@ -164,7 +164,7 @@
 <br/>
 
 <div align="center">
-  <img width="80%" src="https://i.imgur.com/3Udtyf1.png" alt=" cart page">
+  <img width="80%" src="https://i.imgur.com/EeiNeyS.png" alt=" cart page">
 </div>
 
 <br/>
@@ -175,7 +175,7 @@
 <br/>
 
 <div align="center">
-  <img width="80%" src="https://i.imgur.com/L3WhakS.png" alt="Shipping page">
+  <img width="80%" src="https://i.imgur.com/BLlSb7Q.png" alt="Shipping page">
 </div>
 
 <br/>
@@ -187,7 +187,7 @@
 <br/>
 
 <div align="center">
-  <img width="80%" src="https://i.imgur.com/1Rypipb.png" alt="Flight checkout page">
+  <img width="80%" src="https://i.imgur.com/ilTMzRN.png" alt="Flight checkout page">
 </div>
 
 <br/>
@@ -199,7 +199,7 @@
 <br/>
 
 <div align="center">
-  <img width="80%" src="https://i.imgur.com/31Qvlmm.png" alt="Payment page">
+  <img width="80%" src="https://i.imgur.com/hKTmuLu.png" alt="Payment page">
 </div>
 
 <br/>
@@ -263,7 +263,7 @@
 ## Footer :
 
 <div align="center">
-  <img width="80%" src="https://i.imgur.com/TspbG5U.png" alt="Footer">
+  <img width="80%" src="https://i.imgur.com/cCXZ9vT.png" alt="Footer">
 </div>
 <br/>
 <br/>
