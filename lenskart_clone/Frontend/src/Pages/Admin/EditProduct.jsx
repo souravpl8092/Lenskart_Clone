@@ -145,7 +145,8 @@ const EditProduct = () => {
       <br />
       <Center>
         <VStack
-          w="650px"
+          w={{ lg: "650px", md: "650px", sm: "90%", base: "95%" }}
+          mb={{ lg: "0", md: "0", sm: "4", base: "4" }}
           borderRadius="xl"
           boxShadow="dark-lg"
           p="10"

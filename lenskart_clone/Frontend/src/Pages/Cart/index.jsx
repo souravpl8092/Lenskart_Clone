@@ -1,36 +1,24 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import Navbar from "../../Components/Navbar/Navbar";
 import CartLength from "./CartLength";
 import PriceDetail from "./priceDetail";
 import SaleBox from "./SaleBox";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 import CartEmpty from "./CartEmpty";
-import Navbar from "../../Components/Navbar/Navbar";
+import CouponBox from "./CouponBox";
 import Footer from "../../Components/Footer/Footer";
 import {
   removeFromCart,
   decrement,
   increment
 } from "../../redux/CartPage/action";
-import {
-  Flex,
-  Text,
-  Button,
-  Heading,
-  Image,
-  Box,
-  useToast,
-  Input
-} from "@chakra-ui/react";
+import { Flex, Text, Button, Heading, Image, Box } from "@chakra-ui/react";
 
 const CartPage = () => {
   const dispatch = useDispatch();
   const { cart } = useSelector((state) => state.CartReducer);
   const navigate = useNavigate();
-  const [couponCode, setCouponCode] = useState("");
-  const [coupon, setCoupon] = useState(0);
-  const toast = useToast();
 
   const getTotalPrice = () => {
     const totalPrice = cart.reduce(
@@ -62,51 +50,6 @@ const CartPage = () => {
 
   const handleIncrementChange = (id) => {
     dispatch(increment(id));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (couponCode !== "") {
-      if (couponCode === "MASAI40") {
-        setCoupon(40);
-        setCouponCode("");
-      }
-      if (couponCode === "MASAI90") {
-        setCoupon(90);
-        setCouponCode("");
-      }
-      if (couponCode === "MASAI30") {
-        setCoupon(30);
-        setCouponCode("");
-      }
-      if (couponCode === "MASAI20") {
-        setCoupon(20);
-        setCouponCode("");
-      }
-      if (couponCode === "MASAI90") {
-        setCoupon(90);
-        setCouponCode("");
-      }
-      if (couponCode === "MASAI70") {
-        setCoupon(70);
-        setCouponCode("");
-      }
-      toast({
-        description: "Coupon code applied successfully",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-        position: "top"
-      });
-    } else {
-      toast({
-        description: "Please enter valid coupon code",
-        status: "info",
-        duration: 5000,
-        isClosable: true,
-        position: "top"
-      });
-    }
   };
 
   return (
@@ -143,7 +86,7 @@ const CartPage = () => {
             }}
           >
             <CartLength cartLength={cart.length} />
-            {/* <CartItem /> */}
+
             {cart &&
               cart &&
               cart.map((item) => (
@@ -164,11 +107,11 @@ const CartPage = () => {
                 >
                   <Image
                     width={{
-                      base: "25%",
-                      sm: "25%",
-                      md: "25%",
-                      lg: "20%",
-                      xl: "20%",
+                      base: "50%",
+                      sm: "35%",
+                      md: "30%",
+                      lg: "25%",
+                      xl: "25%",
                       "2xl": "20%"
                     }}
                     margin={{
@@ -189,9 +132,9 @@ const CartPage = () => {
                       base: "95%",
                       sm: "95%",
                       md: "95%",
-                      lg: "80%",
-                      xl: "80%",
-                      "2xl": "80%"
+                      lg: "70%",
+                      xl: "70%",
+                      "2xl": "70%"
                     }}
                     margin={{
                       base: "auto",
@@ -265,7 +208,7 @@ const CartPage = () => {
                       >
                         Remove
                       </Button>
-                      {/* <Box border={"1px solid #CECEDF"}></Box> */}
+
                       <Flex
                         align="center"
                         border="1px"
@@ -299,7 +242,6 @@ const CartPage = () => {
                   </Flex>
                 </Flex>
               ))}
-            {/* <CartWithoutlogin /> */}
           </Flex>
           <Flex
             flexDirection={"column"}
@@ -325,43 +267,10 @@ const CartPage = () => {
             <PriceDetail
               totalPrice={getTotalPrice()}
               discountPrice={getdiscountPrice()}
-              coupon={coupon}
             />
             <SaleBox />
-            <Flex
-              padding="10px"
-              border={"1px solid grey"}
-              borderRadius="10px"
-              boxShadow={"lg"}
-              cursor={"pointer"}
-              flexDirection="column"
-            >
-              <Flex justifyContent={"space-between"} gap="5">
-                <Box w="80%">
-                  <Input
-                    type="text"
-                    placeholder="Enter coupon code"
-                    value={couponCode}
-                    onChange={(e) => setCouponCode(e.target.value)}
-                    h={"14"}
-                    fontSize="18px"
-                  />
-                </Box>
-                <Box w="20%">
-                  <Button
-                    color="white"
-                    backgroundColor={"#12daac"}
-                    fontSize={"18px"}
-                    padding="10px"
-                    mt={"5px"}
-                    onClick={handleSubmit}
-                  >
-                    Apply
-                  </Button>
-                </Box>
-              </Flex>
-            </Flex>
 
+            <CouponBox />
             <Button
               backgroundColor={"#12daac"}
               color="#091e52"

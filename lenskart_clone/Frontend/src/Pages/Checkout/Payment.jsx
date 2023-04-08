@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Box, Button, Flex, Image, Input } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Input, Grid } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
-import "./pay.css";
 import { useSelector, useDispatch } from "react-redux";
 import { cartReset } from "../../redux/CartPage/action";
 import { addToOrder } from "../../redux/order/order.actions";
+import "./pay.css";
 
 const Payment = () => {
   const navigate = useNavigate();
@@ -97,8 +97,11 @@ const Payment = () => {
       <Box>
         <br />
         <br />
-        <div className="card">
-          <div style={{ width: "70%", margin: "auto" }}>
+        <Box>
+          <Box
+            w={{ xl: "75%", lg: "80%", md: "90%", sm: "90%", base: "95%" }}
+            m="auto"
+          >
             <Box
               m="auto"
               boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}
@@ -116,11 +119,13 @@ const Payment = () => {
               </Box>
               <br />
               <Box display={"flex"} fontSize="lg" gap="9">
-                <Box
+                <Flex
                   w="200px"
+                  flexDirection="column"
                   borderRight="2px solid gray"
                   borderBottom="2px solid gray"
                   borderRadius="2xl"
+                  display={{ md: "inherit", base: "none" }}
                 >
                   <Box
                     p="16px 0px 16px 16px"
@@ -158,18 +163,43 @@ const Payment = () => {
                   >
                     Paytm
                   </Box>
-                </Box>
+                </Flex>
                 <Box m="10px 10px 10px 10px ">
-                  <Flex justifyContent={"space-between"} fontSize="lg">
-                    <Box fontWeight="bold" color="gray.600">
+                  <Grid
+                    templateColumns={{
+                      base: "repeat(1,1fr)",
+                      sm: "repeat(1,1fr)",
+                      md: "20% 75%",
+                      lg: "20% 75%",
+                      xl: "20% 80%"
+                    }}
+                    fontSize="lg"
+                    justifyContent={{
+                      md: "left",
+                      sm: "center",
+                      base: "center"
+                    }}
+                  >
+                    <Box
+                      fontWeight="bold"
+                      color="gray.600"
+                      display={{ md: "inherit", base: "none" }}
+                    >
                       100% Secure
                     </Box>
                     <Image
-                      ml="80px"
-                      h="40px"
+                      ml={{ md: "80px", sm: "0px", base: "0px" }}
+                      h={{ xl: "40px", lg: "40px", base: "40px" }}
                       src="https://static5.lenskart.com/images/cust_mailer/Mar-03/CheckoutStrip.png"
+                      w={{
+                        xl: "100%",
+                        lg: "80%",
+                        md: "80%",
+                        sm: "100%",
+                        base: "100%"
+                      }}
                     />
-                  </Flex>
+                  </Grid>
                   <br />
                   <Box>
                     <Input
@@ -285,9 +315,8 @@ const Payment = () => {
             </Box>
             <br />
             <br />
-          </div>
-          <div style={{ width: "30%", margin: "auto" }}></div>
-        </div>
+          </Box>
+        </Box>
       </Box>
       <br />
       <br />

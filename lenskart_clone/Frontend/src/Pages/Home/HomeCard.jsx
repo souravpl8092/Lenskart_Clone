@@ -3,7 +3,7 @@ import { Box, Grid, Text, Image, Center } from "@chakra-ui/react";
 
 const HomeCard = ({ type }) => {
   return (
-    <Box mb="2" cursor="pointer" bgColor="#f5f5f5" p="4">
+    <Box mb="2" cursor="pointer" bgColor="#f5f5f5" p="4" w="100%">
       <Grid
         templateColumns={{
           base: "repeat(2,1fr)",

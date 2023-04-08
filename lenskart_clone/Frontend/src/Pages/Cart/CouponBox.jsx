@@ -1,32 +1,17 @@
 import React, { useState } from "react";
 import { Box, Button, Flex, Input, useToast } from "@chakra-ui/react";
+import { coupon } from "../../redux/CartPage/action";
+import { useDispatch } from "react-redux";
 
-const CouponBox = ({ setChange, change }) => {
+const CouponBox = () => {
   const [couponCode, setCouponCode] = useState("");
-
+  const dispatch = useDispatch();
   const toast = useToast();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (couponCode !== "") {
-      if (couponCode !== "MASAI40") {
-        setCouponCode(40);
-      }
-      if (couponCode !== "MASAI90") {
-        setCouponCode(90);
-      }
-      if (couponCode !== "MASAI30") {
-        setCouponCode(30);
-      }
-      if (couponCode !== "MASAI20") {
-        setCouponCode(20);
-      }
-      if (couponCode !== "MASAI90") {
-        setCouponCode(90);
-      }
-      if (couponCode !== "MASAI70") {
-        setCouponCode(70);
-      }
+      dispatch(coupon(couponCode));
       toast({
         description: "Coupon code applied successfully",
         status: "success",
@@ -55,17 +40,33 @@ const CouponBox = ({ setChange, change }) => {
       flexDirection="column"
     >
       <Flex justifyContent={"space-between"} gap="5">
-        <Box w="80%">
+        <Box
+          w={{
+            xl: "70%",
+            lg: "60%",
+            md: "80%",
+            sm: "80%",
+            base: "70%"
+          }}
+        >
           <Input
             type="text"
             placeholder="Enter coupon code"
             value={couponCode}
             onChange={(e) => setCouponCode(e.target.value)}
-            h={"14"}
+            h={"12"}
             fontSize="18px"
           />
         </Box>
-        <Box w="20%">
+        <Box
+          w={{
+            xl: "30%",
+            lg: "40%",
+            md: "20%",
+            sm: "20%",
+            base: "30%"
+          }}
+        >
           <Button
             color="white"
             backgroundColor={"#12daac"}

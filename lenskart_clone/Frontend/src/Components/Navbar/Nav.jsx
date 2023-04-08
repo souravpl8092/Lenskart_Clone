@@ -3,7 +3,7 @@ import Login from "../../Pages/Login/Login";
 import Signup from "../../Pages/Signup/Signup";
 import { AuthContext } from "../../ContextApi/AuthContext";
 import { Link, Navigate } from "react-router-dom";
-import { ChevronDownIcon } from "@chakra-ui/icons";
+import { HamburgerIcon } from "@chakra-ui/icons";
 import {
   DrawerCloseButton,
   Button,
@@ -20,12 +20,13 @@ import {
   DrawerBody,
   Heading,
   Avatar,
+  Text,
   Accordion,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  Text
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  Flex
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
@@ -42,13 +43,17 @@ function Nav() {
       bg="#fbf9f7"
       p={2.5}
     >
-      <HStack m="auto">
-        <Box w="20%">
+      <HStack m="auto" justifyContent="space-between">
+        <Box w={{ lg: "20%", md: "20%", sm: "22%", base: "30%" }}>
           <Link to="/">
-            <Image src="https://i.imgur.com/OHxtfjd.png" alt="logo" w="75%" />
+            <Image
+              src="https://i.imgur.com/OHxtfjd.png"
+              alt="logo"
+              w={{ lg: "75%", md: "100%", sm: "100%", base: "100%" }}
+            />
           </Link>
         </Box>
-        <Box w="70%">
+        <Box w="70%" display={{ sm: "inherit", base: "none" }}>
           <Input
             placeholder="What are you looking for"
             border="1px solid black"
@@ -59,14 +64,15 @@ function Nav() {
         </Box>
 
         <Box>
-          <Button colorScheme="blue" p="0" onMouseEnter={onOpen}>
-            <Image
+          <Button colorScheme="blue" p="0" onClick={onOpen}>
+            {/* <Image
               w={6}
               src="https://www.clipartmax.com/png/full/36-365828_navbar-toggle-icon-menu-hamburger-png-white.png"
-            />
+            /> */}
+            <HamburgerIcon fontSize="20px" />
           </Button>
           <Drawer
-            size="sm"
+            size="xs"
             isOpen={isOpen}
             placement="right"
             initialFocusRef={firstField}
@@ -77,63 +83,46 @@ function Nav() {
               <DrawerCloseButton />
               <DrawerHeader bg="whiteAlpha.900">
                 {isAuth ? (
-                  <div
-                    style={{
-                      borderBottom: "2px solid #18CFA8",
-                      padding: "5%",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      width: "100%"
-                    }}
+                  <Flex
+                    borderBottom="2px solid #18CFA8"
+                    p="5%"
+                    direction="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    w="100%"
                   >
-                    <div
-                      style={{
-                        display: "flex",
-                        width: "100%"
-                      }}
-                    >
+                    <Flex w="100%">
                       <Avatar
                         src="https://bit.ly/broken-link"
                         size="lg"
                         mr="2"
                       />
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          justifyContent: "center",
-                          alignItems: "flex-start"
-                        }}
+                      <Flex
+                        direction="column"
+                        justifyContent="center"
+                        alignItems="flex-start"
                       >
-                        <h1
-                          style={{
-                            marginTop: "10px",
-                            fontSize: "20px",
-                            color: "blackAlpha.900"
-                          }}
-                        >
+                        <Text mt="10px" fontSize="20px" color="blackAlpha.900">
                           {Authdata[0].first_name}
-                        </h1>
-                        <Text color="gray.500" mt="5%" fontSize="md">
+                        </Text>
+                        <Text color="gray.500" mt="5%" fontSize="sm">
                           Enjoy Buy 1 Get 1 offer for 365 days
                         </Text>
-                      </div>
-                    </div>
+                      </Flex>
+                    </Flex>
                     <Button
                       w="100%"
                       h="35px"
                       mt="5%"
                       colorScheme="blue"
-                      fontSize="18px"
+                      fontSize="15px"
                       _hover={{ bg: "blue.400" }}
                     >
                       GET GOLD MEMBERSHIP
                     </Button>
-                  </div>
+                  </Flex>
                 ) : (
-                  <div
+                  <Box
                     style={{
                       padding: "5%",
                       display: "flex",
@@ -143,7 +132,7 @@ function Nav() {
                       width: "100%"
                     }}
                   >
-                    <div
+                    <Box
                       style={{
                         width: "100%",
                         display: "flex",
@@ -167,16 +156,16 @@ function Nav() {
                       >
                         <Signup />
                       </Box>
-                    </div>
-                  </div>
+                    </Box>
+                  </Box>
                 )}
               </DrawerHeader>
               <DrawerBody borderBottomWidth="1px" bg="whiteAlpha.900">
                 <Box display="flex" flexDirection="column" fontSize="16px">
-                  <Link>
+                  <Link to="/orderhistory">
                     <Box
                       borderBottom="0.1px solid gray"
-                      fontSize="19px"
+                      fontSize="15px"
                       p="4% 0%"
                       color="black"
                       _hover={{ fontWeight: "bold" }}
@@ -185,10 +174,32 @@ function Nav() {
                       My Orders
                     </Box>
                   </Link>
+                  <Link to="/cartpage">
+                    <Box
+                      borderBottom="0.1px solid gray"
+                      fontSize="15px"
+                      p="4% 0%"
+                      color="black"
+                      _hover={{ fontWeight: "bold" }}
+                    >
+                      Cart
+                    </Box>
+                  </Link>
+                  <Link to="/wishlist">
+                    <Box
+                      borderBottom="0.1px solid gray"
+                      fontSize="15px"
+                      p="4% 0%"
+                      color="black"
+                      _hover={{ fontWeight: "bold" }}
+                    >
+                      Wishlist
+                    </Box>
+                  </Link>
                   <Link>
                     <Box
                       borderBottom="0.1px solid gray"
-                      fontSize="19px"
+                      fontSize="15px"
                       p="4% 0%"
                       color="black"
                       _hover={{ fontWeight: "bold" }}
@@ -199,7 +210,7 @@ function Nav() {
                   <Link>
                     <Box
                       borderBottom="1px solid white"
-                      fontSize="19px"
+                      fontSize="15px"
                       p="4% 0%"
                       color="black"
                       _hover={{ fontWeight: "bold" }}
@@ -209,98 +220,89 @@ function Nav() {
                   </Link>
                 </Box>
 
-                <Heading mt="15%" color="black" fontSize="18px" mb="5%">
+                <Heading mt="15%" color="black" fontSize="15px" mb="5%">
                   SHOP NOW
                 </Heading>
                 <Box display="flex" flexDirection="column" fontSize="16px">
-                  <Box borderBottom="0.1px solid gray" p="5% 0%">
-                    <Menu>
-                      <MenuButton
-                        bg="whiteAlpha.900"
-                        color="black"
-                        textAlign="left"
-                        _hover={{ fontWeight: "bold" }}
-                        as={Button}
-                        rightIcon={<ChevronDownIcon />}
-                        w="100%"
-                        fontSize="19px"
-                        fontWeight="400"
-                      >
-                        Men
-                      </MenuButton>
-                      <Link to="/newproducts">
-                        <MenuList>
-                          <MenuItem>EYEGLASSES</MenuItem>
-                          <MenuItem>COMPUTER GLASSES</MenuItem>
-                          <MenuItem>CONTACT LENSES</MenuItem>
-                          <MenuItem>SUN GLASSES</MenuItem>
-                        </MenuList>
-                      </Link>
-                    </Menu>
-                  </Box>
-
-                  <Box
-                    borderBottom="0.1px solid gray"
-                    p="5% 0%"
-                    color="black"
-                    _hover={{ fontWeight: "bold" }}
-                  >
-                    <Menu>
-                      <MenuButton
-                        bg="whiteAlpha.900"
-                        color="black"
-                        textAlign="left"
-                        _hover={{ fontWeight: "bold" }}
-                        as={Button}
-                        rightIcon={<ChevronDownIcon />}
-                        w="100%"
-                        fontSize="19px"
-                        fontWeight="400"
-                      >
-                        Women
-                      </MenuButton>
-                      <Link to="/newproducts">
-                        <MenuList>
-                          <MenuItem>EYEGLASSES</MenuItem>
-                          <MenuItem>COMPUTER GLASSES</MenuItem>
-                          <MenuItem>CONTACT LENSES</MenuItem>
-                          <MenuItem>SUN GLASSES</MenuItem>
-                        </MenuList>
-                      </Link>
-                    </Menu>
-                  </Box>
-
-                  <Box
-                    borderBottom="0.1px solid gray"
-                    p="5% 0%"
-                    color="black"
-                    _hover={{ fontWeight: "bold" }}
-                  >
-                    <Menu>
-                      <MenuButton
-                        bg="whiteAlpha.900"
-                        color="black"
-                        textAlign="left"
-                        _hover={{ fontWeight: "bold" }}
-                        as={Button}
-                        rightIcon={<ChevronDownIcon />}
-                        w="100%"
-                        fontSize="19px"
-                        fontWeight="400"
-                      >
-                        Kids
-                      </MenuButton>
-                      <Link to="/newproducts">
-                        <MenuList>
-                          <MenuItem>EYEGLASSES</MenuItem>
-                          <MenuItem>COMPUTER GLASSES</MenuItem>
-                          <MenuItem>CONTACT LENSES</MenuItem>
-                        </MenuList>
-                      </Link>
-                    </Menu>
-                  </Box>
+                  <Accordion defaultIndex={[0]} allowMultiple w="100%" m="auto">
+                    <AccordionItem>
+                      <h2>
+                        <AccordionButton>
+                          <Box
+                            as="span"
+                            flex="1"
+                            textAlign="left"
+                            fontWeight="500"
+                          >
+                            Men
+                          </Box>
+                          <AccordionIcon />
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel pb={4}>
+                        <Link to="/newproducts">
+                          <Box>
+                            <Text pb="2">EYEGLASSES</Text>
+                            <Text pb="2">COMPUTER GLASSES</Text>
+                            <Text pb="2">CONTACT LENSES</Text>
+                            <Text pb="2">SUN GLASSES</Text>
+                          </Box>
+                        </Link>
+                      </AccordionPanel>
+                    </AccordionItem>
+                    <AccordionItem>
+                      <h2>
+                        <AccordionButton>
+                          <Box
+                            as="span"
+                            flex="1"
+                            textAlign="left"
+                            fontWeight="500"
+                          >
+                            Women
+                          </Box>
+                          <AccordionIcon />
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel pb={5}>
+                        <Link to="/newproducts">
+                          <Box>
+                            <Text pb="2">EYEGLASSES</Text>
+                            <Text pb="2">COMPUTER GLASSES</Text>
+                            <Text pb="2">CONTACT LENSES</Text>
+                            <Text pb="2">SUN GLASSES</Text>
+                          </Box>
+                        </Link>
+                      </AccordionPanel>
+                    </AccordionItem>
+                    <AccordionItem>
+                      <h2>
+                        <AccordionButton>
+                          <Box
+                            as="span"
+                            flex="1"
+                            textAlign="left"
+                            fontWeight="500"
+                          >
+                            Kids
+                          </Box>
+                          <AccordionIcon />
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel pb={4}>
+                        <Link to="/newproducts">
+                          <Box>
+                            <Text pb="2">EYEGLASSES</Text>
+                            <Text pb="2">COMPUTER GLASSES</Text>
+                            <Text pb="2">CONTACT LENSES</Text>
+                            <Text pb="2">SUN GLASSES</Text>
+                          </Box>
+                        </Link>
+                      </AccordionPanel>
+                    </AccordionItem>
+                  </Accordion>
                 </Box>
-                <Heading mt="15%" color="black" fontSize="19px" mb="5%">
+                <Heading mt="15%" color="black" fontSize="15px" mb="5%">
                   Our Services
                 </Heading>
                 <Box display="flex" flexDirection="column" fontSize="16px">
@@ -308,7 +310,7 @@ function Nav() {
                     <Box
                       borderBottom="0.1px solid gray"
                       p="5% 0%"
-                      fontSize="19px"
+                      fontSize="15px"
                       color="black"
                       _hover={{ fontWeight: "bold" }}
                     >
@@ -321,7 +323,7 @@ function Nav() {
                       p="5% 0%"
                       color="black"
                       _hover={{ fontWeight: "bold" }}
-                      fontSize="19px"
+                      fontSize="15px"
                     >
                       Home Eye check-up
                     </Box>
@@ -332,13 +334,13 @@ function Nav() {
                       p="5% 0%"
                       color="black"
                       _hover={{ fontWeight: "bold" }}
-                      fontSize="19px"
+                      fontSize="15px"
                     >
                       Store Locator
                     </Box>
                   </Link>
                 </Box>
-                <Heading mt="15%" color="black" mb="5%" fontSize="19px">
+                <Heading mt="15%" color="black" mb="5%" fontSize="15px">
                   HIGHLIGHTS
                 </Heading>
                 <Box display="flex" flexDirection="column" fontSize="16px">
@@ -348,7 +350,7 @@ function Nav() {
                       p="5% 0%"
                       color="black"
                       _hover={{ fontWeight: "bold" }}
-                      fontSize="19px"
+                      fontSize="15px"
                     >
                       Check Frame Size
                     </Box>
@@ -359,7 +361,7 @@ function Nav() {
                       p="5% 0%"
                       color="black"
                       _hover={{ fontWeight: "bold" }}
-                      fontSize="19px"
+                      fontSize="15px"
                     >
                       Gold Membership
                     </Box>
@@ -370,7 +372,7 @@ function Nav() {
                       p="5% 0%"
                       color="black"
                       _hover={{ fontWeight: "bold" }}
-                      fontSize="19px"
+                      fontSize="15px"
                     >
                       Try Frames in 3D
                     </Box>
@@ -381,13 +383,13 @@ function Nav() {
                       p="5% 0%"
                       color="black"
                       _hover={{ fontWeight: "bold" }}
-                      fontSize="19px"
+                      fontSize="15px"
                     >
                       Dowloads Apps
                     </Box>
                   </Link>
                 </Box>
-                <Heading mt="15%" color="black" fontSize="19px" mb="5%">
+                <Heading mt="15%" color="black" fontSize="15px" mb="5%">
                   FAQ's & POLICIES
                 </Heading>
                 <Box display="flex" flexDirection="column" fontSize="16px">
@@ -397,7 +399,7 @@ function Nav() {
                       p="5% 0%"
                       color="black"
                       _hover={{ fontWeight: "bold" }}
-                      fontSize="19px"
+                      fontSize="15px"
                     >
                       Frequently Asked Questions
                     </Box>
@@ -408,7 +410,7 @@ function Nav() {
                       p="5% 0%"
                       color="black"
                       _hover={{ fontWeight: "bold" }}
-                      fontSize="19px"
+                      fontSize="15px"
                     >
                       Cancellation & Return Policy
                     </Box>
@@ -418,7 +420,7 @@ function Nav() {
                       p="5% 0%"
                       color="black"
                       _hover={{ fontWeight: "bold" }}
-                      fontSize="19px"
+                      fontSize="15px"
                     >
                       Cobrowsing
                     </Box>

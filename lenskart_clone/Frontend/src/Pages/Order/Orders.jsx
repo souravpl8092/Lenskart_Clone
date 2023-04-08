@@ -13,7 +13,8 @@ import {
   Image,
   Spacer,
   Switch,
-  Text
+  Text,
+  Grid
 } from "@chakra-ui/react";
 
 const Orders = () => {
@@ -42,27 +43,44 @@ const Orders = () => {
   const currentDate = `${day}-${month}-${year}`;
 
   return (
-    <Box>
+    <Box m="auto">
       <Navbar />
       <Box w="90%" m="auto">
-        <HStack spacing={"100px"} mt="15px" mb="20px">
+        <HStack spacing={"100px"} mt="15px" mb="20px" w="100%" gap="2">
           <HStack>
             <Image
               src="https://static.lenskart.com/media/desktop/img/25-July-19/whatsapp.png"
-              w={"40px"}
-              h="40px"
+              boxSize="30px"
             />
-            <Box fontSize={"16px"} fontWeight="400">
+            <Box fontSize={{ lg: "16px", base: "sm" }} fontWeight="400">
               Get Orders Updates on Whatsapp
             </Box>
-            <Switch size="lg" />
+            <Switch size="md" />
+            <Spacer />
           </HStack>
-          <Spacer />
         </HStack>
         <Box border={"1px"} borderColor="gray.300">
           <Box p={"10px 10px 10px 10px "} m="15px 0px 0px 15px" w="97%">
-            <Flex justifyContent={"space-between"}>
-              <Flex gap="5">
+            <Grid
+              templateColumns={{
+                base: "repeat(1,1fr)",
+                sm: "repeat(1,1fr)",
+                md: "repeat(2,1fr)",
+                lg: "repeat(2,1fr)",
+                xl: "repeat(2,1fr)"
+              }}
+              w="100%"
+            >
+              <Grid
+                templateColumns={{
+                  base: "repeat(1,1fr)",
+                  sm: "repeat(1,1fr)",
+                  md: "repeat(2,1fr)",
+                  lg: "repeat(2,1fr)",
+                  xl: "repeat(2,1fr)"
+                }}
+                gap={{ lg: "5", sm: "0", base: "0" }}
+              >
                 <Flex>
                   <Box fontSize={"15px"} fontWeight="400">
                     Order ID :
@@ -91,9 +109,16 @@ const Orders = () => {
                     {currentDate}
                   </Box>
                 </Flex>
-              </Flex>
-              <Flex>
-                <Box fontSize={"16px"} fontWeight="400">
+              </Grid>
+              <Flex
+                justifyContent={{
+                  lg: "right",
+                  md: "right",
+                  sm: "left",
+                  base: "left"
+                }}
+              >
+                <Box fontSize={"16px"} fontWeight="400" textAlign="right">
                   Total Price :
                 </Box>
 
@@ -103,18 +128,26 @@ const Orders = () => {
                   letterSpacing="1.5px"
                   fontWeight={"500"}
                 >
-                  ₹{Math.round(getTotalPrice() + getTotalPrice() * 0.18)}.00.00
+                  ₹{Math.round(getTotalPrice() + getTotalPrice() * 0.18)}.00
                 </Box>
               </Flex>
-            </Flex>
-            <HStack
+            </Grid>
+            <Grid
               mt={"20px"}
               p="10px"
               spacing={""}
               w="100%"
-              justifyContent="space-between"
+              templateColumns={{
+                base: "repeat(1,1fr)",
+                sm: "repeat(1,1fr)",
+                md: "repeat(2,1fr)",
+                lg: "60% 30%",
+                xl: "60% 30%"
+              }}
+              gap={{ sm: "4", base: "4" }}
+              justifyContent={"space-between"}
             >
-              <Box w="50%">
+              <Box>
                 <Box fontWeight={"500"} fontSize="17px">
                   Complete Your Payment
                 </Box>
@@ -127,14 +160,24 @@ const Orders = () => {
                   Order will be processed after payment
                 </Box>
               </Box>
-              <HStack w="50%" justifyContent="space-between">
+              <Grid
+                templateColumns={{
+                  base: "repeat(1,1fr)",
+                  sm: "repeat(1,1fr)",
+                  md: "repeat(2,1fr)",
+                  lg: "repeat(2,1fr)",
+                  xl: "repeat(2,1fr)"
+                }}
+                justifyContent="space-between"
+                gap="4"
+                w="100%"
+              >
                 <Button
                   fontSize={"15px"}
-                  ml="60%"
                   bg="#3bb3a9"
                   color={"white"}
                   borderRadius="4px"
-                  p="15px 35px 15px 35px "
+                  p="15px 35px"
                   _hover={{ backgroundColor: "teal" }}
                   onClick={() => navigate("/payment")}
                 >
@@ -142,18 +185,17 @@ const Orders = () => {
                 </Button>
                 <Button
                   fontSize={"15px"}
-                  ml="60%"
                   bg="#3bb3a9"
                   color={"white"}
                   borderRadius="4px"
-                  p="15px 35px 15px 35px "
+                  p="15px 35px"
                   _hover={{ backgroundColor: "teal" }}
                   onClick={handleClick}
                 >
                   CASH ON DELIVERY
                 </Button>
-              </HStack>
-            </HStack>
+              </Grid>
+            </Grid>
           </Box>
         </Box>
         <HStack border={"1px"} p="10px 10px 10px 25px" borderColor="gray.300">
@@ -174,16 +216,33 @@ const Orders = () => {
         {cart.map((el) => {
           return (
             <Box border={"1px"} borderColor="gray.300">
-              <HStack color="gray.600">
+              <Grid
+                templateColumns={{
+                  base: "repeat(1,1fr)",
+                  sm: "repeat(1,1fr)",
+                  md: "35% 80%",
+                  lg: "30% 80%",
+                  xl: "20% 80%"
+                }}
+                color="gray.600"
+                p="2"
+                m={{ sm: "auto", base: "auto" }}
+                textAlign={{ md: "left", sm: "center", base: "center" }}
+              >
                 <Image
                   src={el.imageTsrc}
                   w={"200px"}
                   h="100px"
-                  m="10px 0px 10px 20px"
+                  m={{
+                    lg: "10px 0px 10px 10px",
+                    md: "10px 0px 10px 10px",
+                    sm: "auto",
+                    base: "auto"
+                  }}
                 />
                 <Box>
                   <Box
-                    m="10px 0px 5px 0px"
+                    m="10px 5px 5px 0px"
                     fontSize="17px"
                     textTransform="capitalize"
                     color="gray.500"
@@ -202,7 +261,15 @@ const Orders = () => {
                   >
                     Sold by Lenskart Pvt Ltd.
                   </Box>
-                  <Flex fontWeight={"500"} gap="1">
+                  <Flex
+                    fontWeight={"500"}
+                    gap="1"
+                    justifyContent={{
+                      md: "left",
+                      sm: "center",
+                      base: "center"
+                    }}
+                  >
                     <Text fontSize="18px">
                       ₹{Math.round(el.price + el.price * 0.18)}.00
                     </Text>
@@ -216,7 +283,7 @@ const Orders = () => {
                     Qty : {el.quantity < 10 ? `0${el.quantity}` : el.quantity}
                   </Box>
                 </Box>
-              </HStack>
+              </Grid>
             </Box>
           );
         })}

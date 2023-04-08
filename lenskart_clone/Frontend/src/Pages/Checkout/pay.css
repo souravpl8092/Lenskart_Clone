@@ -1,12 +1,3 @@
-/* #ships {
-  background-color: #329c92;
-  text-align: left;
-  color: #fff;
-  font-size: 25px;
-  font-weight: bold;
-  width: 100%;
-  padding-left: 10px;
-} */
 .input {
   outline: 1px solid gray;
   width: 90%;
@@ -20,61 +11,6 @@
   border: none;
 }
 
-/* #addres {
-  border: 1px solid black;
-  width: 60%;
-  padding: 10px;
-  padding-top: 10px;
-  margin-top: 10px;
-
-  border-radius: 5px;
-} */
-
-#radio {
-  display: flex;
-  gap: 10px;
-  padding: 10px;
-  margin-left: 22px;
-}
-.input:hover {
+/* .input:hover {
   outline: 1.6px solid black;
-}
-#payment-container {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-#shiping {
-  background-color: #00b9c6;
-  padding: 10px;
-  color: #fff;
-  text-align: center;
-  font-weight: bold;
-  border-radius: 5px;
-  font-size: 18px;
-  align-items: "right";
-  justify-items: "margin-right";
-  margin-top: 4%;
-  padding: 10px;
-  width: 200px;
-  margin-left: 70%;
-}
-#shiping-disable {
-  background-color: #cccccc;
-  padding: 10px;
-  color: #fff;
-  text-align: center;
-  font-weight: bold;
-  border-radius: 5px;
-  font-size: 18px;
-  align-items: "right";
-  justify-items: "margin-right";
-  margin-top: 4%;
-  padding: 10px;
-  width: 200px;
-  margin-left: 70%;
-}
-.card {
-  width: 90%;
-}
+} */

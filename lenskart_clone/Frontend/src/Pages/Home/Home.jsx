@@ -6,6 +6,7 @@ import { HomeCard4, HomeCard4a, HomeCard4b } from "./HomeCard4";
 import { HomeCard5, HomeCard5a, HomeCard5b, HomeCard5c } from "./HomeCard5";
 import HomeCard6 from "./HomeCard6";
 import HomeCard7 from "./HomeCard7";
+import HomeCard8 from "./HomeCard8";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import {
@@ -21,7 +22,8 @@ import {
   HomeDetails10,
   HomeDetails11,
   HomeDetails12,
-  HomeDetails14
+  HomeDetails14,
+  HomeDetails15
 } from "./HomeDetails";
 import { Image, Box } from "@chakra-ui/react";
 const Home = () => {
@@ -35,11 +37,7 @@ const Home = () => {
         alt="img"
         mt="10"
       />
-      <HomeCard2
-        type={HomeDetails2}
-        //linked={"/personalcare"}
-        src="https://i.imgur.com/Gry0Q5D.png"
-      />
+      <HomeCard2 type={HomeDetails2} src="https://i.imgur.com/Gry0Q5D.png" />
       <br />
       <br />
       <br />
@@ -214,6 +212,7 @@ const Home = () => {
       <br />
       <HomeCard5c type={HomeDetails14} heading="MEET OUR HAPPY CUSTOMERS" />
       <HomeCard7 />
+      <HomeCard8 type={HomeDetails15} />
       <Footer />
     </Box>
   );

@@ -1,3 +1,5 @@
+import { Flex } from "@chakra-ui/react";
+
 function Pagination({ current, onChange }) {
   const style = {
     background: "gray",
@@ -25,21 +27,16 @@ function Pagination({ current, onChange }) {
   );
 
   return (
-    <div
-      style={{
-        display: "flex",
-        gap: "5%",
-        width: "15%",
-        margin: "auto",
-        marginTop: "1%",
-        padding: "1%",
-        fontSize: "15px"
-      }}
+    <Flex
+      w={{ md: "15%", base: "5%" }}
+      m="2% auto"
+      gap="2"
+      justifyContent="center"
     >
       {prev}
       {currentPage}
       {next}
-    </div>
+    </Flex>
   );
 }
 

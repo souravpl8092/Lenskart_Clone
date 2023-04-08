@@ -4,4 +4,4 @@ export const INCREMENT = "cart/items/inc/";
 export const DECREMENT = "cart/items/dec/";
 export const RESET = "cart/items/reset/";
 
-export const applyCoupon = "coupon/applycoupon";
+export const applyCoupon = "cart/applycoupon";
