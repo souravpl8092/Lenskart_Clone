@@ -1,9 +1,19 @@
 import React, { useState } from "react";
 import CartItem from "./CartItem";
 import { useNavigate } from "react-router-dom";
-import { Box, Text, Flex } from "@chakra-ui/react";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
+import {
+  Box,
+  Text,
+  Grid,
+  GridItem,
+  Button,
+  Radio,
+  RadioGroup,
+  Stack,
+  Flex
+} from "@chakra-ui/react";
 import "./pay.css";
 
 function Shipping() {
@@ -25,6 +35,7 @@ function Shipping() {
   const [first, setFirst] = useState();
   const [last, setLast] = useState();
   const [ph, setPh] = useState();
+  const [gender, setGender] = useState("Male");
   const [mail, setMail] = useState();
   const [add, setAdd] = useState();
   const [pin, setPin] = useState();
@@ -127,201 +138,285 @@ function Shipping() {
       <Navbar />
       <br />
       <br />
-      <Flex m="auto" justifyContent="space-evenly">
-        <Box id="addres" w="65%">
-          <Text
-            id="ships"
-            bg="teal.400"
-            p="2"
-            fontWeight="bold"
-            color="whiteAlpha.900"
-            fontSize="22px"
-          >
-            Shipping Address
-          </Text>
+      <Grid
+        m="auto"
+        templateColumns={{
+          base: "repeat(1,1fr)",
+          lg: "repeat(1,1fr)",
+          xl: "65% 30%"
+        }}
+        justifyContent="space-around"
+        w="100%"
+      >
+        <GridItem w={{ xl: "90%", lg: "80%", md: "80%", base: "80%" }} m="auto">
+          <Box id="addres">
+            <Text
+              id="ships"
+              bg="teal.400"
+              p="2"
+              fontWeight="bold"
+              color="whiteAlpha.900"
+              fontSize="22px"
+            >
+              Shipping Address
+            </Text>
 
-          <Box border="1px solid black" p="4" borderRadius="xl" mt="7">
-            <Flex w="100%">
-              <Box w="50%">
-                <input
-                  type="text"
-                  name="first_name"
-                  fontSize="16px"
-                  onChange={handleChange}
-                  placeholder="First Name*"
-                  className="input"
-                />
-                <Box pl="6" mt="-4">
-                  {first}
+            <Box border="1px solid black" p="4" borderRadius="xl" mt="7">
+              <Grid
+                templateColumns={{
+                  base: "repeat(1,1fr)",
+                  sm: "repeat(1,1fr)",
+                  md: "repeat(2,1fr)",
+                  lg: "repeat(2,1fr)"
+                }}
+                w="100%"
+                gap={{ sm: "4", base: "4" }}
+              >
+                <Box>
+                  <input
+                    type="text"
+                    name="first_name"
+                    fontSize="16px"
+                    onChange={handleChange}
+                    placeholder="First Name*"
+                    className="input"
+                  />
+                  <Box pl="6" mt="-4">
+                    {first}
+                  </Box>
                 </Box>
-              </Box>
-
-              <Box w="50%">
-                <input
-                  type="text"
-                  name="last_name"
-                  placeholder="Last Name*"
-                  className="input"
-                  fontSize="16px"
-                  onChange={handleChange}
-                />
-                <Box pl="6" mt="-4">
-                  {last}
+                <Box>
+                  <input
+                    type="text"
+                    name="last_name"
+                    placeholder="Last Name*"
+                    className="input"
+                    fontSize="16px"
+                    onChange={handleChange}
+                  />
+                  <Box pl="6" mt="-4">
+                    {last}
+                  </Box>
                 </Box>
-              </Box>
-            </Flex>
+              </Grid>
 
-            <Box id="radio" style={{ fontSize: "15px" }}>
-              <label>Gender</label>
-              <input type="radio" id="Male" name="Male" value="Male" />
-              <label for="Male">Male</label>
-              <input type="radio" id="Female" name="Male" value="Female" />
-              <label for="Female">Female</label>
+              <Flex
+                fontSize="15px"
+                p="10px"
+                m="10px 0px 0px 22px"
+                gap={{ lg: "4", sm: "1", base: "1" }}
+              >
+                <Text>Gender</Text>
+                <RadioGroup onChange={setGender} value={gender} name={gender}>
+                  <Stack direction="row" gap={{ lg: "2", sm: "1", base: "1" }}>
+                    <Radio value="Male">Male</Radio>
+                    <Radio value="Female">Female</Radio>
+                  </Stack>
+                </RadioGroup>
+              </Flex>
+
+              <Grid
+                gap={{ sm: "4", base: "4" }}
+                templateColumns={{
+                  base: "repeat(1,1fr)",
+                  sm: "repeat(1,1fr)",
+                  md: "repeat(2,1fr)",
+                  lg: "repeat(2,1fr)"
+                }}
+                w="100%"
+              >
+                <Box>
+                  <input
+                    className="input"
+                    type="number"
+                    name="phone"
+                    placeholder="Phone Number*"
+                    borderRadius="20px"
+                    fontSize="16px"
+                    onChange={handleChange}
+                  />
+                  <Box pl="6" mt="-4">
+                    {userData.phone.length === 10 ? "" : ph}
+                  </Box>
+                </Box>
+
+                <Box>
+                  <input
+                    className="input"
+                    type="email"
+                    name="email"
+                    placeholder="Email*"
+                    fontSize="16px"
+                    onChange={handleChange}
+                  />
+                  <Box pl="6" mt="-4">
+                    {userData.email.includes("@") &&
+                    userData.email.includes(".com")
+                      ? ""
+                      : mail}
+                  </Box>
+                </Box>
+              </Grid>
+              <br />
+
+              <Grid
+                gap={{ sm: "4", base: "4" }}
+                templateColumns={{
+                  base: "repeat(1,1fr)",
+                  sm: "repeat(1,1fr)",
+                  md: "repeat(2,1fr)",
+                  lg: "repeat(2,1fr)"
+                }}
+                w="100%"
+              >
+                <Box>
+                  <input
+                    className="input"
+                    type="text"
+                    name="address"
+                    placeholder="Address Line 1*"
+                    fontSize="16px"
+                    onChange={handleChange}
+                  />
+                  <Box pl="6" mt="-4">
+                    {add}
+                  </Box>
+                </Box>
+                <Box>
+                  <input
+                    className="input"
+                    type="text"
+                    placeholder="Address Line 2"
+                    fontSize="16px"
+                  />
+                  <br />
+                </Box>
+              </Grid>
+
+              <Grid
+                gap={{ sm: "4", base: "4" }}
+                templateColumns={{
+                  base: "repeat(1,1fr)",
+                  sm: "repeat(1,1fr)",
+                  md: "repeat(2,1fr)",
+                  lg: "repeat(2,1fr)"
+                }}
+                w="100%"
+              >
+                <Box>
+                  <input
+                    className="input"
+                    type="text"
+                    name="pincode"
+                    placeholder="Zip/Postal Code*"
+                    fontSize="16px"
+                    onChange={handleChange}
+                  />
+                  <Box pl="6" mt="-4">
+                    {userData.pincode.length === 6 ? "" : pin}
+                  </Box>
+                </Box>
+                <Box>
+                  <input
+                    className="input"
+                    type="text"
+                    placeholder="City/District*"
+                    name="city"
+                    fontSize="16px"
+                    onChange={handleChange}
+                  />
+                  <Box pl="6" mt="-4">
+                    {cities}
+                  </Box>
+                </Box>
+              </Grid>
+
+              <br />
+
+              <Grid
+                gap={{ sm: "4", base: "4" }}
+                templateColumns={{
+                  base: "repeat(1,1fr)",
+                  sm: "repeat(1,1fr)",
+                  md: "repeat(2,1fr)",
+                  lg: "repeat(2,1fr)"
+                }}
+                w="100%"
+              >
+                <Box>
+                  <input
+                    className="input"
+                    type="text"
+                    placeholder="Country*"
+                    name="country"
+                    fontSize="16px"
+                    onChange={handleChange}
+                  />
+                  <Box pl="6" mt="-4">
+                    {countries}
+                  </Box>
+                </Box>
+                <Box>
+                  <input
+                    className="input"
+                    type="text"
+                    placeholder="State*"
+                    name="state"
+                    fontSize="16px"
+                    onChange={handleChange}
+                  />
+                  <Box pl="6" mt="-4">
+                    {statess}
+                  </Box>
+                </Box>
+              </Grid>
+              <br />
+
+              {userData.first_name.length >= 1 &&
+              userData.last_name.length >= 1 &&
+              userData.phone.length === 10 &&
+              userData.email.includes("@") &&
+              userData.email.includes(".com") &&
+              userData.address.length >= 1 &&
+              userData.pincode.length === 6 &&
+              userData.city.length >= 1 &&
+              userData.country.length >= 1 &&
+              userData.state.length >= 1 ? (
+                <Button
+                  onClick={() => navigate("/orders")}
+                  bg="#00b9c6"
+                  p="25px 20px"
+                  color="#fff"
+                  textAlign="center"
+                  fontWeight="bold"
+                  borderRadius="5px"
+                  fontSize="18px"
+                  ml={{ lg: "80%", sm: "70%", base: "50%" }}
+                >
+                  CONTINUE
+                </Button>
+              ) : (
+                <Button
+                  bg="#cccccc"
+                  p="25px 20px"
+                  color="#fff"
+                  textAlign="center"
+                  fontWeight="bold"
+                  borderRadius="5px"
+                  fontSize="18px"
+                  ml={{ lg: "80%", md: "72%", sm: "60%", base: "40%" }}
+                >
+                  CONTINUE
+                </Button>
+              )}
             </Box>
-
-            <Flex w="100%">
-              <Box w="50%">
-                <input
-                  className="input"
-                  type="number"
-                  name="phone"
-                  placeholder="Phone Number*"
-                  borderRadius="20px"
-                  fontSize="16px"
-                  onChange={handleChange}
-                />
-                <Box pl="6" mt="-4">
-                  {userData.phone.length === 10 ? "" : ph}
-                </Box>
-              </Box>
-
-              <Box w="50%">
-                <input
-                  className="input"
-                  type="email"
-                  name="email"
-                  placeholder="Email*"
-                  fontSize="16px"
-                  onChange={handleChange}
-                />
-                <Box pl="6" mt="-4">
-                  {userData.email.includes("@") &&
-                  userData.email.includes(".com")
-                    ? ""
-                    : mail}
-                </Box>
-              </Box>
-            </Flex>
             <br />
-
-            <Flex w="100%">
-              <Box w="50%">
-                <input
-                  className="input"
-                  type="text"
-                  name="address"
-                  placeholder="Address Line 1*"
-                  fontSize="16px"
-                  onChange={handleChange}
-                />
-                <Box pl="6" mt="-4">
-                  {add}
-                </Box>
-              </Box>
-              <Box w="50%">
-                <input
-                  className="input"
-                  type="text"
-                  placeholder="Address Line 2"
-                  fontSize="16px"
-                />
-                <br />
-              </Box>
-            </Flex>
-
-            <Flex w="100%">
-              <Box w="50%">
-                <input
-                  className="input"
-                  type="text"
-                  name="pincode"
-                  placeholder="Zip/Postal Code*"
-                  fontSize="16px"
-                  onChange={handleChange}
-                />
-                <Box pl="6" mt="-4">
-                  {userData.pincode.length === 6 ? "" : pin}
-                </Box>
-              </Box>
-              <Box w="50%">
-                <input
-                  className="input"
-                  type="text"
-                  placeholder="City/District*"
-                  name="city"
-                  fontSize="16px"
-                  onChange={handleChange}
-                />
-                <Box pl="6" mt="-4">
-                  {cities}
-                </Box>
-              </Box>
-            </Flex>
-
-            <br />
-
-            <Flex w="100%">
-              <Box w="50%">
-                <input
-                  className="input"
-                  type="text"
-                  placeholder="Country*"
-                  name="country"
-                  fontSize="16px"
-                  onChange={handleChange}
-                />
-                <Box pl="6" mt="-4">
-                  {countries}
-                </Box>
-              </Box>
-              <Box w="50%">
-                <input
-                  className="input"
-                  type="text"
-                  placeholder="State*"
-                  name="state"
-                  fontSize="16px"
-                  onChange={handleChange}
-                />
-                <Box pl="6" mt="-4">
-                  {statess}
-                </Box>
-              </Box>
-            </Flex>
-            <br />
-
-            {userData.first_name.length >= 1 &&
-            userData.last_name.length >= 1 &&
-            userData.phone.length === 10 &&
-            userData.email.includes("@") &&
-            userData.email.includes(".com") &&
-            userData.address.length >= 1 &&
-            userData.pincode.length === 6 &&
-            userData.city.length >= 1 &&
-            userData.country.length >= 1 &&
-            userData.state.length >= 1 ? (
-              <button id="shiping" onClick={() => navigate("/orders")}>
-                CONTINUE
-              </button>
-            ) : (
-              <button id="shiping-disable">CONTINUE</button>
-            )}
           </Box>
-          <br />
-        </Box>
-
-        <CartItem />
-      </Flex>
+        </GridItem>
+        <GridItem w={{ xl: "90%", lg: "80%", md: "80%", base: "80%" }} m="auto">
+          <CartItem />
+        </GridItem>
+      </Grid>
       <br />
       <br />
       <Footer />

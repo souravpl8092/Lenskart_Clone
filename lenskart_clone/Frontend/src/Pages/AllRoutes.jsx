@@ -1,20 +1,19 @@
 import React, { useLayoutEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./Home/Home";
+import NewProduct from "./NewProduct/ProductList";
 import SingleProduct from "./NewProduct/SingleProduct";
 import { Privateroutes } from "../ContextApi/Privateroute";
-import Payment from "../Pages/Checkout/Payment";
-import Orders from "../Pages/Order/Orders";
 import CartPage from "./Cart/index";
 import Shipping from "../Pages/Checkout/Shipping";
+import Orders from "../Pages/Order/Orders";
+import Payment from "../Pages/Checkout/Payment";
 import Confirm from "./Checkout/Confirm";
 import OrderHistory from "./OrderHistory/OrderHistory";
 import Wishlist from "./Wishlist/Wishlist";
 import Productlist from "./Admin/Productlist";
 import ProductPost from "./Admin/ProductPost";
 import EditProduct from "./Admin/EditProduct";
-import NewProduct from "./NewProduct/ProductList";
-import NotFound from "./Cart/CartError";
 
 const AllRoutes = () => {
   const location = useLocation();
@@ -107,7 +106,6 @@ const AllRoutes = () => {
           </Privateroutes>
         }
       />
-      <Route path="/NotFound" element={<NotFound />} />
     </Routes>
   );
 };

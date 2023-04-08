@@ -31,7 +31,6 @@ const Login = (props) => {
   const [show, setShow] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isAuth, setisAuth, Authdata, setAuthData } = useContext(AuthContext);
-
   const [incorrect, setinCorrect] = useState(false);
   const navigate = useNavigate();
   let res1 = [];

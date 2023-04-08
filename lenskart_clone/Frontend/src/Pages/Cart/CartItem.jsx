@@ -15,15 +15,7 @@ import {
 } from "../../redux/CartPage/action";
 import { useDispatch } from "react-redux";
 
-const CartItem = ({
-  img_responsive,
-  product_name,
-  product_strike,
-  id,
-  setChange,
-  change,
-  product_discountedPrice
-}) => {
+const CartItem = ({ imageTsrc, handleDelete }) => {
   const toast = useToast();
   const dispatch = useDispatch();
 
@@ -93,11 +85,11 @@ const CartItem = ({
     >
       <Image
         width={{
-          base: "25%",
-          sm: "25%",
-          md: "25%",
-          lg: "20%",
-          xl: "20%",
+          base: "50%",
+          sm: "35%",
+          md: "30%",
+          lg: "25%",
+          xl: "25%",
           "2xl": "20%"
         }}
         margin={{
@@ -108,7 +100,7 @@ const CartItem = ({
           xl: "unset",
           "2xl": "unset"
         }}
-        src={img_responsive}
+        src={imageTsrc}
       />
       <Flex
         flexDirection={"column"}
@@ -118,9 +110,9 @@ const CartItem = ({
           base: "95%",
           sm: "95%",
           md: "95%",
-          lg: "80%",
-          xl: "80%",
-          "2xl": "80%"
+          lg: "70%",
+          xl: "70%",
+          "2xl": "70%"
         }}
         margin={{
           base: "auto",
@@ -139,23 +131,25 @@ const CartItem = ({
         >
           <Heading
             as="h1"
-            fontSize={"16px"}
+            fontSize={"18px"}
             lineHeight="22px"
             textTransform={"capitalize"}
             letterSpacing="-0.32px"
             fontWeight={500}
           >
-            {product_name}
+            {item.productRefLink}
           </Heading>
           <Flex gap={"2"}>
-            <Text fontSize={"14px"}>{product_strike}</Text>
+            <Text fontSize={"18px"} fontWeight="500" color="gray.600">
+              ₹{item.mPrice}
+            </Text>
           </Flex>
         </Flex>
         <Box border={"1px dashed #CECEDF"}></Box>
         <Flex justifyContent={"space-between"}>
           <Heading
             as="h1"
-            fontSize={"16px"}
+            fontSize={"18px"}
             lineHeight="22px"
             textTransform={"capitalize"}
             fontWeight={500}
@@ -163,33 +157,51 @@ const CartItem = ({
             Final Price
           </Heading>
           <Flex gap={"2"}>
-            <Text fontSize={"14px"}>{product_strike}</Text>
+            <Text fontSize={"18px"} fontWeight="500" color="gray.600">
+              ₹{item.mPrice}
+            </Text>
           </Flex>
         </Flex>
         <Box border={"1px dashed #CECEDF"}></Box>
-        <Flex border={"0px solid grey"} gap="5">
+        <Flex border={"0px solid grey"} gap="5" justifyContent="space-between">
           <Button
             backgroundColor={"white"}
             _hover={"backgroundColor:white"}
             textDecoration="underline"
             fontSize={"18"}
             ml="-1.5"
-            onClick={() => handleDelete(id)}
+            onClick={() => handleDelete(handleDelete)}
           >
             Remove
           </Button>
 
-          <Box border={"1px solid #CECEDF"}></Box>
-
-          <Button
-            backgroundColor={"white"}
-            _hover={"backgroundColor:white"}
-            textDecoration="underline"
-            fontSize={"18"}
-            onClick={() => handleDecrementChange(id, quantity)}
+          <Flex
+            align="center"
+            border="1px"
+            borderColor="gray.400"
+            borderRadius="3xl"
           >
-            Repeat
-          </Button>
+            <Button
+              bg="whiteAlpha.900"
+              size="md"
+              borderRadius="50%"
+              fontSize="20px"
+              onClick={() => handleDecrementChange(item.id, item.quantity)}
+            >
+              -
+            </Button>
+
+            <Box mx="2">{item.quantity}</Box>
+            <Button
+              bg="whiteAlpha.900"
+              borderRadius="50%"
+              fontSize="20px"
+              size="md"
+              onClick={() => handleIncrementChange(item.id)}
+            >
+              +
+            </Button>
+          </Flex>
         </Flex>
       </Flex>
     </Flex>

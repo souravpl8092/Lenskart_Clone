@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { Box, Flex, Text, Button, Heading, Grid } from "@chakra-ui/react";
+import { Box, Text, Button, Heading, Grid } from "@chakra-ui/react";
 import { removeFromWishlist } from "../../redux/wishlist/wishlist.actions";
 import { addToCart } from "../../redux/CartPage/action";
 import Navbar from "../../Components/Navbar/Navbar";
@@ -36,14 +36,18 @@ const Wishlist = () => {
       <Navbar />
       <br />
       <br />
-      <Box minHeight="635" w="80%" m="auto">
+      <Box
+        minHeight="635"
+        w={{ lg: "80%", md: "90%", sm: "90%", base: "95%" }}
+        m="auto"
+      >
         <Heading
           fontSize="25px"
           textAlign="left"
           p="2"
           bg="teal.400"
           color="whiteAlpha.900"
-          w="80%"
+          w={{ lg: "80%", md: "90%", sm: "90%", base: "95%" }}
           m="auto"
         >
           Wishlist
@@ -70,18 +74,42 @@ const Wishlist = () => {
                     boxShadow="2xl"
                     p="4"
                     my="4"
-                    w="80%"
+                    w={{ lg: "80%", md: "90%", sm: "90%", base: "95%" }}
                     m="auto"
                   >
-                    <Flex justify="space-between" mb="2">
+                    <Grid
+                      m="auto"
+                      templateColumns={{
+                        base: "repeat(1,1fr)",
+                        sm: "repeat(1,1fr)",
+                        md: "repeat(1,1fr)",
+                        lg: "60% 40%",
+                        xl: "70% 30%"
+                      }}
+                      justify="space-between"
+                      mb="2"
+                    >
                       <Text
                         fontSize="xl"
                         fontWeight="bold"
                         textTransform="capitalize"
+                        mb={{ sm: "4", base: "4" }}
                       >
                         {item.productRefLink}
                       </Text>
-                      <Flex justify="space-between" mb="2" w="28%">
+                      <Grid
+                        m={{ lg: "auto", sm: "left", base: "right" }}
+                        templateColumns={{
+                          base: "repeat(1,1fr)",
+                          sm: "repeat(2,1fr)",
+                          md: "repeat(2,1fr)",
+                          lg: "repeat(2,1fr)",
+                          xl: "repeat(2,1fr)"
+                        }}
+                        gap="4"
+                        justify="space-between"
+                        mb="2"
+                      >
                         <Button
                           colorScheme="red"
                           onClick={() => handleAddToCart(item)}
@@ -94,18 +122,37 @@ const Wishlist = () => {
                         >
                           Remove
                         </Button>
-                      </Flex>
-                    </Flex>
+                      </Grid>
+                    </Grid>
 
-                    <Flex align="center" mb="1">
+                    <Grid
+                      m="auto"
+                      templateColumns={{
+                        base: "repeat(1,1fr)",
+                        sm: "40% 50%",
+                        md: "30% 60%",
+                        lg: "30% 60%",
+                        xl: "20% 60%"
+                      }}
+                      align="center"
+                      mb="1"
+                    >
                       <img
                         src={item.imageTsrc}
                         alt={item.name}
-                        height="100"
-                        width="180"
+                        boxSize="180px"
+                        m="auto"
                       />
 
-                      <Box ml="4">
+                      <Box
+                        ml="4"
+                        textAlign={{
+                          lg: "left",
+                          md: "left",
+                          sm: "left",
+                          base: "center"
+                        }}
+                      >
                         <Text
                           fontSize="lg"
                           fontWeight="bold"
@@ -141,7 +188,7 @@ const Wishlist = () => {
                           Shape : {item.shape}
                         </Text>
                       </Box>
-                    </Flex>
+                    </Grid>
                   </Box>
                 ))}
             </Grid>

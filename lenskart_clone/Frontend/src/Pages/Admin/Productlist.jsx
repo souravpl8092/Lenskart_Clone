@@ -83,10 +83,16 @@ const Productlist = () => {
       <Navbar />
       <br />
       <Grid
-        templateColumns="30% 10% 10% 10% 15% 15%"
+        templateColumns={{
+          lg: "30% 10% 10% 10% 15% 15%",
+          md: "30% 10% 10% 10% 15% 15%",
+          sm: "repeat(1, 1fr)",
+          base: "repeat(1, 1fr)"
+        }}
         justifyContent="space-between"
         w="95%"
         m="auto"
+        gap="2"
       >
         <GridItem>
           <Input
@@ -208,11 +214,11 @@ const Productlist = () => {
           <Text
             w="95%"
             m="auto"
-            fontSize="4xl"
+            fontSize={{ lg: "2xl", sm: "xl", base: "xl" }}
             fontWeight="bold"
             color="whiteAlpha.900"
             bg="#329c92"
-            p="4"
+            p="2"
           >
             Product List
           </Text>

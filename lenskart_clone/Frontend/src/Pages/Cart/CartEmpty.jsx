@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Heading, Button, Flex } from "@chakra-ui/react";
+import { Heading, Button, Flex } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
 const CartEmpty = () => {
@@ -29,7 +29,7 @@ const CartEmpty = () => {
           color="#FFFFFF"
           _hover={{
             backgroundColor: "#12daac",
-            color: "#FFFFFF",
+            color: "#FFFFFF"
           }}
           borderRadius={"10px"}
           padding="15px"

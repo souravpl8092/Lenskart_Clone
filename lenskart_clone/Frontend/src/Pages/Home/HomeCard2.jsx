@@ -15,10 +15,10 @@ const HomeCard2 = ({ type, src }) => {
             md: "none",
             lg: "none",
             xl: "50%",
-            base: "none",
+            base: "none"
           }}
           cursor="pointer"
-          pr="4"
+          pr={{ lg: "4", sm: "0", base: "0" }}
         >
           <Image
             src={src}
@@ -30,7 +30,7 @@ const HomeCard2 = ({ type, src }) => {
               md: "80%",
               lg: "100%",
               xl: "100%",
-              base: "none",
+              base: "none"
             }}
           />
         </Box>

@@ -20,7 +20,10 @@ export const Confirm = () => {
         alignItems={"center"}
         fontWeight="700"
         fontSize={30}
-        marginBottom="50"
+        m="auto"
+        mb="50"
+        textAlign="center"
+        w={{ lg: "100%", sm: "90%", base: "905" }}
       >
         <Box w={400}>
           <Image src="https://static.vecteezy.com/system/resources/previews/006/900/704/original/green-tick-checkbox-illustration-isolated-on-white-background-free-vector.jpg" />

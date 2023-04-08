@@ -1,8 +1,8 @@
-import { Box, Flex, Text, Image, Divider } from "@chakra-ui/react";
+import { Box, Flex, Text, Image, Divider, Grid } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 
 export default function CartItem() {
-  const { cart } = useSelector((state) => state.CartReducer);
+  const { cart, coupon } = useSelector((state) => state.CartReducer);
 
   const getTotalPrice = () => {
     const totalPrice = cart.reduce(
@@ -14,7 +14,7 @@ export default function CartItem() {
 
   return (
     <>
-      <Flex flexDirection="column" w="350px" mt="10px">
+      <Flex flexDirection="column" mt="10px">
         <Box
           display="flex"
           flexDirection="row"
@@ -29,53 +29,98 @@ export default function CartItem() {
             Item {cart.length}
           </Text>
         </Box>
-        <Box className="itemPart" border="1px solid #ccc">
-          {cart.map((el) => {
-            return (
-              <Box>
-                <Box
-                  className="item_container"
-                  display="flex"
-                  flexDirection="row"
-                  gap={5}
-                  alignItems="center"
+        <Box border="1px solid #ccc">
+          {cart.map((el) => (
+            <Box>
+              <Grid
+                templateColumns={{
+                  base: "repeat(1,1fr)",
+                  sm: "repeat(1,1fr)",
+                  md: "35% 60%",
+                  lg: "35% 60%"
+                }}
+                justifyContent={{
+                  lg: "space-between",
+                  md: "center",
+                  sm: "center",
+                  base: "center"
+                }}
+                gap={5}
+                alignItems="center"
+                m="auto"
+                mb="20px"
+                p={3}
+                fontSize="md"
+              >
+                <Box>
+                  <Image
+                    h={{ lg: "60px", md: "60px", sm: "70px", base: "70px" }}
+                    w="100px"
+                    src={el.imageTsrc}
+                    m="auto"
+                  />
+                </Box>
+                <Grid
+                  templateColumns={{
+                    base: "repeat(1,1fr)",
+                    sm: "repeat(1,1fr)",
+                    md: "repeat(2,1fr)",
+                    lg: "repeat(2,1fr)"
+                  }}
+                  justifyContent={{
+                    lg: "space-between",
+                    md: "center",
+                    sm: "center",
+                    base: "center"
+                  }}
+                  columnGap="8"
                   m="auto"
-                  mb="20px"
-                  p={3}
-                  fontSize="md"
                 >
                   <Box>
-                    <Image w="100px" src={el.imageTsrc} />
+                    <Text
+                      textAlign={{ lg: "left", sm: "center", base: "center" }}
+                    >
+                      {"Qty : " + el.quantity}
+                    </Text>
                   </Box>
                   <Box>
-                    <Text>{"Qty : " + el.quantity}</Text>
-                  </Box>
-                  <Box>
-                    <Text display="flex" gap={6}>
+                    <Flex
+                      gap={6}
+                      m="auto"
+                      textAlign={{ lg: "left", sm: "center", base: "center" }}
+                    >
                       <Text color="#9999b3" fontWeight="500" fontSize="16px">
                         <s>{"₹" + el.mPrice}</s>
                       </Text>
                       <Text color="#000042" fontWeight="700">
                         {"₹" + el.price}
                       </Text>
-                    </Text>
+                    </Flex>
                   </Box>
-                </Box>
-                <Divider h={2} mb={2} />
-              </Box>
-            );
-          })}
+                </Grid>
+              </Grid>
+
+              <Divider h={2} mb={2} />
+            </Box>
+          ))}
         </Box>
         <Box p={5} border="1px solid #ccc" bg="#EFEFEF">
           <Flex justifyContent={"space-between"} fontSize="16px">
+            <Text fontWeight="bold">COUPON</Text>
+            <Text fontWeight="medium"> - ₹{coupon || 0}.00</Text>
+          </Flex>
+          <Divider h={2} mb={2} />
+          <Flex justifyContent={"space-between"} fontSize="16px">
             <Text fontWeight="bold">SUBTOTAL</Text>
-            <Text fontWeight="medium">₹{getTotalPrice()}.00</Text>
+            <Text fontWeight="medium">
+              ₹{getTotalPrice() - (coupon || 0)}.00
+            </Text>
           </Flex>
           <Divider h={2} mb={2} />
           <Flex justifyContent={"space-between"} fontSize="15px">
             <Text fontWeight="bold">TAX COLLECTED</Text>
             <Text fontWeight="medium">
-              + ₹{Math.round(getTotalPrice() * 0.18)}.00
+              + ₹{Math.round((getTotalPrice() - (coupon || 0)) * 0.18)}.00
             </Text>
           </Flex>
           <Divider h={2} mb={2} />
@@ -84,7 +129,13 @@ export default function CartItem() {
               ORDER TOTAL
             </Text>
             <Text fontWeight="bold" fontSize={18} color="#329BA9">
-              ₹{Math.round(getTotalPrice() + getTotalPrice() * 0.18)}.00
+              ₹
+              {Math.round(
+                getTotalPrice() -
+                  (coupon || 0) +
+                  (getTotalPrice() - (coupon || 0)) * 0.18
+              )}
+              .00
             </Text>
           </Flex>
         </Box>

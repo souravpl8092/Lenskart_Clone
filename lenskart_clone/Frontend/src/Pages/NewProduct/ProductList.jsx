@@ -14,21 +14,27 @@ import {
   Select,
   Switch,
   Text,
-  VStack,
-  Image
+  Image,
+  Radio,
+  RadioGroup,
+  Stack,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon
 } from "@chakra-ui/react";
 
 const NewProduct = () => {
   const [products, setProducts] = useState([]);
-  const [isLoding, setIsLoading] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [types, setTypes] = useState("");
   const [page, setPage] = useState(0);
   const [sort, setSort] = useState("");
   const [gender, setGender] = useState("");
   const [productRef, setProductRef] = useState("");
-  let loader = [1, 2, 3, 4, 5, 6];
 
-  const FrameType = ({ src, type, stylefilter, name, setfilter }) => {
+  const FrameType = ({ src, type, stylefilter, name }) => {
     return (
       <Box
         onClick={() => stylefilter(name)}
@@ -46,18 +52,18 @@ const NewProduct = () => {
   };
 
   const fetchproduct = async () => {
-    setIsLoading(true);
+    setIsLoaded(true);
     try {
       const response = await fetch(
         `https://harlequin-fawn-tutu.cyclic.app/product?sort=${sort}&productRefLink=${productRef}&productType=${types}&gender=${gender}&page=${page}`
       );
       const postData = await response.json();
       setProducts(postData);
-      setIsLoading(false);
+      setIsLoaded(false);
     } catch (error) {
-      setIsLoading(false);
+      setIsLoaded(false);
       console.log(error);
-      setIsLoading(false);
+      setIsLoaded(false);
     }
   };
 
@@ -73,10 +79,6 @@ const NewProduct = () => {
     setProductRef(value);
   };
 
-  const handleClick4 = (value) => {
-    setProductRef(value);
-  };
-
   return (
     <>
       <Navbar />
@@ -88,7 +90,12 @@ const NewProduct = () => {
           m="auto"
         />
         <Flex m="0" px="2%" gap="4" cursor="pointer">
-          <Box w="17%" m={0}>
+          <Flex
+            w="17%"
+            m={0}
+            display={{ base: "none", xl: "inherit" }}
+            flexDirection="column"
+          >
             <Box mb="20px">
               <br />
               <Text fontWeight="bold" mb="3px" color="gray.600" fontSize="17px">
@@ -198,140 +205,127 @@ const NewProduct = () => {
                 </GridItem>
               </Grid>
             </Box>
-            <VStack mb="20px" alignItems="flex-start" color="gray.500">
-              <Text fontWeight="bold" mb="3px" color="gray.600" fontSize="17px">
-                FRAME COLOR
-              </Text>
-              <Text
-                fontSize="17px"
-                _hover={{ bg: "gray.200" }}
-                w="100%"
-                p="1"
-                onClick={() => handleClick4("Black")}
-              >
-                Black{" "}
-              </Text>
-              <Text
-                fontSize="17px"
-                _hover={{ bg: "gray.200" }}
-                w="100%"
-                p="1"
-                onClick={() => handleClick4("Blue")}
-              >
-                Blue{" "}
-              </Text>
-              <Text
-                fontSize="17px"
-                _hover={{ bg: "gray.200" }}
-                w="100%"
-                p="1"
-                onClick={() => handleClick4("White")}
-              >
-                White{" "}
-              </Text>
-              <Text
-                fontSize="17px"
-                _hover={{ bg: "gray.200" }}
-                w="100%"
-                p="1"
-                onClick={() => handleClick4("Gold")}
-              >
-                Gold{" "}
-              </Text>
-              <Text
-                fontSize="17px"
-                _hover={{ bg: "gray.200" }}
-                w="100%"
-                p="1"
-                onClick={() => handleClick4("Silver")}
-              >
-                Silver{" "}
-              </Text>
-              <Text
-                fontSize="17px"
-                _hover={{ bg: "gray.200" }}
-                w="100%"
-                p="1"
-                onClick={() => handleClick4("Green")}
-              >
-                Green{" "}
-              </Text>
-            </VStack>
+
+            <Accordion
+              defaultIndex={[0]}
+              allowMultiple
+              w="100%"
+              m="auto"
+              mt="-1%"
+            >
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box
+                      as="span"
+                      flex="1"
+                      textAlign="left"
+                      fontWeight="500"
+                      color="gray.500"
+                    >
+                      <Text
+                        fontWeight="bold"
+                        mb="3px"
+                        color="gray.600"
+                        fontSize="17px"
+                      >
+                        GENDER
+                      </Text>
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4} color="gray.500" p="2">
+                  <RadioGroup onChange={setGender} value={gender}>
+                    <Stack direction="column" gap="2">
+                      <Radio value="Men">Men</Radio>
+                      <Radio value="Women">Women</Radio>
+                    </Stack>
+                  </RadioGroup>
+                </AccordionPanel>
+              </AccordionItem>
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box
+                      as="span"
+                      flex="1"
+                      textAlign="left"
+                      fontWeight="500"
+                      color="gray.500"
+                    >
+                      <Text
+                        fontWeight="bold"
+                        mb="3px"
+                        color="gray.600"
+                        fontSize="17px"
+                      >
+                        PRODUCT TYPE
+                      </Text>
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4} color="gray.500" p="2">
+                  <RadioGroup onChange={setTypes} value={types}>
+                    <Stack direction="column" gap="2">
+                      <Radio value="eyeglasses">Eye Glasses</Radio>
+                      <Radio value="sunglasses">Sun Glasses</Radio>
+                    </Stack>
+                  </RadioGroup>
+                </AccordionPanel>
+              </AccordionItem>
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box
+                      as="span"
+                      flex="1"
+                      textAlign="left"
+                      fontWeight="500"
+                      color="gray.500"
+                    >
+                      <Text
+                        fontWeight="bold"
+                        mb="3px"
+                        color="gray.600"
+                        fontSize="17px"
+                      >
+                        FRAME COLOR
+                      </Text>
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4} color="gray.500" p="2">
+                  <RadioGroup onChange={setProductRef} value={productRef}>
+                    <Stack direction="column" gap="2">
+                      <Radio value="Black">Black</Radio>
+                      <Radio value="Blue">Blue</Radio>
+                      <Radio value="White">White</Radio>
+                      <Radio value="Gold">Gold</Radio>
+                      <Radio value="Silver">Silver</Radio>
+                      <Radio value="Green">Green</Radio>
+                    </Stack>
+                  </RadioGroup>
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+
             <hr />
-            <br />
-
-            <VStack mb="20px" alignItems="flex-start" color="gray.500">
-              <Text fontWeight="bold" mb="3px" color="gray.600" fontSize="17px">
-                FRAME COLOR
-              </Text>
-              <Box
-                fontSize="17px"
-                _hover={{ bg: "gray.200" }}
-                w="100%"
-                p="1"
-                onClick={() => setGender("Men")}
-              >
-                Men
-              </Box>
-
-              <Box
-                fontSize="17px"
-                _hover={{ bg: "gray.200" }}
-                w="100%"
-                p="1"
-                onClick={() => setGender("Women")}
-              >
-                Women
-              </Box>
-
-              <Box
-                fontSize="17px"
-                _hover={{ bg: "gray.200" }}
-                w="100%"
-                p="1"
-                onClick={() => setGender("Kid")}
-              >
-                Kid
-              </Box>
-            </VStack>
-            <VStack mb="20px" alignItems="flex-start" color="gray.500">
-              <Text fontWeight="bold" mb="3px" color="gray.600" fontSize="17px">
-                GLASSES
-              </Text>
-              <Box
-                fontSize="17px"
-                _hover={{ bg: "gray.200" }}
-                w="100%"
-                p="1"
-                onClick={() => setTypes("eyeglasses")}
-              >
-                Eye Glasses
-              </Box>
-
-              <Box
-                fontSize="17px"
-                _hover={{ bg: "gray.200" }}
-                w="100%"
-                p="1"
-                onClick={() => setTypes("sunglasses")}
-              >
-                Sun Glasses
-              </Box>
-            </VStack>
-            <hr />
-          </Box>
+          </Flex>
 
           <Box
             overflow="scroll"
-            w="82%"
+            w={{ xl: "82%", base: "100%" }}
             borderLeft="1px solid"
             borderColor="gray.300"
             m={0}
-            sx={{
+            /*  sx={{
               "::-webkit-scrollbar": {
                 display: "none"
               }
-            }}
+            }} */
           >
             <Flex
               justifyContent="space-between"
@@ -343,7 +337,10 @@ const NewProduct = () => {
               <Text fontSize="15px" color="gray.600" fontWeight="500">
                 EYEGLASSES & SUNGLASSES
               </Text>
-              <Flex alignItems="center">
+              <Flex
+                alignItems="center"
+                display={{ md: "inherit", base: "none" }}
+              >
                 <Text fontWeight="bold" mr="5px" color="green" fontSize="15px">
                   VIEW FRAMES
                 </Text>
@@ -381,160 +378,154 @@ const NewProduct = () => {
                 Showing {products.length} of 50 Results
               </Text>
             )}
-
-            {isLoding && (
+            {isLoaded ? (
+              <Loading />
+            ) : products.length !== 0 ? (
               <Grid
                 m="20px 10px"
-                templateColumns="repeat(3, 1fr)"
+                templateColumns={{
+                  base: "repeat(1,1fr)",
+                  sm: "repeat(1,1fr)",
+                  md: "repeat(2,1fr)",
+                  lg: "repeat(3,1fr)"
+                }}
                 height="100vh"
                 gap={6}
               >
-                {loader.map((ele) => (
-                  <Loading key={ele} />
-                ))}
-              </Grid>
-            )}
-            {products.length === 0 && (
-              <h2
-                style={{
-                  fontSize: "28px",
-                  fontWeight: "bolder",
-                  textAlign: "center",
-                  borderRadius: "10px",
-                  color: "gray"
-                }}
-              >
-                No Glasses Found
-              </h2>
-            )}
-            <Grid
-              m="20px 10px"
-              templateColumns="repeat(3, 1fr)"
-              height="100vh"
-              gap={6}
-            >
-              {products.map((ele) => (
-                <GridItem>
-                  <Link to={`/newproducts/${ele._id}`}>
-                    <Box
-                      position="relative"
-                      border="1px solid"
-                      borderColor="gray.200"
-                      borderRadius="3%"
-                      p="10px"
-                      _hover={{
-                        boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
-                      }}
-                      mb="7"
-                    >
-                      <Box>
-                        <Image
-                          m="auto"
-                          width="80%"
-                          src={ele.imageTsrc}
-                          alt="image"
-                        />
-                        <br />
-                        <br />
-                        <br />
+                {products.map((ele) => (
+                  <GridItem>
+                    <Link to={`/newproducts/${ele._id}`}>
+                      <Box
+                        position="relative"
+                        border="1px solid"
+                        borderColor="gray.200"
+                        borderRadius="3%"
+                        p="10px"
+                        _hover={{
+                          boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
+                        }}
+                        mb="7"
+                      >
+                        <Box>
+                          <Image
+                            m="auto"
+                            width="80%"
+                            src={ele.imageTsrc}
+                            alt="image"
+                            _hover={{ transform: "scale(1.1)" }}
+                          />
+                          <br />
+                          <br />
+                          <br />
 
-                        <Box p="10px">
-                          <Flex
-                            justifyContent="space-between"
-                            alignItems="center"
-                          >
+                          <Box p="10px">
                             <Flex
-                              w="25%"
-                              borderRadius="20px"
+                              justifyContent="space-between"
                               alignItems="center"
-                              gap="5px"
-                              p="5px 10px"
-                              bgColor="#eeeef5"
+                            >
+                              <Flex
+                                w="25%"
+                                borderRadius="20px"
+                                alignItems="center"
+                                gap="5px"
+                                p="5px 10px"
+                                bgColor="#eeeef5"
+                                fontSize="15px"
+                              >
+                                <Text>
+                                  {ele.rating
+                                    ? ele.rating
+                                    : (Math.random() * (5 - 1) + 1).toFixed(1)}
+                                </Text>
+                                <AiFillStar size="15px" color="#0fbd95" />
+                                <Text>
+                                  {ele.userRated
+                                    ? ele.userRated
+                                    : Math.floor(Math.random() * 999 + 1)}
+                                </Text>
+                              </Flex>
+                            </Flex>
+
+                            <Text
+                              mt="5px"
+                              fontWeight="700"
+                              color="#000042"
+                              fontSize="15px"
+                              textTransform="capitalize"
+                            >
+                              {ele.productRefLink}{" "}
+                            </Text>
+                            <Text
+                              mt="5px"
+                              fontWeight="400"
+                              color="gray.400"
+                              fontSize="14px"
+                            >
+                              {ele.name}{" "}
+                            </Text>
+                            <Text
+                              mt="5px"
+                              fontWeight="400"
+                              color="#000042"
+                              fontSize="14px"
+                            >
+                              Shape : {ele.shape}
+                            </Text>
+                            <Text
+                              mt="5px"
+                              fontWeight="bold"
+                              color="#gray.700"
                               fontSize="15px"
                             >
-                              <Text>
-                                {ele.rating
-                                  ? ele.rating
-                                  : (Math.random() * (5 - 1) + 1).toFixed(1)}
-                              </Text>
-                              <AiFillStar size="15px" color="#0fbd95" />
-                              <Text>
-                                {ele.userRated
-                                  ? ele.userRated
-                                  : Math.floor(Math.random() * 999 + 1)}
-                              </Text>
-                            </Flex>
-                          </Flex>
-
-                          <Text
-                            mt="5px"
-                            fontWeight="700"
-                            color="#000042"
-                            fontSize="15px"
-                            textTransform="capitalize"
-                          >
-                            {ele.productRefLink}{" "}
-                          </Text>
-                          <Text
-                            mt="5px"
-                            fontWeight="400"
-                            color="gray.400"
-                            fontSize="14px"
-                          >
-                            {ele.name}{" "}
-                          </Text>
-                          <Text
-                            mt="5px"
-                            fontWeight="400"
-                            color="#000042"
-                            fontSize="14px"
-                          >
-                            Shape : {ele.shape}
-                          </Text>
-                          <Text
-                            mt="5px"
-                            fontWeight="bold"
-                            color="#gray.700"
-                            fontSize="15px"
-                          >
-                            ₹{ele.price}{" "}
-                            <span
-                              style={{
-                                fontSize: "15px",
-                                fontWeight: "lighter",
-                                color: "#727297",
-                                textDecoration: "line-through"
-                              }}
-                            >
-                              {"  "}₹{ele.mPrice}
-                            </span>
-                            <span
-                              style={{
-                                color: "#727297",
-                                fontSize: "15px",
-                                fontWeight: "lighter"
-                              }}
-                            >
-                              {"  "}(+tax)
-                            </span>
-                          </Text>
+                              ₹{ele.price}{" "}
+                              <span
+                                style={{
+                                  fontSize: "15px",
+                                  fontWeight: "lighter",
+                                  color: "#727297",
+                                  textDecoration: "line-through"
+                                }}
+                              >
+                                {"  "}₹{ele.mPrice}
+                              </span>
+                              <span
+                                style={{
+                                  color: "#727297",
+                                  fontSize: "15px",
+                                  fontWeight: "lighter"
+                                }}
+                              >
+                                {"  "}(+tax)
+                              </span>
+                            </Text>
+                          </Box>
+                        </Box>
+                        <Box
+                          fontSize="15px"
+                          color="#cbb881"
+                          w="100%"
+                          padding="2"
+                          fontWeight="bold"
+                          bgGradient="linear(to-r,  #f8f2e0, yellow.50)"
+                        >
+                          BUY1 GET1 +10% OFF
                         </Box>
                       </Box>
-                      <Box
-                        fontSize="15px"
-                        color="#cbb881"
-                        w="100%"
-                        padding="2"
-                        fontWeight="bold"
-                        bgGradient="linear(to-r,  #f8f2e0, yellow.50)"
-                      >
-                        BUY1 GET1 +10% OFF
-                      </Box>
-                    </Box>
-                  </Link>
-                </GridItem>
-              ))}
-            </Grid>
+                    </Link>
+                  </GridItem>
+                ))}
+              </Grid>
+            ) : (
+              <Text
+                fontSize="28px"
+                fontWeight="bolder"
+                textAlign="center"
+                color="gray"
+                mt="5"
+              >
+                No Glasses Found
+              </Text>
+            )}
           </Box>
         </Flex>
         <Pagination current={page} onChange={(value) => setPage(value)} />

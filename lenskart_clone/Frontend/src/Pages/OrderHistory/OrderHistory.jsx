@@ -17,7 +17,12 @@ const OrderHistory = () => {
       <Navbar />
       <br />
 
-      <Box minHeight="635" p={8} w="70%" m="auto">
+      <Box
+        minHeight="635"
+        p={8}
+        w={{ lg: "70%", md: "70%", sm: "98%", base: "98%" }}
+        m="auto"
+      >
         <Heading
           fontSize="25px"
           mt="1%"
@@ -52,7 +57,14 @@ const OrderHistory = () => {
                       textAlign="center"
                     >
                       <Link to={`/products/${order.id}`}>
-                        <Flex
+                        <Grid
+                          m="auto"
+                          templateColumns={{
+                            base: "repeat(1,1fr)",
+                            md: "30% 60%",
+                            lg: "30% 60%",
+                            xl: "20% 60%"
+                          }}
                           key={order.id + i + Math.random()}
                           bg="gray.50"
                           p={4}
@@ -61,9 +73,25 @@ const OrderHistory = () => {
                           color="gray.600"
                         >
                           <Box>
-                            <Image src={order.imageTsrc} boxSize="180px" />
+                            <Image
+                              src={order.imageTsrc}
+                              boxSize={{
+                                lg: "150px",
+                                md: "120px",
+                                sm: "120px",
+                                base: "120px"
+                              }}
+                              m="auto"
+                            />
                           </Box>
-                          <Box textAlign="left">
+                          <Box
+                            textAlign={{
+                              lg: "left",
+                              md: "left",
+                              sm: "center",
+                              base: "center"
+                            }}
+                          >
                             <Text fontWeight="bold">
                               Product ID: {order.productId}
                             </Text>
@@ -99,7 +127,7 @@ const OrderHistory = () => {
                               Status : Completed
                             </Text>
                           </Box>
-                        </Flex>
+                        </Grid>
                       </Link>
                     </Grid>
                   )

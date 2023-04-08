@@ -1,12 +1,8 @@
 import { Box, Flex, Heading } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
-function PriceDetail({ totalPrice, discountPrice, coupon }) {
-  const [finaltotal, setFinalTotal] = useState(0);
-
-  useEffect(() => {
-    setFinalTotal(totalPrice - discountPrice - (coupon || 0));
-  }, [totalPrice, discountPrice, coupon]);
+function PriceDetail({ totalPrice, discountPrice }) {
+  const { coupon } = useSelector((state) => state.CartReducer);
   return (
     <Flex
       flexDirection={"column"}
@@ -88,7 +84,7 @@ function PriceDetail({ totalPrice, discountPrice, coupon }) {
             justifyContent="flex-end"
             color="green.900"
           >
-            ₹{coupon}
+            ₹{coupon || 0}
           </Heading>
         </Flex>
         <Box border={"1px dashed #CECEDF"}></Box>
