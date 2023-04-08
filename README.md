@@ -72,7 +72,8 @@
 - Coupons are provided for the discount
 - Payment Gateway
 - User Authentication before placing an order
-- Data fetching from Backend. 
+- Data fetching from Backend
+- Responsive for all screen sizes 
 
 <br/>
 
@@ -95,10 +96,10 @@
 <table>
   <tr>
     <td>
-      <img src="https://i.imgur.com/NRf9CVc.png" alt="Product-list">
+      <img src="https://i.imgur.com/NRf9CVc.png" alt="Navbar">
     </td>
     <td>
-      <img src="https://i.imgur.com/rhjgVpr.png" alt="Product-register">
+      <img src="https://i.imgur.com/YnzGQIW.png" alt="Navbar">
     </td>
   </tr>
   
@@ -139,7 +140,7 @@
 <br/>
 
 <div align="center">
-<img width="80%" src="https://i.imgur.com/wBOOprb.png" alt="Product page 1"/> 
+<img width="80%" src="https://i.imgur.com/koKtiaA.png" alt="Product page 1"/> 
 </div>
 
 
@@ -151,7 +152,7 @@
 <br/>
 
 <div align="center">
-<img  width="80%" src="https://i.imgur.com/vCb1o5r.png" alt="Product page 2"/>
+<img  width="80%" src="https://i.imgur.com/mWFctMx.png" alt="Product page 2"/>
 </div>
 
 
@@ -163,7 +164,7 @@
 <br/>
 
 <div align="center">
-  <img width="80%" src="https://i.imgur.com/EyoAE0h.png" alt=" cart page">
+  <img width="80%" src="https://i.imgur.com/3Udtyf1.png" alt=" cart page">
 </div>
 
 <br/>
@@ -174,7 +175,7 @@
 <br/>
 
 <div align="center">
-  <img width="80%" src="https://i.imgur.com/T8dxl99.png" alt="Shipping page">
+  <img width="80%" src="https://i.imgur.com/L3WhakS.png" alt="Shipping page">
 </div>
 
 <br/>
@@ -186,7 +187,7 @@
 <br/>
 
 <div align="center">
-  <img width="80%" src="https://i.imgur.com/dfMTIxF.png" alt="Flight checkout page">
+  <img width="80%" src="https://i.imgur.com/1Rypipb.png" alt="Flight checkout page">
 </div>
 
 <br/>
@@ -262,7 +263,7 @@
 ## Footer :
 
 <div align="center">
-  <img width="80%" src="https://i.imgur.com/JNsYNwa.png" alt="Footer">
+  <img width="80%" src="https://i.imgur.com/TspbG5U.png" alt="Footer">
 </div>
 <br/>
 <br/>
