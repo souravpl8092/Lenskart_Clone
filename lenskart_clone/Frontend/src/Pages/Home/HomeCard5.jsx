@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Text, Image, Flex, Grid } from "@chakra-ui/react";
+import { Box, Text, Image, Grid } from "@chakra-ui/react";
 import ReactPlayer from "react-player";
 
 export const HomeCard5 = () => {
@@ -14,7 +14,7 @@ export const HomeCard5 = () => {
           md: "repeat(2,1fr)",
           lg: "repeat(2,1fr)",
           xl: "repeat(2,1fr)",
-          "2xl": "repeat(2,1fr)",
+          "2xl": "repeat(2,1fr)"
         }}
       >
         <Box>
@@ -63,7 +63,7 @@ export const HomeCard5a = ({ type, heading }) => {
           md: "repeat(1,1fr)",
           lg: "repeat(2,1fr)",
           xl: "repeat(2,1fr)",
-          "2xl": "repeat(2,1fr)",
+          "2xl": "repeat(2,1fr)"
         }}
         gap={6}
       >
@@ -89,7 +89,7 @@ export const HomeCard5b = ({ type, heading }) => {
           md: "repeat(1,1fr)",
           lg: "repeat(2,1fr)",
           xl: "repeat(2,1fr)",
-          "2xl": "repeat(2,1fr)",
+          "2xl": "repeat(2,1fr)"
         }}
         gap={6}
       >
@@ -122,7 +122,7 @@ export const HomeCard5c = ({ type, heading }) => {
             md: "repeat(1,1fr)",
             lg: "repeat(2,1fr)",
             xl: "repeat(3,1fr)",
-            "2xl": "repeat(3,1fr)",
+            "2xl": "repeat(3,1fr)"
           }}
           gap={6}
           w="100%"

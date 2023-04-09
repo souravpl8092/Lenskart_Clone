@@ -88,8 +88,6 @@ const ProductPost = () => {
           setLoading(false);
           const { message } = await response.json();
           console.log(message);
-          console.log(payload);
-          console.log(response);
         }
       } else {
         setLoading(false);

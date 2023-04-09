@@ -1,4 +1,16 @@
 import React from "react";
+import Login from "../../Pages/Login/Login";
+import Signup from "../../Pages/Signup/Signup";
+import NavbarCard5 from "./NavbarCard5";
+import { NavbarDetail1 } from "./NavbarDetail";
+import { Link, Navigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../ContextApi/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { FiPhoneCall } from "react-icons/fi";
+import { CiHeart } from "react-icons/ci";
+import { CgShoppingCart } from "react-icons/cg";
+import { TriangleDownIcon } from "@chakra-ui/icons";
 import {
   Box,
   Text,
@@ -13,18 +25,6 @@ import {
   PopoverContent,
   PopoverBody
 } from "@chakra-ui/react";
-import { FiPhoneCall } from "react-icons/fi";
-import { CiHeart } from "react-icons/ci";
-import { CgShoppingCart } from "react-icons/cg";
-import { TriangleDownIcon } from "@chakra-ui/icons";
-import Login from "../../Pages/Login/Login";
-import Signup from "../../Pages/Signup/Signup";
-import { NavbarDetail1 } from "./NavbarDetail";
-import { Link, Navigate } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../../ContextApi/AuthContext";
-import NavbarCard5 from "./NavbarCard5";
-import { useNavigate } from "react-router-dom";
 
 export const NavbarCard1 = () => {
   return (
@@ -75,7 +75,7 @@ export const NavbarCard2 = () => {
             <Button
               size="lg"
               bg="whiteAlpha.900"
-              fontSize="15px"
+              fontSize="14px"
               fontWeight="400"
               onClick={() => navigate("/orderhistory")}
             >
@@ -86,7 +86,7 @@ export const NavbarCard2 = () => {
                 <PopoverTrigger>
                   <Box
                     fontWeight={"600"}
-                    fontSize="16px"
+                    fontSize="15px"
                     m="auto"
                     mt="-2px"
                     w="90px"
@@ -107,7 +107,7 @@ export const NavbarCard2 = () => {
                   <PopoverBody
                     h={"40px"}
                     pl="6"
-                    fontSize="16px"
+                    fontSize="15px"
                     _hover={{ fontWeight: "bold" }}
                   >
                     <Box
@@ -132,18 +132,18 @@ export const NavbarCard2 = () => {
               leftIcon={<CiHeart />}
               size="lg"
               bg="whiteAlpha.900"
-              fontSize="15px"
+              fontSize="14px"
               fontWeight="400"
               onClick={() => navigate("/wishlist")}
             >
               Wishlist
             </Button>
-            <Link to="/cartpage">
+            <Link to="/cart">
               <Button
                 leftIcon={<CgShoppingCart />}
                 size="lg"
                 bg="whiteAlpha.900"
-                fontSize="15px"
+                fontSize="14px"
                 fontWeight="400"
               >
                 Cart

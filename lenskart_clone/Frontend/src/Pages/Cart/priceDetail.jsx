@@ -26,7 +26,7 @@ function PriceDetail({ totalPrice, discountPrice }) {
         >
           <Heading
             as="p"
-            fontSize={"18px"}
+            fontSize={"16px"}
             fontWeight="500"
             fontFamily={"Inter"}
           >
@@ -34,7 +34,7 @@ function PriceDetail({ totalPrice, discountPrice }) {
           </Heading>
           <Heading
             as="p"
-            fontSize={"16px"}
+            fontSize={"15px"}
             fontWeight="500"
             fontFamily={"Inter"}
             justifyContent="flex-end"
@@ -46,7 +46,7 @@ function PriceDetail({ totalPrice, discountPrice }) {
         <Flex gap="50px" border="0px solid blue" justifyContent="space-between">
           <Heading
             as="p"
-            fontSize={"18px"}
+            fontSize={"16px"}
             fontWeight="500"
             fontFamily={"Inter"}
           >
@@ -54,12 +54,81 @@ function PriceDetail({ totalPrice, discountPrice }) {
           </Heading>
           <Heading
             as="p"
-            fontSize={"16px"}
+            fontSize={"15px"}
             fontWeight="500"
             fontFamily={"Inter"}
             justifyContent="flex-end"
           >
-            ₹ {totalPrice - discountPrice}
+            - ₹ {totalPrice - discountPrice}
+          </Heading>
+        </Flex>
+        <Box border={"1px dashed #CECEDF"}></Box>
+        <Flex gap="50px" border="0px solid blue" justifyContent="space-between">
+          <Heading
+            as="p"
+            fontSize={"16px"}
+            fontWeight="500"
+            fontFamily={"Inter"}
+          >
+            Total{" "}
+            <span style={{ fontSize: "14px", fontWeight: "500" }} color="gray">
+              (Before Tax)
+            </span>
+          </Heading>
+          <Heading
+            as="p"
+            fontSize={"15px"}
+            fontWeight="500"
+            fontFamily={"Inter"}
+            justifyContent="flex-end"
+          >
+            ₹ {discountPrice}
+          </Heading>
+        </Flex>
+        <Box border={"1px dashed #CECEDF"}></Box>
+        <Flex gap="50px" border="0px solid blue" justifyContent="space-between">
+          <Heading
+            as="p"
+            fontSize={"16px"}
+            fontWeight="500"
+            fontFamily={"Inter"}
+          >
+            Tax Collected{" "}
+            <span style={{ fontSize: "14px", fontWeight: "500" }} color="gray">
+              (18%)
+            </span>
+          </Heading>
+          <Heading
+            as="p"
+            fontSize={"15px"}
+            fontWeight="500"
+            fontFamily={"Inter"}
+            justifyContent="flex-end"
+          >
+            + ₹ {Math.round(discountPrice * 0.18)}
+          </Heading>
+        </Flex>
+        <Box border={"1px dashed #CECEDF"}></Box>
+        <Flex gap="50px" border="0px solid blue" justifyContent="space-between">
+          <Heading
+            as="p"
+            fontSize={"16px"}
+            fontWeight="500"
+            fontFamily={"Inter"}
+          >
+            Total{" "}
+            <span style={{ fontSize: "14px", fontWeight: "500" }} color="gray">
+              (After Tax)
+            </span>
+          </Heading>
+          <Heading
+            as="p"
+            fontSize={"15px"}
+            fontWeight="500"
+            fontFamily={"Inter"}
+            justifyContent="flex-end"
+          >
+            ₹ {discountPrice + Math.round(discountPrice * 0.18)}
           </Heading>
         </Flex>
         <Box border={"1px dashed #CECEDF"}></Box>
@@ -70,7 +139,7 @@ function PriceDetail({ totalPrice, discountPrice }) {
         >
           <Heading
             as="p"
-            fontSize={"18px"}
+            fontSize={"16px"}
             fontWeight="500"
             fontFamily={"Inter"}
           >
@@ -78,7 +147,7 @@ function PriceDetail({ totalPrice, discountPrice }) {
           </Heading>
           <Heading
             as="p"
-            fontSize={"16px"}
+            fontSize={"15px"}
             fontWeight="500"
             fontFamily={"Inter"}
             justifyContent="flex-end"
@@ -95,7 +164,7 @@ function PriceDetail({ totalPrice, discountPrice }) {
         >
           <Heading
             as="p"
-            fontSize={"18px"}
+            fontSize={"16px"}
             fontWeight="500"
             fontFamily={"Inter"}
           >
@@ -103,7 +172,7 @@ function PriceDetail({ totalPrice, discountPrice }) {
           </Heading>
           <Heading
             as="p"
-            fontSize={"18px"}
+            fontSize={"16px"}
             fontWeight="500"
             fontFamily={"Inter"}
             justifyContent="flex-end"
@@ -120,7 +189,7 @@ function PriceDetail({ totalPrice, discountPrice }) {
         >
           <Heading
             as="p"
-            fontSize={"18px"}
+            fontSize={"17px"}
             fontWeight="600"
             fontFamily={"Inter"}
           >
@@ -133,7 +202,7 @@ function PriceDetail({ totalPrice, discountPrice }) {
             fontFamily={"Inter"}
             justifyContent="flex-end"
           >
-            ₹ {discountPrice - (coupon || 0)}
+            ₹ {discountPrice + Math.round(discountPrice * 0.18) - (coupon || 0)}
           </Heading>
         </Flex>
       </Flex>

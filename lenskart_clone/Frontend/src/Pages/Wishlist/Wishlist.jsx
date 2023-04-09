@@ -22,9 +22,8 @@ const Wishlist = () => {
       data.quantity = 1;
       dispatch(addToCart(data));
       dispatch(removeFromWishlist(data._id));
-      console.log(data);
       setTimeout(() => {
-        navigate("/cartpage");
+        navigate("/cart");
       }, 1000);
     } else {
       alert("Product Already Add in Cart");

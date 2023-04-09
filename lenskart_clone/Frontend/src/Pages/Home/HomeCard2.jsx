@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Flex, Image, Spacer } from "@chakra-ui/react";
 import Slider from "./Slider";
-//import Heading from "./Heading";
 
 const HomeCard2 = ({ type, src }) => {
   return (

@@ -5,7 +5,11 @@ import { services, about, helps } from "./FooterDetails";
 
 const Footer = () => {
   return (
-    <Box bgColor="#000042" color="whiteAlpha.900">
+    <Box
+      bgColor="#000042"
+      color="whiteAlpha.900"
+      p={{ lg: "0", md: "5", base: "5" }}
+    >
       <Grid
         templateColumns={{
           base: "repeat(1,1fr)",

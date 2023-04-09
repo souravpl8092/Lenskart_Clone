@@ -31,7 +31,7 @@ const HomeCard = ({ type }) => {
               <Image src={`${i.img}`} alt={i.name} w="100%" />
             </Center>
             <Center>
-              <Text color="gray" fontSize="lg" fontWeight="500" p="1">
+              <Text color="gray" fontSize="16px" fontWeight="500" p="1">
                 {i.title}
               </Text>
             </Center>

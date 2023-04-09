@@ -139,7 +139,6 @@ const Signup = () => {
               setAuth(true);
               setLoading(false);
               setExist(false);
-              console.log(Auth);
             })
             .catch((err) => setAuth(false))
             .finally(() => setLoading(false))
@@ -161,7 +160,7 @@ const Signup = () => {
         Sign Up
       </Center>
 
-      <Modal isOpen={isOpen} onClose={onClose} isCentered size="5xl">
+      <Modal isOpen={isOpen} onClose={onClose} isCentered size="md">
         <ModalOverlay />
         <ModalContent w="lg" pt="5" rounded="3xl">
           <ModalCloseButton />
@@ -185,7 +184,7 @@ const Signup = () => {
                 focusBorderColor="rgb(206, 206, 223)"
                 name="first_name"
                 placeholder="First Name*"
-                h={"52px"}
+                h={"45px"}
                 borderColor={"rgb(206, 206, 223)"}
                 m={"8px 0px 15px 0px"}
                 rounded="2xl"
@@ -201,7 +200,7 @@ const Signup = () => {
                 name="last_name"
                 type="text"
                 placeholder="Last Name"
-                h={"52px"}
+                h={"45px"}
                 focusBorderColor="rgb(206, 206, 223)"
                 borderColor={"rgb(206, 206, 223)"}
                 m={"8px 0px 25px 0px"}
@@ -248,7 +247,7 @@ const Signup = () => {
                 fontSize="16px"
                 name="email"
                 placeholder="Email*"
-                h={"52px"}
+                h={"45px"}
                 focusBorderColor="rgb(206, 206, 223)"
                 borderColor={"rgb(206, 206, 223)"}
                 m={"8px 0px 18px 0px"}
@@ -267,7 +266,7 @@ const Signup = () => {
                   type={show ? "text" : "password"}
                   name="password"
                   placeholder="Password*"
-                  h={"52px"}
+                  h={"45px"}
                   focusBorderColor="rgb(206, 206, 223)"
                   borderColor={"rgb(206, 206, 223)"}
                   m={"8px 0px 8px 0px"}
@@ -307,7 +306,7 @@ const Signup = () => {
                 <Checkbox
                   mb={"20px"}
                   mt="20px"
-                  size="lg"
+                  size="sm"
                   fontFamily={" sans-serif"}
                 >
                   Get Update on whatsapp
@@ -372,7 +371,7 @@ const Signup = () => {
                 </Button>
               )}
 
-              <Center mt={"14px"} fontSize="15px">
+              <Center mt={"14px"} fontSize="15px" gap="2">
                 Have an account?{" "}
                 <Center fontWeight={"500"} textDecoration="underline">
                   Sign In

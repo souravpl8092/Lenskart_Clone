@@ -65,10 +65,6 @@ function Nav() {
 
         <Box>
           <Button colorScheme="blue" p="0" onClick={onOpen}>
-            {/* <Image
-              w={6}
-              src="https://www.clipartmax.com/png/full/36-365828_navbar-toggle-icon-menu-hamburger-png-white.png"
-            /> */}
             <HamburgerIcon fontSize="20px" />
           </Button>
           <Drawer
@@ -174,7 +170,7 @@ function Nav() {
                       My Orders
                     </Box>
                   </Link>
-                  <Link to="/cartpage">
+                  <Link to="/cart">
                     <Box
                       borderBottom="0.1px solid gray"
                       fontSize="15px"
@@ -240,7 +236,7 @@ function Nav() {
                         </AccordionButton>
                       </h2>
                       <AccordionPanel pb={4}>
-                        <Link to="/newproducts">
+                        <Link to="/products">
                           <Box>
                             <Text pb="2">EYEGLASSES</Text>
                             <Text pb="2">COMPUTER GLASSES</Text>
@@ -265,7 +261,7 @@ function Nav() {
                         </AccordionButton>
                       </h2>
                       <AccordionPanel pb={5}>
-                        <Link to="/newproducts">
+                        <Link to="/products">
                           <Box>
                             <Text pb="2">EYEGLASSES</Text>
                             <Text pb="2">COMPUTER GLASSES</Text>
@@ -290,7 +286,7 @@ function Nav() {
                         </AccordionButton>
                       </h2>
                       <AccordionPanel pb={4}>
-                        <Link to="/newproducts">
+                        <Link to="/products">
                           <Box>
                             <Text pb="2">EYEGLASSES</Text>
                             <Text pb="2">COMPUTER GLASSES</Text>

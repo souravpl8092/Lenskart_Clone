@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Pagination from "../../Components/Pagination";
+import Navbar from "./Navbar";
 import {
   Box,
   Table,
@@ -17,9 +20,6 @@ import {
   Input,
   Select
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
-import Pagination from "./Pagination";
-import Navbar from "./Navbar";
 
 const Productlist = () => {
   const navigate = useNavigate();
