@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Box, Text, Stack, Heading, Flex, Image, Grid } from "@chakra-ui/react";
+import { Box, Text, Stack, Heading, Image, Grid } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
@@ -16,7 +16,6 @@ const OrderHistory = () => {
     <Box>
       <Navbar />
       <br />
-
       <Box
         minHeight="635"
         p={8}
@@ -66,7 +65,7 @@ const OrderHistory = () => {
                             xl: "20% 60%"
                           }}
                           key={order.id + i + Math.random()}
-                          bg="gray.50"
+                          bg="whiteAlpha.900"
                           p={4}
                           boxShadow="dark-lg"
                           gap="5"
@@ -75,11 +74,13 @@ const OrderHistory = () => {
                           <Box>
                             <Image
                               src={order.imageTsrc}
-                              boxSize={{
-                                lg: "150px",
-                                md: "120px",
-                                sm: "120px",
-                                base: "120px"
+                              w={{
+                                base: "60%",
+                                sm: "50%",
+                                md: "100%",
+                                lg: "100%",
+                                xl: "100%",
+                                "2xl": "100%"
                               }}
                               m="auto"
                             />

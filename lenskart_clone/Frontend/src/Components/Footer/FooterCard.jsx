@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Text, Image, HStack, Flex, Center, Grid } from "@chakra-ui/react";
+import { Box, Text, Image, Flex, Center, Grid } from "@chakra-ui/react";
 import { AiFillFacebook } from "react-icons/ai";
 import { TfiTwitter } from "react-icons/tfi";
 import { AiOutlineInstagram } from "react-icons/ai";
@@ -36,7 +36,7 @@ export const FooterCard2 = () => {
             md: "repeat(2,1fr)",
             lg: "repeat(2,1fr)",
             xl: "repeat(2,1fr)",
-            "2xl": "repeat(2,1fr)",
+            "2xl": "repeat(2,1fr)"
           }}
         >
           <Image
@@ -72,7 +72,7 @@ export const FooterCard = () => {
           md: "repeat(3,1fr)",
           lg: "repeat(3,1fr)",
           xl: "repeat(3,1fr)",
-          "2xl": "repeat(3,1fr)",
+          "2xl": "repeat(3,1fr)"
         }}
         cursor="pointer"
         p="2%"
@@ -90,7 +90,7 @@ export const FooterCard = () => {
         templateColumns={{
           base: "repeat(1,1fr)",
           md: "repeat(2,1fr)",
-          lg: "repeat(2,1fr)",
+          lg: "repeat(2,1fr)"
         }}
         m="auto"
         color="white"

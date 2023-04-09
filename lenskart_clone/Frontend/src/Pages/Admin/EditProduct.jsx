@@ -1,4 +1,6 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 import {
   Box,
   Button,
@@ -11,9 +13,6 @@ import {
   Select,
   FormLabel
 } from "@chakra-ui/react";
-import { AuthContext } from "../../ContextApi/AuthContext";
-import { useParams, useNavigate } from "react-router-dom";
-import Navbar from "./Navbar";
 
 const EditProduct = () => {
   const toast = useToast();
@@ -35,7 +34,6 @@ const EditProduct = () => {
   const [quantity, setQuantity] = useState("");
   const [productRefLink, setProductRefLink] = useState("");
   const [loading, setLoading] = useState(false);
-  const { setisAuth } = useContext(AuthContext);
 
   useEffect(() => {
     fetch(`https://harlequin-fawn-tutu.cyclic.app/product/${id}`, {
@@ -45,7 +43,6 @@ const EditProduct = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         setImageTsrc(res.imageTsrc);
         setPrice(res.position);
         setMPrice(res.price);
@@ -101,7 +98,6 @@ const EditProduct = () => {
 
       if (response.status === 204) {
         setLoading(false);
-        console.log(200);
         toast({
           title: "Product Updated Successfully",
           status: "success",

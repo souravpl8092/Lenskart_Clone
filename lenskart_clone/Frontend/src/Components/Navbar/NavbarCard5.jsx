@@ -1,5 +1,5 @@
 import React from "react";
-import "../../App.css";
+import { Link } from "react-router-dom";
 import {
   Avatar,
   Image,
@@ -13,7 +13,7 @@ import {
   MenuButton,
   MenuList
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import "../../App.css";
 
 function NavbarCard5() {
   return (
@@ -21,7 +21,7 @@ function NavbarCard5() {
       <Menu>
         <MenuButton
           bg="#fbf9f7"
-          fontSize="16px"
+          fontSize="15px"
           fontWeight="600"
           _hover={{
             borderBottom: "4px solid teal"
@@ -37,7 +37,7 @@ function NavbarCard5() {
           w="100%"
           p="5"
         >
-          <Link to="/newproducts">
+          <Link to="/products">
             <Box>
               <Grid gridTemplateColumns="repeat(5, 1fr)" w="100%">
                 <Flex direction="column" justifyContent="space-evenly" mt="20">
@@ -194,7 +194,7 @@ function NavbarCard5() {
       <Menu>
         <MenuButton
           bg="#fbf9f7"
-          fontSize="16px"
+          fontSize="15px"
           fontWeight="600"
           _hover={{
             borderBottom: "4px solid teal"
@@ -210,7 +210,7 @@ function NavbarCard5() {
           w="100%"
           p="5"
         >
-          <Link to="/newproducts">
+          <Link to="/products">
             <Box>
               <Grid gridTemplateColumns="repeat(5, 1fr)" w="100%">
                 <Flex
@@ -300,7 +300,7 @@ function NavbarCard5() {
       <Menu>
         <MenuButton
           bg="#fbf9f7"
-          fontSize="16px"
+          fontSize="15px"
           fontWeight="600"
           _hover={{
             borderBottom: "4px solid teal"
@@ -316,7 +316,7 @@ function NavbarCard5() {
           w="100%"
           p="2"
         >
-          <Link to="/newproducts">
+          <Link to="/products">
             <Box>
               <Grid
                 gridTemplateColumns="repeat(3, 1fr)"
@@ -362,7 +362,7 @@ function NavbarCard5() {
       <Menu>
         <MenuButton
           bg="#fbf9f7"
-          fontSize="16px"
+          fontSize="15px"
           fontWeight="600"
           _hover={{
             borderBottom: "4px solid teal"
@@ -481,7 +481,7 @@ function NavbarCard5() {
       <Menu>
         <MenuButton
           bg="#fbf9f7"
-          fontSize="16px"
+          fontSize="15px"
           fontWeight="600"
           _hover={{
             borderBottom: "4px solid teal"
@@ -497,7 +497,7 @@ function NavbarCard5() {
           w="100%"
           p="5"
         >
-          <Link to="/newproducts">
+          <Link to="/products">
             <Box>
               <Grid gridTemplateColumns="repeat(6, 1fr)">
                 <Flex direction="column" justifyContent="space-evenly">
@@ -641,7 +641,7 @@ function NavbarCard5() {
       <Menu>
         <MenuButton
           bg="#fbf9f7"
-          fontSize="16px"
+          fontSize="15px"
           fontWeight="600"
           _hover={{
             borderBottom: "4px solid teal"
@@ -697,7 +697,7 @@ function NavbarCard5() {
                     bg="whiteAlpha.900"
                     rounded="50px"
                     p="7"
-                    fontSize="16px"
+                    fontSize="15px"
                     mt="20"
                     ml="30%"
                     _hover={{ bg: "#020043", color: "white" }}
@@ -714,7 +714,7 @@ function NavbarCard5() {
       <Menu>
         <MenuButton
           bg="#fbf9f7"
-          fontSize="16px"
+          fontSize="15px"
           fontWeight="600"
           _hover={{
             borderBottom: "4px solid teal"
@@ -742,10 +742,10 @@ function NavbarCard5() {
               >
                 Over 1100+ Lenskart Store
               </Heading>
-              <Box color="black" fontSize="16px" textAlign="center" mt="6%">
+              <Box color="black" fontSize="15px" textAlign="center" mt="6%">
                 Experience eyewear in a whole new way: Visit your nearest store
               </Box>
-              <Box color="black" fontSize="16px" textAlign="center" mt="1.5%">
+              <Box color="black" fontSize="15px" textAlign="center" mt="1.5%">
                 and treat yourself to 5000+ eyewear styles.
               </Box>
               <Button
@@ -754,7 +754,7 @@ function NavbarCard5() {
                 bg="whiteAlpha.900"
                 rounded="50px"
                 p="6"
-                fontSize="16px"
+                fontSize="15px"
                 mt="10"
                 ml="30%"
                 _hover={{ bg: "#020043", color: "white" }}

@@ -22,3 +22,20 @@
   padding-top: 30px;
   text-align: center;
 }
+
+.input {
+  outline: 1px solid gray;
+  width: 90%;
+  padding: 8px;
+  margin: 14px;
+  text-align: left;
+  margin-left: 22px;
+  font-size: medium;
+  border-radius: 5px;
+  background-color: white;
+  border: none;
+}
+
+.input:hover {
+  outline: 2px solid black;
+}

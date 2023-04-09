@@ -55,7 +55,7 @@ const CouponBox = () => {
             value={couponCode}
             onChange={(e) => setCouponCode(e.target.value)}
             h={"12"}
-            fontSize="18px"
+            fontSize="16px"
           />
         </Box>
         <Box
@@ -70,7 +70,7 @@ const CouponBox = () => {
           <Button
             color="white"
             backgroundColor={"#12daac"}
-            fontSize={"18px"}
+            fontSize={"16px"}
             padding="10px"
             mt={"5px"}
             onClick={handleSubmit}

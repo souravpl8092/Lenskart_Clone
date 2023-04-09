@@ -30,7 +30,7 @@ const Login = (props) => {
   const [pass, setpass] = useState(false);
   const [show, setShow] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isAuth, setisAuth, Authdata, setAuthData } = useContext(AuthContext);
+  const { setisAuth, setAuthData } = useContext(AuthContext);
   const [incorrect, setinCorrect] = useState(false);
   const navigate = useNavigate();
   let res1 = [];
@@ -85,7 +85,6 @@ const Login = (props) => {
             onClose();
             navigate("/productlist");
           } else {
-            console.log(data);
             setLoading(false);
             setinCorrect(false);
             onClose();
@@ -102,6 +101,11 @@ const Login = (props) => {
     }
   };
 
+  const handleClick = () => {
+    loginData.password = "";
+    setpass(false);
+  };
+
   const handlesign = () => {
     setpass(true);
     if (loginData.password.length > 6) {
@@ -111,11 +115,16 @@ const Login = (props) => {
 
   return (
     <div>
-      <Center onClick={onOpen} fontWeight={"400"} fontSize="15px" w="60px">
+      <Center onClick={onOpen} fontWeight={"400"} fontSize="15px" w="80px">
         Sign In
       </Center>
 
-      <Modal isOpen={isOpen} onClose={onClose} isCentered size="lg">
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        isCentered
+        size={{ xl: "md", lg: "md", md: "md", sm: "md", base: "sm" }}
+      >
         <ModalOverlay />
         <ModalContent rounded="3xl">
           <ModalCloseButton
@@ -168,7 +177,7 @@ const Login = (props) => {
                     <Box
                       fontSize={"14px"}
                       textDecoration="underline"
-                      onClick={() => setpass(false)}
+                      onClick={handleClick}
                       cursor="pointer"
                     >
                       Edit
@@ -266,7 +275,7 @@ const Login = (props) => {
                 </Button>
               )}
 
-              <HStack spacing={"0px"} mt="19px">
+              <HStack spacing={"0px"} mt="19px" gap="2">
                 <Box fontSize={"14px"}> New member?</Box>
                 <Link
                   fontSize={"15px"}
