@@ -164,7 +164,7 @@
 <br/>
 
 <div align="center">
-  <img width="80%" src="https://i.imgur.com/EeiNeyS.png" alt=" cart page">
+  <img width="80%" src="https://i.imgur.com/nVyk6Ta.png" alt=" cart">
 </div>
 
 <br/>
@@ -175,7 +175,7 @@
 <br/>
 
 <div align="center">
-  <img width="80%" src="https://i.imgur.com/BLlSb7Q.png" alt="Shipping page">
+  <img width="80%" src="https://i.imgur.com/BHLF8AH.png" alt="Shipping page">
 </div>
 
 <br/>
@@ -187,7 +187,7 @@
 <br/>
 
 <div align="center">
-  <img width="80%" src="https://i.imgur.com/ilTMzRN.png" alt="Flight checkout page">
+  <img width="80%" src="https://i.imgur.com/G7dI2p0.png" alt="Flight checkout page">
 </div>
 
 <br/>
@@ -221,7 +221,7 @@
 <br/>
 
 <div align="center">
-  <img width="80%" src="https://i.imgur.com/mzksTk4.png" alt="Order History page">
+  <img width="80%" src="https://i.imgur.com/NtzcNeo.png" alt="Order History page">
 </div>
 
 <br/>
@@ -271,8 +271,8 @@
  # Languages Used :
 
 <ul dir="auto">
- <ol dir="auto">◉ JavaScript : 98.4%</ol>
- <ol dir="auto">◉ Others : 1.6%</ol>
+ <ol dir="auto">◉ JavaScript : 99.1%</ol>
+ <ol dir="auto">◉ Others : 0.9%</ol>
  </ul>
  
 ### This report is provided by the Github language used stats. So, this is the total percentage of the coding languages.
