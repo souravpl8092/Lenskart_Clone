@@ -79,7 +79,7 @@ const Login = (props) => {
           res1 = cred.filter((el) => el.email === loginData.email);
           setisAuth(true);
           setAuthData(res1);
-          if (loginData.email.includes(process.env.Domain)) {
+          if (loginData.email.includes(process.env.admin)) {
             setLoading(false);
             setinCorrect(false);
             onClose();
