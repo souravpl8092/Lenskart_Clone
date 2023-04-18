@@ -79,7 +79,7 @@ const Login = (props) => {
           res1 = cred.filter((el) => el.email === loginData.email);
           setisAuth(true);
           setAuthData(res1);
-          if (loginData.email.includes("@glasscart.com")) {
+          if (loginData.email.includes(process.env.Domain)) {
             setLoading(false);
             setinCorrect(false);
             onClose();
