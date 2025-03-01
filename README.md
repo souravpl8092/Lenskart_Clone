@@ -7,9 +7,9 @@
 
 <br/>
 
-### Frontend Deployed URL 👉 [Click here](https://glassscart.vercel.app/)
+### Frontend Deployed URL 👉 [Click here](https://glasscart-three.vercel.app/)
 
-### Backend API 👉 [Click here](https://harlequin-fawn-tutu.cyclic.app/)
+### Backend API 👉 [Click here](https://glasscart-server.vercel.app/)
 
 <br/>
 
